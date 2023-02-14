@@ -14,7 +14,7 @@ To install and run the website locally, follow these steps:
 
 1. Clone the repository to your local machine using Git:
 
-`git clone https://github.com/your-username/portfolio.git`
+`git clone https://github.com/Hssnurrahman/portfolio-with-astro`
 
 2. Navigate to the project directory and install the dependencies:
 
