@@ -1,0 +1,29 @@
+---
+import Icon from "astro-icon";
+
+import "../styles/Icon.scss";
+
+export interface Props {
+  href: string;
+  className: string;
+  icon: string;
+  ariaLabel: string;
+}
+
+const { href, className, icon, ariaLabel } = Astro.props as Props;
+
+const hasName =
+  icon.includes(ariaLabel) && !icon.includes("linkedin") && `ml-2 mr-2`;
+
+const linkedin = icon.includes("linkedin") && `mr-2`;
+---
+
+<a
+  href={href}
+  aria-label={ariaLabel}
+  target="_blank"
+  aria-label="landing-icon"
+  class={`p-2 border-none rounded ${className} cursor-pointer ${linkedin} ${hasName}`}
+>
+  <Icon name={icon} class="text-white" width="48" height="48" />
+</a>

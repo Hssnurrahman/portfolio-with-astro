@@ -1,0 +1,40 @@
+---
+import Icon from "astro-icon";
+import { landingIcons } from "../data/LandingIcons";
+import LandingIcon from "./LandingIcon.astro";
+
+export interface IconProps {
+  icon: string;
+  href: string;
+  className: string;
+  ariaLabel: string;
+}
+---
+
+<div
+  class="flex justify-center xl:items-center items-start flex-col xl:flex-row xl:justify-between w-10/12 m-auto py-12"
+  aria-label="landing"
+>
+  <div class="flex flex-col my-4 lg:my-0 justify-center items-start">
+    <p class="text-6xl font-light">Hi! I'm Hassan</p>
+    <p class="text-3xl mt-3">Full Stack Developer</p>
+    <div class="flex items-center justify-start mt-5">
+      {
+        landingIcons.map(({ ariaLabel, className, href, icon }: IconProps) => {
+          return (
+            <LandingIcon
+              ariaLabel={ariaLabel}
+              className={className}
+              href={href}
+              icon={icon}
+            />
+          );
+        })
+      }
+    </div>
+  </div>
+
+  <div class="my-5 hidden xl:flex">
+    <Icon name="landing" width="500" height="500" />
+  </div>
+</div>

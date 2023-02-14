@@ -1,0 +1,33 @@
+---
+import { Icon } from "astro-icon";
+import { projects } from "../data/Projects";
+import Card from "./Card.astro";
+
+export interface ProjectProps {
+  name: string;
+  description: string;
+  href: string;
+  tags: string[];
+}
+---
+
+<div
+  class="flex justify-between items-center flex-col-reverse xl:flex-row w-10/12 m-auto py-12"
+  aria-label="projects"
+>
+  <div class="grid md:grid-cols-2 grid-cols-1 gap-2 xl:mr-10 mr-0 mt-10">
+    {
+      projects.map(({ name, description, href, tags }: ProjectProps) => {
+        return (
+          <Card name={name} description={description} href={href} tags={tags} />
+        );
+      })
+    }
+  </div>
+  <div class="flex flex-col justify-center items-center">
+    <h6 class="text-6xl font-light">Projects</h6>
+    <Icon name="projects" width="500" height="500" class="hidden xl:flex" />
+  </div>
+</div>
+
+<!-- 2xl:flex image -->

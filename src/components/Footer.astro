@@ -1,0 +1,29 @@
+---
+import { Icon } from "astro-icon";
+---
+
+<footer
+  class="w-full bg-slate-100 shadow-inner flex items-center justify-center flex-col py-3"
+  aria-label="footer"
+>
+  <small class="font-roboto text-base">
+    &copy; Hassan <span id="copyright"></span></small
+  >
+
+  <div class="flex flex-row justify-center items-center">
+    Made with <Icon
+      name="simple-icons:astro"
+      width="35"
+      height="35"
+      class="px-1 text-gray-500 hover:text-gray-700"
+    />
+    <Icon
+      name="mdi:tailwind"
+      width="30"
+      height="30"
+      class="px-1 tailwind-icon"
+    />
+  </div>
+</footer>
+
+<script src="../utils/getFullYear"></script>

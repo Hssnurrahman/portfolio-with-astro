@@ -1,0 +1,44 @@
+$black: #000000;
+
+$icons: (
+    "linkedin" #1566c2,
+    "github" #181717,
+    "gmail" #ea4335,
+    "twitter" #1c9cf4,
+    "pdf" #f46c14,
+    "javascript" #f7df1d,
+    "html5" #e34f25,
+    "css3" #1972b6,
+    "typescript" #3178c6,
+    "dart" #1975c2,
+    "react" #61dafb,
+    "redux" #764abc,
+    "next"$black,
+    "vercel"$black,
+    "mui" #1d81cb,
+    "chakra" #319795,
+    "nodejs" #339933,
+    "express"$black,
+    "mongodb" #47a248,
+    "heroku" #430b98,
+    "strapi" #4945ff,
+    "firebase" #fcca28,
+    "react-native" #61dafb,
+    "flutter" #10569b,
+);
+
+@mixin icon-style($color) {
+    width: 65px;
+    background-color: $color;
+}
+
+@each $name,
+$color in $icons {
+    .#{$name}-icon {
+        @include icon-style($color);
+    }
+}
+
+.tailwind-icon {
+    color: #38bdf8;
+}
