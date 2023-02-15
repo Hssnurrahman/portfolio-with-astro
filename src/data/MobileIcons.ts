@@ -1,14 +1,14 @@
 export const mobileIcons = [
   {
-    icon: "mdi:react",
+    icon: "simple-icons:react",
     className: "react-native-icon",
     ariaLabel: "react",
-    name: "React Native",
+    label: "React Native",
   },
   {
-    icon: "bx:bxl-flutter",
+    icon: "simple-icons:flutter",
     className: "flutter-icon",
     ariaLabel: "flutter",
-    name: "Flutter",
+    label: "Flutter",
   },
 ];

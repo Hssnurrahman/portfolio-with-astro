@@ -1,38 +1,38 @@
 export const backendIcons = [
   {
-    icon: "mdi:nodejs",
+    icon: "simple-icons:nodedotjs",
     className: "nodejs-icon",
     ariaLabel: "node",
-    name: "Node.js",
+    label: "Node.js",
   },
   {
     icon: "simple-icons:express",
     className: "express-icon",
     ariaLabel: "express",
-    name: "Express",
+    label: "Express",
   },
   {
     icon: "simple-icons:mongodb",
     className: "mongodb-icon",
     ariaLabel: "mongodb",
-    name: "MongoDB",
+    label: "MongoDB",
   },
   {
-    icon: "bx:bxl-heroku",
+    icon: "simple-icons:heroku",
     className: "heroku-icon",
     ariaLabel: "heroku",
-    name: "Heroku",
+    label: "Heroku",
   },
   {
     icon: "simple-icons:strapi",
     className: "strapi-icon",
     ariaLabel: "strapi",
-    name: "Strapi",
+    label: "Strapi",
   },
   {
-    icon: "mdi:firebase",
+    icon: "simple-icons:firebase",
     className: "firebase-icon",
     ariaLabel: "firebase",
-    name: "Firebase",
+    label: "Firebase",
   },
 ];

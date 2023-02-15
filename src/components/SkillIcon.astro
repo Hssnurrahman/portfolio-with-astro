@@ -5,7 +5,7 @@ import "../styles/Icon.scss";
 
 export interface IconProps {
   icon: string;
-  name: string;
+  label: string;
   ariaLabel: string;
   className: string;
 }
@@ -21,34 +21,19 @@ const { heading, icons } = Astro.props as Props;
 <p class="text-4xl font-normal mt-5" aria-label="skill-icon">{heading}</p>
 <div class="flex flex-wrap items-center xl:items-end justify-center gap-4 mt-5">
   {
-    icons.map(({ icon, name, ariaLabel, className }: IconProps) => {
-      // const hasName =
-      //   icon.includes(ariaLabel) &&
-      //   !icon.includes("dart") &&
-      //   !icon.includes("chakra") &&
-      //   !icon.includes("flutter") &&
-      //   !icon.includes("firebase") &&
-      //   `ml-2.5 mr-2.5`;
-
-      // const dart = icon.includes("dart") && `ml-2.5`;
-      // const chakra = icon.includes("chakra") && `ml-2.5`;
-      // const flutter = icon.includes("flutter") && `ml-2.5`;
-      // const firebase = icon.includes("firebase") && `ml-2.5`;
-
+    icons.map(({ icon, label, ariaLabel, className }: IconProps) => {
       return (
         <div class="flex flex-col items-center justify-center">
-          <div
-            class={`p-2 border-none rounded-md ${className} transition duration-500 ease-in-out`}
-          >
+          <div class={`p-2 border-none rounded-md ${className}`}>
             <Icon
               name={icon}
-              class="text-white"
+              class="text-white p-1.5"
               aria-label={ariaLabel}
               width="48"
               height="48"
             />
           </div>
-          <p class={`text-xs font-normal mt-1`}>{name}</p>
+          <p class={`text-xs font-normal mt-1`}>{label}</p>
         </div>
       );
     })

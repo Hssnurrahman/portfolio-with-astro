@@ -1,18 +1,18 @@
 export const landingIcons = [
   {
-    icon: "mdi:linkedin",
+    icon: "simple-icons:linkedin",
     href: "https://www.linkedin.com/in/hassan-ur-rahman-03b787229/",
     className: "linkedin-icon",
     ariaLabel: "linkedin",
   },
   {
-    icon: "mdi:github",
+    icon: "simple-icons:github",
     href: "https://github.com/Hssnurrahman",
     className: "github-icon",
     ariaLabel: "github",
   },
   {
-    icon: "bx:bxl-gmail",
+    icon: "simple-icons:gmail",
     href: "mailto:hssnurrahman@gmail.com",
     className: "gmail-icon",
     ariaLabel: "gmail",
@@ -30,5 +30,3 @@ export const landingIcons = [
     ariaLabel: "pdf",
   },
 ];
-
-// https://drive.google.com/file/d/10C0dl1ogFkCGQ6rLGUOx0oX1btvUCGA5/view?usp=share_link

@@ -1,32 +1,32 @@
 export const languageIcons = [
   {
-    icon: "mdi:language-javascript",
+    icon: "simple-icons:javascript",
     className: "javascript-icon",
     ariaLabel: "javascript",
-    name: "JavaScript",
+    label: "JavaScript",
   },
   {
-    icon: "mdi:language-html5",
+    icon: "simple-icons:html5",
     className: "html5-icon",
     ariaLabel: "html5",
-    name: "HTML5",
+    label: "HTML5",
   },
   {
-    icon: "ion:logo-css3",
+    icon: "simple-icons:css3",
     className: "css3-icon",
     ariaLabel: "css3",
-    name: "CSS3",
+    label: "CSS3",
   },
   {
-    icon: "mdi:language-typescript",
+    icon: "simple-icons:typescript",
     className: "typescript-icon",
     ariaLabel: "typescript",
-    name: "TypeScript",
+    label: "TypeScript",
   },
   {
     icon: "simple-icons:dart",
     className: "dart-icon",
     ariaLabel: "dart",
-    name: "Dart",
+    label: "Dart",
   },
 ];

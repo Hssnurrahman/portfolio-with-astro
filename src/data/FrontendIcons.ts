@@ -1,38 +1,38 @@
 export const frontendIcons = [
   {
-    icon: "mdi:react",
+    icon: "simple-icons:react",
     className: "react-icon",
     ariaLabel: "react",
-    name: "React",
+    label: "React",
   },
   {
-    icon: "bx:bxl-redux",
+    icon: "simple-icons:redux",
     className: "redux-icon",
     ariaLabel: "redux",
-    name: "Redux",
+    label: "Redux",
   },
   {
-    icon: "akar-icons:nextjs-fill",
+    icon: "simple-icons:nextdotjs",
     className: "next-icon",
     ariaLabel: "next",
-    name: "Next.js",
+    label: "Next.js",
   },
   {
     icon: "simple-icons:vercel",
     className: "vercel-icon",
     ariaLabel: "vercel",
-    name: "Vercel",
+    label: "Vercel",
   },
   {
     icon: "simple-icons:mui",
     className: "mui-icon",
     ariaLabel: "mui",
-    name: "Material-UI",
+    label: "Material-UI",
   },
   {
     icon: "simple-icons:chakraui",
     className: "chakra-icon",
     ariaLabel: "chakra",
-    name: "Chakra UI",
+    label: "Chakra UI",
   },
 ];
