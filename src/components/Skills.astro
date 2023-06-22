@@ -5,10 +5,13 @@ import { frontendIcons } from "../data/FrontendIcons";
 import { languageIcons } from "../data/LanguageIcons";
 import { mobileIcons } from "../data/MobileIcons";
 import SkillIcon from "./SkillIcon.astro";
+
+import "../styles/styles.scss";
 ---
 
 <div
-  class="flex justify-between items-center flex-col xl:flex-row w-10/12 m-auto py-12"
+  id="skills"
+  class="flex justify-between items-center flex-col xl:flex-row w-[83%] m-auto py-[3rem]"
   aria-label="skills"
 >
   <div class="flex flex-col justify-center items-center">
@@ -16,7 +19,7 @@ import SkillIcon from "./SkillIcon.astro";
     <Icon name="skill" width="500" height="500" class="hidden xl:flex" />
   </div>
   <div
-    class="flex flex-wrap flex-col my-4 lg:my-0 justify-center xl:items-end items-center"
+    class="flex flex-wrap flex-col my-[1rem] lg:my-0 justify-center xl:items-end items-center"
   >
     <SkillIcon heading="Languages" icons={languageIcons} />
     <SkillIcon heading="Frontend" icons={frontendIcons} />

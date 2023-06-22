@@ -1,24 +1,31 @@
 export const projects = [
+  // {
+  //   name: "Audio Player",
+  //   description:
+  //     "Simple audio player app in which you can pick audio to play and pause it. It also shows you duration of audio in correct format.",
+  //   href: "https://github.com/Hssnurrahman/audio-player",
+  //   tags: ["Flutter", "Dart"],
+  // },
   {
-    name: "Audio Player",
+    name: "ThreeJS Shirt",
     description:
-      "Simple audio player app in which you can pick audio to play and pause it. It also shows you duration of audio in correct format.",
-    href: "https://github.com/Hssnurrahman/audio-player",
-    tags: ["Flutter", "Dart"],
+      "This is a 3D model of a shirt which is rendered in 3D using ThreeJS.",
+    href: "https://github.com/Hssnurrahman/threejs-project",
+    tags: ["ThreeJS", "React", "Valtio"],
   },
   {
     name: "Quotes Club",
     description:
-      "In this app, you can read quotes and add your own quotes in 03 different languages. You can also share your quotes with others.",
+      "This is a app where you can read and also share your quotes with other people.",
     href: "https://github.com/Hssnurrahman/quotes_club",
-    tags: ["Flutter", "Dart"],
+    tags: ["Flutter", "Dart", "Firebase"],
   },
   {
-    name: "Vercel Clone",
+    name: "Fake Data Generator",
     description:
-      "This website made using github api to fetch repositories and used strapi as backend.",
-    href: "https://github.com/Hssnurrahman/vercel-frontend",
-    tags: ["Next.js", "Chakra-UI", "Strapi"],
+      "This is fake data generator which is used to generate fake data for testing purpose.",
+    href: "https://github.com/Hssnurrahman/fake-data-generator",
+    tags: ["Prisma", "GraphQL", "PostgreSQL"],
   },
   {
     name: "E-commerce",

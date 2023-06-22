@@ -4,7 +4,7 @@ This is a portfolio website built using Astro.js and Tailwind CSS, a utility-fir
 
 ## Requirements
 
-Node = 18.14.0
+Node = 18.14.2
 
 yarn / npm but yarn is preferred
 
@@ -49,7 +49,7 @@ In this section, I will tell you which file you have to change to create your ow
 
 - `src/data`: In this folder, you have to change all your data, for example, by adding your own skills, etc. You can use icons; the link is in references.
 
-- `src/data`: In all icon files inside the data folder, you have to add icons; the link is in the references. It is array of following properties:
+- `src/icons`: In all icon files inside the data folder, you have to add icons; the link is in the references. It is array of following properties:
 
   - `icon`: It consists of icon name taken from astro-icon package. You can copy name of your desired icon and paste here.
 

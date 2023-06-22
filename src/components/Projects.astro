@@ -12,10 +12,13 @@ export interface ProjectProps {
 ---
 
 <div
-  class="flex justify-between items-center flex-col-reverse xl:flex-row w-10/12 m-auto py-12"
+  id="projects"
+  class="flex justify-between items-center flex-col-reverse xl:flex-row w-[83%] m-auto py-[3rem]"
   aria-label="projects"
 >
-  <div class="grid md:grid-cols-2 grid-cols-1 gap-2 xl:mr-10 mr-0 mt-10">
+  <div
+    class="grid md:grid-cols-2 grid-cols-1 gap-[0.8rem] xl:mr-[2.5rem] mr-0 mt-[2.5rem]"
+  >
     {
       projects.map(({ name, description, href, tags }: ProjectProps) => {
         return (
@@ -29,5 +32,3 @@ export interface ProjectProps {
     <Icon name="projects" width="500" height="500" class="hidden xl:flex" />
   </div>
 </div>
-
-<!-- 2xl:flex image -->

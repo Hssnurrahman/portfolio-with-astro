@@ -35,4 +35,28 @@ export const backendIcons = [
     ariaLabel: "firebase",
     label: "Firebase",
   },
+  {
+    icon: "simple-icons:prisma",
+    className: "prisma-icon",
+    ariaLabel: "prisma",
+    label: "Prisma",
+  },
+  {
+    icon: "simple-icons:graphql",
+    className: "graphql-icon",
+    ariaLabel: "graphql",
+    label: "GraphQL",
+  },
+  {
+    icon: "simple-icons:postgresql",
+    className: "postgresql-icon",
+    ariaLabel: "postgresql",
+    label: "PostgreSQL ",
+  },
+  {
+    icon: "simple-icons:nestjs",
+    className: "nestjs-icon",
+    ariaLabel: "nestjs",
+    label: "NestJS",
+  },
 ];

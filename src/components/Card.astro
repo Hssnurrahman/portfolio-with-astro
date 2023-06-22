@@ -11,18 +11,18 @@ const { name, description, href, tags } = Astro.props as Props;
 
 <a href={href} target="_blank" aria-label="card">
   <div
-    class="rounded overflow-hidden shadow-lg bg-white hover:bg-slate-50 hover:shadow-xl min-h-96"
+    class="rounded-lg overflow-hidden shadow-lg bg-white hover:bg-slate-50 hover:shadow-xl max-h-[13rem] border border-gray-200"
   >
-    <div class="px-6 py-4">
-      <div class="font-bold text-xl mb-2">{name}</div>
-      <p class="text-gray-700 text-base">{description}</p>
+    <div class="px-[1.5rem] py-[1rem]">
+      <div class="font-bold text-xl mb-[0.5rem]">{name}</div>
+      <p class="text-gray-700 text-lg">{description}</p>
     </div>
-    <div class="px-6 py-4">
+    <div class="px-[1.5rem] py-[1rem]">
       {
         tags &&
-          tags.map((tag) => {
+          tags.map((tag: string) => {
             return (
-              <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+              <span class="inline-block bg-gray-200 rounded-full px-[1rem] py-[0.3rem] text-[13px] font-semibold text-gray-700 mr-[0.5rem] mb-[0.5rem]">
                 {tag}
               </span>
             );

@@ -35,4 +35,16 @@ export const frontendIcons = [
     ariaLabel: "chakra",
     label: "Chakra UI",
   },
+  {
+    icon: "simple-icons:threedotjs",
+    className: "threejs-icon",
+    ariaLabel: "threejs",
+    label: "ThreeJS",
+  },
+  {
+    icon: "simple-icons:astro",
+    className: "astro-icon",
+    ariaLabel: "astro",
+    label: "Astro",
+  },
 ];
