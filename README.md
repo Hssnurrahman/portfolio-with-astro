@@ -4,7 +4,7 @@ This is a portfolio website built using Astro.js and Tailwind CSS, a utility-fir
 
 ## Requirements
 
-Node = 18.14.2
+Node = 18.16.0
 
 yarn / npm but yarn is preferred
 
