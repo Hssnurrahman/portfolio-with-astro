@@ -1,26 +1,70 @@
 ---
-import "../styles/styles.scss";
+
+const navItems = [
+  { href: "#home", label: "Home" },
+  { href: "#skills", label: "Skills" },
+  { href: "#projects", label: "Projects" },
+  { href: "#about", label: "About" },
+];
 ---
 
-<div class="md:flex md:items-center md:justify-center md:mt-3 hidden">
-  <a
-    href="#home"
-    class="mr-[1rem] text-gray-600 text-lg hover:text-gray-800 font-medium"
-    >Home</a
-  >
-  <a
-    href="#skills"
-    class="mx-[1rem] text-gray-600 hover:text-gray-800 text-lg font-medium"
-    >Skills</a
-  >
-  <a
-    href="#projects"
-    class="mx-[1rem] text-gray-600 hover:text-gray-800 text-lg font-medium"
-    >Projects</a
-  >
-  <a
-    href="#about"
-    class="ml-[1rem] text-gray-600 hover:text-gray-800 text-lg font-medium"
-    >About</a
-  >
-</div>
+<header class="sticky top-0 z-50 bg-gray-100 dark:bg-gray-800 bg-opacity-90 dark:bg-opacity-90 backdrop-blur-md shadow-sm transition-all duration-300">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <!--<div class="flex items-center">-->
+    <!--  <Icon name="mdi:code-braces" class="w-8 h-8 text-indigo-600 dark:text-indigo-400" />-->
+    <!--</div>-->
+
+    <nav class="flex-1 flex justify-center">
+      <ul class="flex items-center space-x-6">
+        {navItems.map((item) => (
+            <li>
+              <a
+                  href={item.href}
+                  class="text-gray-700 dark:text-gray-300 text-lg font-medium transition-all duration-200 relative group hover:text-indigo-600 dark:hover:text-indigo-400"
+              >
+                {item.label}
+                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-indigo-600 dark:bg-indigo-400 transform scale-x-0 transition-transform duration-200 group-hover:scale-x-100"></span>
+              </a>
+            </li>
+        ))}
+      </ul>
+    </nav>
+
+    <!--<button id="darkModeToggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200">-->
+    <!--  <Icon name="mdi:weather-night" class="w-6 h-6 text-gray-700 dark:text-gray-300" />-->
+    <!--</button>-->
+  </div>
+</header>
+
+<!--<script>-->
+<!--  const darkModeToggle = document.getElementById('darkModeToggle');-->
+<!--  const html = document.documentElement;-->
+
+<!--  function toggleDarkMode() {-->
+<!--    html.classList.toggle('dark');-->
+<!--    const isDark = html.classList.contains('dark');-->
+<!--    localStorage.setItem('darkMode', isDark);-->
+<!--    updateIcon();-->
+<!--  }-->
+
+<!--  function updateIcon() {-->
+<!--    const isDark = html.classList.contains('dark');-->
+<!--    darkModeToggle.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 ${isDark ? 'text-gray-300' : 'text-gray-700'}" viewBox="0 0 24 24">-->
+<!--      ${isDark-->
+<!--        ? '<path fill="currentColor" d="M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0-7l2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10l1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10l-4.14.36c.59-.51 1.12-1.14 1.54-1.86c.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44c.82 0 1.63-.17 2.37-.44L12 22z"/>'-->
+<!--        : '<path fill="currentColor" d="M12 21q-3.75 0-6.375-2.625T3 12q0-3.75 2.625-6.375T12 3q.35 0 .688.025t.662.075q-1.025.725-1.638 1.888T11.1 7.5q0 2.25 1.575 3.825T16.5 12.9q1.375 0 2.525-.613T20.9 10.65q.05.325.075.662T21 12q0 3.75-2.625 6.375T12 21Z"/>'-->
+<!--    }-->
+<!--    </svg>`;-->
+<!--  }-->
+
+<!--  // Check for saved dark mode preference or use system preference-->
+<!--  const savedDarkMode = localStorage.getItem('darkMode');-->
+
+<!--  if (savedDarkMode === 'true' || (!savedDarkMode && window.matchMedia('(prefers-color-scheme: dark)').matches)) {-->
+<!--    html.classList.add('dark');-->
+<!--  }-->
+
+<!--  updateIcon();-->
+
+<!--  darkModeToggle.addEventListener('click', toggleDarkMode);-->
+<!--</script>-->
