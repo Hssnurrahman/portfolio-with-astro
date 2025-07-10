@@ -5,34 +5,42 @@ const navItems = [
   { href: "#skills", label: "Skills" },
   { href: "#projects", label: "Projects" },
   { href: "#about", label: "About" },
+  { href: "#contact", label: "Contact" },
 ];
 ---
 
-<header class="sticky top-0 z-50 bg-gray-100 dark:bg-gray-800 bg-opacity-90 dark:bg-opacity-90 backdrop-blur-md shadow-sm transition-all duration-300">
-  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-    <!--<div class="flex items-center">-->
-    <!--  <Icon name="mdi:code-braces" class="w-8 h-8 text-indigo-600 dark:text-indigo-400" />-->
-    <!--</div>-->
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg border-b border-gray-200/20 dark:border-gray-700/20 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <div class="flex items-center">
+      <div class="w-10 h-10 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 flex items-center justify-center">
+        <span class="text-white font-bold text-xl">H</span>
+      </div>
+      <span class="ml-3 text-xl font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
+        Hassan
+      </span>
+    </div>
 
     <nav class="flex-1 flex justify-center">
-      <ul class="flex items-center space-x-6">
+      <ul class="flex items-center space-x-8">
         {navItems.map((item) => (
             <li>
               <a
                   href={item.href}
-                  class="text-gray-700 dark:text-gray-300 text-lg font-medium transition-all duration-200 relative group hover:text-indigo-600 dark:hover:text-indigo-400"
+                  class="text-gray-700 dark:text-gray-300 text-lg font-medium transition-all duration-300 relative group hover:text-primary-600 dark:hover:text-primary-400 px-4 py-2 rounded-full hover:bg-primary-50 dark:hover:bg-primary-900/20"
               >
                 {item.label}
-                <span class="absolute bottom-0 left-0 w-full h-0.5 bg-indigo-600 dark:bg-indigo-400 transform scale-x-0 transition-transform duration-200 group-hover:scale-x-100"></span>
+                <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-primary-600 dark:bg-primary-400 rounded-full scale-0 transition-transform duration-300 group-hover:scale-100"></span>
               </a>
             </li>
         ))}
       </ul>
     </nav>
 
-    <!--<button id="darkModeToggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200">-->
-    <!--  <Icon name="mdi:weather-night" class="w-6 h-6 text-gray-700 dark:text-gray-300" />-->
-    <!--</button>-->
+    <div class="flex items-center space-x-4">
+      <a href="#contact" class="px-6 py-2 bg-gradient-to-r from-primary-500 to-secondary-500 text-white rounded-full font-medium hover:from-primary-600 hover:to-secondary-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+        Contact
+      </a>
+    </div>
   </div>
 </header>
 

@@ -18,22 +18,27 @@ export interface Props {
 const { heading, icons } = Astro.props as Props;
 ---
 
-<p class="text-4xl font-normal mt-[1.25rem]" aria-label="skill-icon">{heading}</p>
-<div class="flex flex-wrap items-center xl:items-end justify-center xl:justify-end gap-[1rem] mt-[1.25rem]">
+<h3 class="text-2xl font-semibold mb-6 text-gray-800 dark:text-white" aria-label="skill-icon">
+  {heading}
+</h3>
+<div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4 mb-8">
   {
     icons.map(({ icon, label, ariaLabel, className }: IconProps) => {
       return (
-        <div class="flex flex-col items-center justify-center cursor-pointer hover:drop-shadow-lg">
-          <div class={`p-[0.5rem] border-none rounded-md ${className}`}>
+        <div class="group flex flex-col items-center justify-center cursor-pointer transition-all duration-300 hover:-translate-y-2">
+          <div class={`relative p-4 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 ${className} group-hover:scale-110`}>
+            <div class="absolute inset-0 bg-gradient-to-br from-white/20 to-white/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <Icon
               name={icon}
-              class="text-white p-[0.375rem]"
+              class="text-white relative z-10"
               aria-label={ariaLabel}
-              width="48"
-              height="48"
+              width="32"
+              height="32"
             />
           </div>
-          <p class={`text-xs font-medium mt-[0.25rem]`}>{label}</p>
+          <p class="text-xs font-medium mt-2 text-gray-600 dark:text-gray-300 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors duration-300">
+            {label}
+          </p>
         </div>
       );
     })

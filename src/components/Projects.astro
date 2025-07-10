@@ -1,5 +1,4 @@
 ---
-import { Icon } from "astro-icon/components";
 import { projects } from "../data/Projects";
 import Card from "./Card.astro";
 
@@ -13,22 +12,27 @@ export interface ProjectProps {
 
 <div
   id="projects"
-  class="flex justify-between items-center flex-col-reverse xl:flex-row w-[83%] m-auto py-[3rem]"
+  class="py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50 dark:from-gray-900 dark:via-gray-800 dark:to-primary-900/20"
   aria-label="projects"
 >
-  <div
-    class="grid md:grid-cols-2 grid-cols-1 gap-[0.8rem] xl:mr-[2.5rem] mr-0 mt-[2.5rem]"
-  >
-    {
-      projects.map(({ name, description, href, tags }: ProjectProps) => {
-        return (
-          <Card name={name} description={description} href={href} tags={tags} />
-        );
-      })
-    }
-  </div>
-  <div class="flex flex-col justify-center items-center">
-    <h6 class="text-6xl font-light">Projects</h6>
-    <Icon name="projects" width="500" height="500" class="hidden xl:flex" />
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600 bg-clip-text text-transparent">
+        Projects
+      </h2>
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+        Explore my latest work and creative solutions
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {
+        projects.map(({ name, description, href, tags }: ProjectProps) => {
+          return (
+            <Card name={name} description={description} href={href} tags={tags} />
+          );
+        })
+      }
+    </div>
   </div>
 </div>

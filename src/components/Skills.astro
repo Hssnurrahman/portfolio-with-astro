@@ -1,5 +1,4 @@
 ---
-import { Icon } from "astro-icon/components";
 import { backendIcons } from "../data/BackendIcons";
 import { frontendIcons } from "../data/FrontendIcons";
 import { languageIcons } from "../data/LanguageIcons";
@@ -11,19 +10,28 @@ import "../styles/styles.scss";
 
 <div
   id="skills"
-  class="flex justify-between items-center flex-col xl:flex-row w-[83%] m-auto py-[3rem]"
+  class="py-20 bg-white dark:bg-gray-900"
   aria-label="skills"
 >
-  <div class="flex flex-col justify-center items-center">
-    <h6 class="text-6xl font-light">Skills</h6>
-    <Icon name="skill" width="500" height="500" class="hidden xl:flex" />
-  </div>
-  <div
-    class="flex flex-wrap flex-col my-[1rem] lg:my-0 justify-center xl:items-end items-center"
-  >
-    <SkillIcon heading="Languages" icons={languageIcons} />
-    <SkillIcon heading="Frontend" icons={frontendIcons} />
-    <SkillIcon heading="Backend" icons={backendIcons} />
-    <SkillIcon heading="Mobile" icons={mobileIcons} />
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600 bg-clip-text text-transparent">
+        Skills & Technologies
+      </h2>
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+        Technologies I use to build amazing digital experiences
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-12">
+      <div class="space-y-8">
+        <SkillIcon heading="Languages" icons={languageIcons} />
+        <SkillIcon heading="Frontend" icons={frontendIcons} />
+      </div>
+      <div class="space-y-8">
+        <SkillIcon heading="Backend" icons={backendIcons} />
+        <SkillIcon heading="Mobile" icons={mobileIcons} />
+      </div>
+    </div>
   </div>
 </div>

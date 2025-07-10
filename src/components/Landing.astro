@@ -13,31 +13,52 @@ export interface IconProps {
 
 <div
   id="home"
-  class="flex justify-between items-center flex-col xl:flex-row w-[83%] m-auto py-[7rem]"
+  class="min-h-screen flex justify-center items-center relative overflow-hidden"
   aria-label="landing"
 >
-  <div class="flex flex-col my-[1rem] lg:my-0 justify-center items-start">
-    <p class="text-6xl font-light text-shadow-lg shadow-orange-300">
-      Hi! I'm Hassan
-    </p>
-    <p class="text-3xl mt-[0.75rem]">Full Stack Developer</p>
-    <div class="flex items-center justify-start mt-[1.25rem]">
-      {
-        landingIcons.map(({ ariaLabel, className, href, icon }: IconProps) => {
-          return (
-            <LandingIcon
-              ariaLabel={ariaLabel}
-              className={className}
-              href={href}
-              icon={icon}
-            />
-          );
-        })
-      }
-    </div>
+  <!-- Background gradient -->
+  <div class="absolute inset-0 bg-gradient-to-br from-primary-50 via-secondary-50 to-accent-50 dark:from-gray-900 dark:via-primary-900 dark:to-secondary-900"></div>
+  
+  <!-- Animated background elements -->
+  <div class="absolute inset-0 overflow-hidden">
+    <div class="absolute -top-40 -right-40 w-80 h-80 bg-primary-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float"></div>
+    <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-secondary-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style="animation-delay: -1s;"></div>
+    <div class="absolute top-40 left-40 w-80 h-80 bg-accent-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-float" style="animation-delay: -2s;"></div>
   </div>
 
-  <div class="my-[1.25rem] hidden xl:flex">
-    <Icon name="landing" width="500" height="500" />
+  <div class="relative z-10 flex justify-between items-center flex-col xl:flex-row w-[90%] max-w-7xl mx-auto py-20">
+    <div class="flex flex-col my-8 lg:my-0 justify-center items-start animate-slide-up">
+      <h1 class="text-7xl lg:text-8xl font-bold bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600 bg-clip-text text-transparent mb-6">
+        Hi! I'm Hassan
+      </h1>
+      <p class="text-4xl lg:text-5xl font-light text-gray-700 dark:text-gray-300 mb-6">
+        Full Stack Developer
+      </p>
+      <p class="text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl leading-relaxed">
+        Crafting exceptional digital experiences with modern technologies. 
+        Passionate about creating scalable solutions that make a difference.
+      </p>
+      <div class="flex items-center justify-start gap-4 animate-fade-in" style="animation-delay: 0.3s;">
+        {
+          landingIcons.map(({ ariaLabel, className, href, icon }: IconProps) => {
+            return (
+              <LandingIcon
+                ariaLabel={ariaLabel}
+                className={className}
+                href={href}
+                icon={icon}
+              />
+            );
+          })
+        }
+      </div>
+    </div>
+
+    <div class="my-8 xl:my-0 flex justify-center items-center animate-float">
+      <div class="relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-primary-400 to-secondary-400 rounded-full blur-2xl opacity-30"></div>
+        <Icon name="landing" width="500" height="500" class="relative z-10 drop-shadow-2xl" />
+      </div>
+    </div>
   </div>
 </div>
