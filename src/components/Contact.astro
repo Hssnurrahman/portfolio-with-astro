@@ -4,181 +4,275 @@ import { Icon } from "astro-icon/components";
 
 <div
   id="contact"
-  class="py-20 bg-gradient-to-br from-primary-50 via-white to-secondary-50 dark:from-gray-900 dark:via-primary-900/10 dark:to-secondary-900/10"
+  class="py-24 relative overflow-hidden"
   aria-label="contact"
 >
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="text-center mb-16">
-      <h2 class="text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600 bg-clip-text text-transparent">
-        Get In Touch
+  <!-- Enhanced Background -->
+  <div class="absolute inset-0">
+    <div class="absolute inset-0 bg-gradient-to-br from-primary-50/50 via-white to-secondary-50/50 dark:from-gray-950 dark:via-primary-950/20 dark:to-secondary-950/20"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(56,189,248,0.08),transparent_50%),radial-gradient(circle_at_25%_75%,rgba(217,70,239,0.08),transparent_50%),radial-gradient(circle_at_75%_25%,rgba(249,115,22,0.08),transparent_50%)]"></div>
+  </div>
+
+  <div class="relative z-10 max-w-8xl mx-auto px-8">
+    <!-- Section Header -->
+    <div class="text-center mb-20">
+      <div class="inline-flex items-center px-4 py-2 rounded-full bg-white/60 dark:bg-gray-800/60 backdrop-blur-xl border border-white/20 dark:border-gray-700/30 mb-6 shadow-lg">
+        <svg class="w-5 h-5 text-primary-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+        </svg>
+        <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Let's Connect</span>
+      </div>
+      
+      <h2 class="text-5xl lg:text-7xl font-black mb-6">
+        <span class="bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600 bg-clip-text text-transparent">
+          Get In
+        </span>
+        <span class="block text-gray-900 dark:text-white font-light">Touch</span>
       </h2>
-      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-        Ready to bring your ideas to life? Let's discuss your next project
+      
+      <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
+        Ready to bring your ideas to life? Let's discuss how we can create something amazing together
       </p>
     </div>
 
     <div class="grid lg:grid-cols-2 gap-16 items-start">
-      <!-- Contact Form -->
-      <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border border-gray-200 dark:border-gray-700">
-        <h3 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
-          Send me a message
-        </h3>
+      <!-- Enhanced Contact Form -->
+      <div class="bg-white/70 dark:bg-gray-800/70 backdrop-blur-xl rounded-3xl p-10 shadow-2xl border border-white/20 dark:border-gray-700/30">
+        <div class="flex items-center mb-8">
+          <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-2xl flex items-center justify-center mr-4">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 7.89a2 2 0 002.83 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-1">
+              Send a Message
+            </h3>
+            <p class="text-gray-600 dark:text-gray-400">I'll get back to you within 24 hours</p>
+          </div>
+        </div>
         
         <form class="space-y-6">
           <div class="grid md:grid-cols-2 gap-6">
-            <div>
-              <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Name
+            <div class="group">
+              <label for="name" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+                Full Name
               </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                required
-                class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300"
-                placeholder="Your name"
-              />
+              <div class="relative">
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  class="w-full px-5 py-4 rounded-2xl border border-gray-200 dark:border-gray-600 bg-white/70 dark:bg-gray-700/70 backdrop-blur-sm text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300 placeholder-gray-400 dark:placeholder-gray-500"
+                  placeholder="John Doe"
+                />
+                <div class="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-secondary-500/10 rounded-2xl opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+              </div>
             </div>
-            <div>
-              <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Email
+            <div class="group">
+              <label for="email" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+                Email Address
               </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                required
-                class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300"
-                placeholder="your@email.com"
-              />
+              <div class="relative">
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  class="w-full px-5 py-4 rounded-2xl border border-gray-200 dark:border-gray-600 bg-white/70 dark:bg-gray-700/70 backdrop-blur-sm text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300 placeholder-gray-400 dark:placeholder-gray-500"
+                  placeholder="john@example.com"
+                />
+                <div class="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-secondary-500/10 rounded-2xl opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+              </div>
             </div>
           </div>
           
-          <div>
-            <label for="subject" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Subject
+          <div class="group">
+            <label for="subject" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+              Project Type
             </label>
-            <input
-              type="text"
-              id="subject"
-              name="subject"
-              required
-              class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300"
-              placeholder="What's this about?"
-            />
+            <div class="relative">
+              <select
+                id="subject"
+                name="subject"
+                required
+                class="w-full px-5 py-4 rounded-2xl border border-gray-200 dark:border-gray-600 bg-white/70 dark:bg-gray-700/70 backdrop-blur-sm text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300"
+              >
+                <option value="">Select a project type</option>
+                <option value="web-development">Web Development</option>
+                <option value="mobile-app">Mobile Application</option>
+                <option value="ui-ux-design">UI/UX Design</option>
+                <option value="consultation">Consultation</option>
+                <option value="other">Other</option>
+              </select>
+              <div class="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-secondary-500/10 rounded-2xl opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+            </div>
           </div>
           
-          <div>
-            <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Message
+          <div class="group">
+            <label for="message" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+              Project Details
             </label>
-            <textarea
-              id="message"
-              name="message"
-              rows="6"
-              required
-              class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300 resize-none"
-              placeholder="Tell me about your project..."
-            ></textarea>
+            <div class="relative">
+              <textarea
+                id="message"
+                name="message"
+                rows="6"
+                required
+                class="w-full px-5 py-4 rounded-2xl border border-gray-200 dark:border-gray-600 bg-white/70 dark:bg-gray-700/70 backdrop-blur-sm text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300 resize-none placeholder-gray-400 dark:placeholder-gray-500"
+                placeholder="Tell me about your project vision, goals, and requirements..."
+              ></textarea>
+              <div class="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-secondary-500/10 rounded-2xl opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+            </div>
           </div>
           
           <button
             type="submit"
-            class="w-full bg-gradient-to-r from-primary-500 to-secondary-500 text-white py-4 px-6 rounded-xl font-semibold hover:from-primary-600 hover:to-secondary-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+            class="group relative w-full bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600 text-white py-5 px-6 rounded-2xl font-bold hover:shadow-2xl hover:shadow-primary-500/25 transition-all duration-300 transform hover:scale-[1.02] overflow-hidden"
           >
-            Send Message
+            <div class="absolute inset-0 bg-gradient-to-r from-primary-700 via-secondary-700 to-accent-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <span class="relative z-10 flex items-center justify-center gap-3">
+              Send Message
+              <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+              </svg>
+            </span>
           </button>
         </form>
       </div>
 
-      <!-- Contact Info -->
+      <!-- Enhanced Contact Info -->
       <div class="space-y-8">
-        <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border border-gray-200 dark:border-gray-700">
-          <h3 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
-            Let's Connect
-          </h3>
+        <!-- Contact Methods -->
+        <div class="bg-white/70 dark:bg-gray-800/70 backdrop-blur-xl rounded-3xl p-10 shadow-2xl border border-white/20 dark:border-gray-700/30">
+          <div class="flex items-center mb-8">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-2xl flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-1">
+                Contact Info
+              </h3>
+              <p class="text-gray-600 dark:text-gray-400">Multiple ways to reach me</p>
+            </div>
+          </div>
           
           <div class="space-y-6">
-            <div class="flex items-center space-x-4">
-              <div class="w-12 h-12 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-xl flex items-center justify-center">
-                <Icon name="mdi:email" class="w-6 h-6 text-white" />
+            <div class="group flex items-center space-x-5 p-4 rounded-2xl hover:bg-white/60 dark:hover:bg-gray-700/60 backdrop-blur-sm transition-all duration-300">
+              <div class="w-14 h-14 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <Icon name="mdi:email" class="w-7 h-7 text-white" />
               </div>
               <div>
-                <h4 class="font-semibold text-gray-900 dark:text-white">Email</h4>
-                <p class="text-gray-600 dark:text-gray-300">hassan@example.com</p>
+                <h4 class="font-bold text-lg text-gray-900 dark:text-white mb-1">Email</h4>
+                <p class="text-gray-600 dark:text-gray-400">hassan@example.com</p>
               </div>
             </div>
             
-            <div class="flex items-center space-x-4">
-              <div class="w-12 h-12 bg-gradient-to-r from-secondary-500 to-accent-500 rounded-xl flex items-center justify-center">
-                <Icon name="mdi:phone" class="w-6 h-6 text-white" />
+            <div class="group flex items-center space-x-5 p-4 rounded-2xl hover:bg-white/60 dark:hover:bg-gray-700/60 backdrop-blur-sm transition-all duration-300">
+              <div class="w-14 h-14 bg-gradient-to-br from-secondary-500 to-secondary-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <Icon name="mdi:phone" class="w-7 h-7 text-white" />
               </div>
               <div>
-                <h4 class="font-semibold text-gray-900 dark:text-white">Phone</h4>
-                <p class="text-gray-600 dark:text-gray-300">+1 (555) 123-4567</p>
+                <h4 class="font-bold text-lg text-gray-900 dark:text-white mb-1">Phone</h4>
+                <p class="text-gray-600 dark:text-gray-400">+1 (555) 123-4567</p>
               </div>
             </div>
             
-            <div class="flex items-center space-x-4">
-              <div class="w-12 h-12 bg-gradient-to-r from-accent-500 to-primary-500 rounded-xl flex items-center justify-center">
-                <Icon name="mdi:map-marker" class="w-6 h-6 text-white" />
+            <div class="group flex items-center space-x-5 p-4 rounded-2xl hover:bg-white/60 dark:hover:bg-gray-700/60 backdrop-blur-sm transition-all duration-300">
+              <div class="w-14 h-14 bg-gradient-to-br from-accent-500 to-accent-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <Icon name="mdi:map-marker" class="w-7 h-7 text-white" />
               </div>
               <div>
-                <h4 class="font-semibold text-gray-900 dark:text-white">Location</h4>
-                <p class="text-gray-600 dark:text-gray-300">San Francisco, CA</p>
+                <h4 class="font-bold text-lg text-gray-900 dark:text-white mb-1">Location</h4>
+                <p class="text-gray-600 dark:text-gray-400">San Francisco, CA</p>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Social Links -->
-        <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border border-gray-200 dark:border-gray-700">
-          <h3 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
-            Follow Me
-          </h3>
+        <!-- Enhanced Social Links -->
+        <div class="bg-white/70 dark:bg-gray-800/70 backdrop-blur-xl rounded-3xl p-10 shadow-2xl border border-white/20 dark:border-gray-700/30">
+          <div class="flex items-center mb-8">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-2xl flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-1">
+                Follow Me
+              </h3>
+              <p class="text-gray-600 dark:text-gray-400">Stay connected on social media</p>
+            </div>
+          </div>
           
           <div class="grid grid-cols-2 gap-4">
             <a
               href="#"
-              class="flex items-center space-x-3 p-4 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 transition-all duration-300 transform hover:scale-105"
+              class="group relative flex items-center justify-center p-6 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl overflow-hidden"
             >
-              <Icon name="mdi:linkedin" class="w-6 h-6" />
-              <span class="font-medium">LinkedIn</span>
+              <div class="absolute inset-0 bg-blue-700/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div class="relative z-10 flex items-center space-x-3">
+                <Icon name="mdi:linkedin" class="w-6 h-6" />
+                <span class="font-semibold">LinkedIn</span>
+              </div>
             </a>
             
             <a
               href="#"
-              class="flex items-center space-x-3 p-4 rounded-xl bg-gradient-to-r from-gray-800 to-gray-900 text-white hover:from-gray-900 hover:to-black transition-all duration-300 transform hover:scale-105"
+              class="group relative flex items-center justify-center p-6 rounded-2xl bg-gradient-to-br from-gray-800 to-gray-900 text-white hover:from-gray-900 hover:to-black transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl overflow-hidden"
             >
-              <Icon name="mdi:github" class="w-6 h-6" />
-              <span class="font-medium">GitHub</span>
+              <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div class="relative z-10 flex items-center space-x-3">
+                <Icon name="mdi:github" class="w-6 h-6" />
+                <span class="font-semibold">GitHub</span>
+              </div>
             </a>
             
             <a
               href="#"
-              class="flex items-center space-x-3 p-4 rounded-xl bg-gradient-to-r from-blue-400 to-blue-500 text-white hover:from-blue-500 hover:to-blue-600 transition-all duration-300 transform hover:scale-105"
+              class="group relative flex items-center justify-center p-6 rounded-2xl bg-gradient-to-br from-blue-400 to-blue-500 text-white hover:from-blue-500 hover:to-blue-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl overflow-hidden"
             >
-              <Icon name="mdi:twitter" class="w-6 h-6" />
-              <span class="font-medium">Twitter</span>
+              <div class="absolute inset-0 bg-blue-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div class="relative z-10 flex items-center space-x-3">
+                <Icon name="mdi:twitter" class="w-6 h-6" />
+                <span class="font-semibold">Twitter</span>
+              </div>
             </a>
             
             <a
               href="#"
-              class="flex items-center space-x-3 p-4 rounded-xl bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 transition-all duration-300 transform hover:scale-105"
+              class="group relative flex items-center justify-center p-6 rounded-2xl bg-gradient-to-br from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl overflow-hidden"
             >
-              <Icon name="mdi:instagram" class="w-6 h-6" />
-              <span class="font-medium">Instagram</span>
+              <div class="absolute inset-0 bg-red-700/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div class="relative z-10 flex items-center space-x-3">
+                <Icon name="mdi:instagram" class="w-6 h-6" />
+                <span class="font-semibold">Instagram</span>
+              </div>
             </a>
           </div>
         </div>
 
-        <!-- Availability -->
-        <div class="bg-gradient-to-r from-green-500 to-green-600 rounded-3xl p-8 text-white">
-          <div class="flex items-center space-x-4">
-            <div class="w-4 h-4 bg-green-300 rounded-full animate-pulse"></div>
+        <!-- Enhanced Availability Status -->
+        <div class="relative bg-gradient-to-br from-green-500 to-green-600 rounded-3xl p-10 text-white shadow-2xl overflow-hidden">
+          <div class="absolute inset-0 bg-green-700/20 opacity-50"></div>
+          <div class="absolute top-0 right-0 w-32 h-32 bg-green-400/20 rounded-full blur-3xl"></div>
+          <div class="absolute bottom-0 left-0 w-24 h-24 bg-green-300/20 rounded-full blur-2xl"></div>
+          
+          <div class="relative z-10 flex items-center space-x-6">
+            <div class="relative">
+              <div class="w-6 h-6 bg-green-300 rounded-full animate-pulse"></div>
+              <div class="absolute inset-0 w-6 h-6 bg-green-200 rounded-full animate-ping"></div>
+            </div>
             <div>
-              <h4 class="font-bold text-lg">Available for Work</h4>
-              <p class="text-green-100">Open to new opportunities and collaborations</p>
+              <h4 class="font-bold text-2xl mb-2">Available for Projects</h4>
+              <p class="text-green-100 text-lg leading-relaxed">
+                Ready to collaborate on your next amazing project. Let's create something extraordinary together!
+              </p>
             </div>
           </div>
         </div>

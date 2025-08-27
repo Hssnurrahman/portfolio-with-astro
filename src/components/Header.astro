@@ -9,37 +9,54 @@ const navItems = [
 ];
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg border-b border-gray-200/20 dark:border-gray-700/20 transition-all duration-300">
-  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-    <div class="flex items-center">
-      <div class="w-10 h-10 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 flex items-center justify-center">
-        <span class="text-white font-bold text-xl">H</span>
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/70 dark:bg-gray-950/70 backdrop-blur-2xl border-b border-white/20 dark:border-gray-800/50 transition-all duration-500 shadow-lg shadow-black/5">
+  <div class="max-w-8xl mx-auto px-8 py-6 flex items-center justify-between">
+    <!-- Logo -->
+    <div class="flex items-center group cursor-pointer">
+      <div class="relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-primary-500 via-secondary-500 to-accent-500 rounded-2xl blur-lg opacity-60 group-hover:opacity-80 transition-opacity duration-300"></div>
+        <div class="relative w-12 h-12 rounded-2xl bg-gradient-to-br from-primary-600 via-secondary-600 to-accent-600 flex items-center justify-center shadow-xl">
+          <span class="text-white font-bold text-xl tracking-wide">H</span>
+        </div>
       </div>
-      <span class="ml-3 text-xl font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
-        Hassan
-      </span>
+      <div class="ml-4">
+        <span class="text-2xl font-bold bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600 bg-clip-text text-transparent">
+          Hassan
+        </span>
+        <div class="text-xs text-gray-500 dark:text-gray-400 font-medium">Full Stack Developer</div>
+      </div>
     </div>
 
-    <nav class="flex-1 flex justify-center">
-      <ul class="flex items-center space-x-8">
+    <!-- Navigation -->
+    <nav class="hidden lg:flex flex-1 justify-center">
+      <ul class="flex items-center space-x-2 bg-white/50 dark:bg-gray-900/50 backdrop-blur-xl rounded-2xl p-2 border border-white/20 dark:border-gray-700/30">
         {navItems.map((item) => (
             <li>
               <a
                   href={item.href}
-                  class="text-gray-700 dark:text-gray-300 text-lg font-medium transition-all duration-300 relative group hover:text-primary-600 dark:hover:text-primary-400 px-4 py-2 rounded-full hover:bg-primary-50 dark:hover:bg-primary-900/20"
+                  class="relative px-6 py-3 text-gray-700 dark:text-gray-300 font-medium transition-all duration-300 rounded-xl group hover:text-primary-600 dark:hover:text-primary-400 hover:bg-white/60 dark:hover:bg-gray-800/60"
               >
-                {item.label}
-                <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-primary-600 dark:bg-primary-400 rounded-full scale-0 transition-transform duration-300 group-hover:scale-100"></span>
+                <span class="relative z-10">{item.label}</span>
+                <div class="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-secondary-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </a>
             </li>
         ))}
       </ul>
     </nav>
 
+    <!-- CTA Button -->
     <div class="flex items-center space-x-4">
-      <a href="#contact" class="px-6 py-2 bg-gradient-to-r from-primary-500 to-secondary-500 text-white rounded-full font-medium hover:from-primary-600 hover:to-secondary-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-        Contact
+      <a href="#contact" class="relative group px-8 py-3 bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600 text-white rounded-2xl font-semibold transition-all duration-300 hover:shadow-2xl hover:shadow-primary-500/25 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-primary-700 via-secondary-700 to-accent-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <span class="relative z-10">Let's Connect</span>
       </a>
+      
+      <!-- Mobile Menu Button -->
+      <button class="lg:hidden w-10 h-10 rounded-xl bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl flex items-center justify-center border border-white/20 dark:border-gray-700/30">
+        <svg class="w-5 h-5 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
     </div>
   </div>
 </header>

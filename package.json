@@ -13,12 +13,11 @@
     "@astrojs/tailwind": "^6.0.2",
     "@iconify-json/mdi": "^1.2.3",
     "@iconify-json/simple-icons": "^1.2.42",
-    "@tailwindcss/vite": "^4.1.11",
     "astro": "^5.11.0",
     "astro-icon": "^1.1.1",
     "sass": "^1.89.2",
     "sharp": "^0.34.3",
-    "tailwindcss": "^4.1.11",
+    "tailwindcss": "^3.4.0",
     "typescript": "^5.8.3"
   }
 }

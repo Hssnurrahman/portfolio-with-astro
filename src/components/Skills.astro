@@ -10,20 +10,39 @@ import "../styles/styles.scss";
 
 <div
   id="skills"
-  class="py-20 bg-white dark:bg-gray-900"
+  class="py-24 relative overflow-hidden"
   aria-label="skills"
 >
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="text-center mb-16">
-      <h2 class="text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600 bg-clip-text text-transparent">
-        Skills & Technologies
+  <!-- Enhanced Background -->
+  <div class="absolute inset-0">
+    <div class="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-blue-50/30 dark:from-gray-950 dark:via-gray-900 dark:to-blue-950/30"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(56,189,248,0.08),transparent_50%),radial-gradient(circle_at_20%_80%,rgba(217,70,239,0.08),transparent_50%)]"></div>
+  </div>
+
+  <div class="relative z-10 max-w-8xl mx-auto px-8">
+    <!-- Section Header -->
+    <div class="text-center mb-20">
+      <div class="inline-flex items-center px-4 py-2 rounded-full bg-white/60 dark:bg-gray-800/60 backdrop-blur-xl border border-white/20 dark:border-gray-700/30 mb-6 shadow-lg">
+        <svg class="w-5 h-5 text-primary-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+        </svg>
+        <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Skills & Expertise</span>
+      </div>
+      
+      <h2 class="text-5xl lg:text-7xl font-black mb-6">
+        <span class="bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600 bg-clip-text text-transparent">
+          Technologies
+        </span>
+        <span class="block text-gray-900 dark:text-white font-light">I Master</span>
       </h2>
-      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-        Technologies I use to build amazing digital experiences
+      
+      <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
+        Cutting-edge tools and frameworks I use to build exceptional digital experiences
       </p>
     </div>
     
-    <div class="grid md:grid-cols-2 gap-12">
+    <!-- Skills Grid -->
+    <div class="grid lg:grid-cols-2 gap-8">
       <div class="space-y-8">
         <SkillIcon heading="Languages" icons={languageIcons} />
         <SkillIcon heading="Frontend" icons={frontendIcons} />
@@ -31,6 +50,29 @@ import "../styles/styles.scss";
       <div class="space-y-8">
         <SkillIcon heading="Backend" icons={backendIcons} />
         <SkillIcon heading="Mobile" icons={mobileIcons} />
+      </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="mt-20 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-white/60 dark:bg-gray-800/60 backdrop-blur-xl rounded-3xl p-8 border border-white/20 dark:border-gray-700/30 text-center shadow-lg hover:shadow-xl transition-all duration-300 group">
+        <div class="text-4xl font-black text-primary-600 dark:text-primary-400 mb-2 group-hover:scale-110 transition-transform duration-300">15+</div>
+        <div class="text-gray-600 dark:text-gray-400 font-medium">Technologies</div>
+      </div>
+      
+      <div class="bg-white/60 dark:bg-gray-800/60 backdrop-blur-xl rounded-3xl p-8 border border-white/20 dark:border-gray-700/30 text-center shadow-lg hover:shadow-xl transition-all duration-300 group">
+        <div class="text-4xl font-black text-secondary-600 dark:text-secondary-400 mb-2 group-hover:scale-110 transition-transform duration-300">5+</div>
+        <div class="text-gray-600 dark:text-gray-400 font-medium">Frameworks</div>
+      </div>
+      
+      <div class="bg-white/60 dark:bg-gray-800/60 backdrop-blur-xl rounded-3xl p-8 border border-white/20 dark:border-gray-700/30 text-center shadow-lg hover:shadow-xl transition-all duration-300 group">
+        <div class="text-4xl font-black text-accent-600 dark:text-accent-400 mb-2 group-hover:scale-110 transition-transform duration-300">3+</div>
+        <div class="text-gray-600 dark:text-gray-400 font-medium">Platforms</div>
+      </div>
+      
+      <div class="bg-white/60 dark:bg-gray-800/60 backdrop-blur-xl rounded-3xl p-8 border border-white/20 dark:border-gray-700/30 text-center shadow-lg hover:shadow-xl transition-all duration-300 group">
+        <div class="text-4xl font-black bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">∞</div>
+        <div class="text-gray-600 dark:text-gray-400 font-medium">Learning</div>
       </div>
     </div>
   </div>
