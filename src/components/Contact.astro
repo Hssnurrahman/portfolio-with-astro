@@ -2,53 +2,66 @@
 import { Icon } from "astro-icon/components";
 ---
 
-<div
+<section
   id="contact"
   class="py-24 relative overflow-hidden"
   aria-label="contact"
 >
-  <!-- Enhanced Background -->
+  <!-- Enhanced Background with animations -->
   <div class="absolute inset-0">
-    <div class="absolute inset-0 bg-gradient-to-br from-primary-50/50 via-white to-secondary-50/50 dark:from-gray-950 dark:via-primary-950/20 dark:to-secondary-950/20"></div>
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(56,189,248,0.08),transparent_50%),radial-gradient(circle_at_25%_75%,rgba(217,70,239,0.08),transparent_50%),radial-gradient(circle_at_75%_25%,rgba(249,115,22,0.08),transparent_50%)]"></div>
+    <div class="absolute inset-0 bg-gradient-to-br from-primary-50/50 via-white to-secondary-50/50 dark:from-gray-950 dark:via-primary-950/20 dark:to-secondary-950/20 animated-gradient"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(56,189,248,0.08),transparent_50%),radial-gradient(circle_at_25%_75%,rgba(217,70,239,0.08),transparent_50%),radial-gradient(circle_at_75%_25%,rgba(249,115,22,0.08),transparent_50%)] animated-radial"></div>
+    
+    <!-- Contact shapes -->
+    <div class="contact-shapes">
+      <div class="contact-shape shape-1"></div>
+      <div class="contact-shape shape-2"></div>
+      <div class="contact-shape shape-3"></div>
+      <div class="contact-shape shape-4"></div>
+      <div class="contact-shape shape-5"></div>
+    </div>
   </div>
 
   <div class="relative z-10 max-w-8xl mx-auto px-8">
     <!-- Section Header -->
-    <div class="text-center mb-20">
-      <div class="inline-flex items-center px-4 py-2 rounded-full bg-white/60 dark:bg-gray-800/60 backdrop-blur-xl border border-white/20 dark:border-gray-700/30 mb-6 shadow-lg">
-        <svg class="w-5 h-5 text-primary-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <div class="contact-header text-center mb-20">
+      <div class="badge inline-flex items-center px-4 py-2 rounded-full bg-white/60 dark:bg-gray-800/60 backdrop-blur-xl border border-white/20 dark:border-gray-700/30 mb-6 shadow-lg">
+        <svg class="w-5 h-5 text-primary-600 mr-3 pulse-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
         </svg>
         <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Let's Connect</span>
       </div>
       
-      <h2 class="text-5xl lg:text-7xl font-black mb-6">
-        <span class="bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600 bg-clip-text text-transparent">
+      <h2 class="contact-title text-5xl lg:text-7xl font-black mb-6">
+        <span class="gradient-text bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600 bg-clip-text text-transparent">
           Get In
         </span>
-        <span class="block text-gray-900 dark:text-white font-light">Touch</span>
+        <span class="block text-gray-900 dark:text-white font-light slide-in-text">Touch</span>
       </h2>
       
-      <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
+      <p class="contact-description text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
         Ready to bring your ideas to life? Let's discuss how we can create something amazing together
       </p>
     </div>
 
-    <div class="grid lg:grid-cols-2 gap-16 items-start">
+    <div class="contact-content grid lg:grid-cols-2 gap-16 items-start">
       <!-- Enhanced Contact Form -->
-      <div class="bg-white/70 dark:bg-gray-800/70 backdrop-blur-xl rounded-3xl p-10 shadow-2xl border border-white/20 dark:border-gray-700/30">
-        <div class="flex items-center mb-8">
-          <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-2xl flex items-center justify-center mr-4">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 7.89a2 2 0 002.83 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-            </svg>
-          </div>
-          <div>
-            <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-1">
-              Send a Message
-            </h3>
-            <p class="text-gray-600 dark:text-gray-400">I'll get back to you within 24 hours</p>
+      <div class="contact-form bg-white/70 dark:bg-gray-800/70 backdrop-blur-xl rounded-3xl p-10 shadow-2xl border border-white/20 dark:border-gray-700/30 hover:shadow-3xl transition-all duration-500 hover:scale-[1.02] relative overflow-hidden">
+        <!-- Form glow effect -->
+        <div class="absolute inset-0 bg-gradient-to-br from-primary-500/5 via-secondary-500/5 to-accent-500/5 opacity-0 hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="relative z-10">
+          <div class="form-header flex items-center mb-8">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-2xl flex items-center justify-center mr-4 form-icon">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 7.89a2 2 0 002.83 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-1">
+                Send a Message
+              </h3>
+              <p class="text-gray-600 dark:text-gray-400">I'll get back to you within 24 hours</p>
+            </div>
           </div>
         </div>
         
@@ -143,9 +156,9 @@ import { Icon } from "astro-icon/components";
       </div>
 
       <!-- Enhanced Contact Info -->
-      <div class="space-y-8">
+      <div class="contact-info space-y-8">
         <!-- Contact Methods -->
-        <div class="bg-white/70 dark:bg-gray-800/70 backdrop-blur-xl rounded-3xl p-10 shadow-2xl border border-white/20 dark:border-gray-700/30">
+        <div class="contact-methods bg-white/70 dark:bg-gray-800/70 backdrop-blur-xl rounded-3xl p-10 shadow-2xl border border-white/20 dark:border-gray-700/30 hover:shadow-3xl transition-all duration-500 hover:scale-[1.02]">
           <div class="flex items-center mb-8">
             <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-2xl flex items-center justify-center mr-4">
               <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -195,7 +208,7 @@ import { Icon } from "astro-icon/components";
         </div>
 
         <!-- Enhanced Social Links -->
-        <div class="bg-white/70 dark:bg-gray-800/70 backdrop-blur-xl rounded-3xl p-10 shadow-2xl border border-white/20 dark:border-gray-700/30">
+        <div class="social-links bg-white/70 dark:bg-gray-800/70 backdrop-blur-xl rounded-3xl p-10 shadow-2xl border border-white/20 dark:border-gray-700/30 hover:shadow-3xl transition-all duration-500 hover:scale-[1.02]">
           <div class="flex items-center mb-8">
             <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-2xl flex items-center justify-center mr-4">
               <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -258,7 +271,7 @@ import { Icon } from "astro-icon/components";
         </div>
 
         <!-- Enhanced Availability Status -->
-        <div class="relative bg-gradient-to-br from-green-500 to-green-600 rounded-3xl p-10 text-white shadow-2xl overflow-hidden">
+        <div class="availability-status relative bg-gradient-to-br from-green-500 to-green-600 rounded-3xl p-10 text-white shadow-2xl overflow-hidden hover:shadow-3xl transition-all duration-500 hover:scale-[1.02]">
           <div class="absolute inset-0 bg-green-700/20 opacity-50"></div>
           <div class="absolute top-0 right-0 w-32 h-32 bg-green-400/20 rounded-full blur-3xl"></div>
           <div class="absolute bottom-0 left-0 w-24 h-24 bg-green-300/20 rounded-full blur-2xl"></div>
@@ -279,4 +292,277 @@ import { Icon } from "astro-icon/components";
       </div>
     </div>
   </div>
-</div>
+</section>
+
+<!-- Enhanced Styles and Animations -->
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes pulseIcon {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+  }
+
+  @keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  @keyframes contactFloat {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    33% {
+      transform: translateY(-20px) rotate(120deg);
+    }
+    66% {
+      transform: translateY(10px) rotate(240deg);
+    }
+  }
+
+  @keyframes animatedGradient {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  @keyframes animatedRadial {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.1); }
+  }
+
+  @keyframes formIconBounce {
+    0%, 100% {
+      transform: scale(1) rotate(0deg);
+    }
+    25% {
+      transform: scale(1.1) rotate(5deg);
+    }
+    75% {
+      transform: scale(1.05) rotate(-5deg);
+    }
+  }
+
+  @keyframes inputFocus {
+    0% {
+      box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4);
+    }
+    100% {
+      box-shadow: 0 0 0 4px rgba(99, 102, 241, 0);
+    }
+  }
+
+  /* Background Animations */
+  .animated-gradient {
+    background-size: 400% 400%;
+    animation: animatedGradient 20s ease infinite;
+  }
+
+  .animated-radial {
+    animation: animatedRadial 30s linear infinite;
+  }
+
+  /* Contact Shapes */
+  .contact-shapes {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .contact-shape {
+    position: absolute;
+    background: linear-gradient(45deg, rgba(99, 102, 241, 0.08), rgba(139, 92, 246, 0.08));
+    border-radius: 50%;
+    animation: contactFloat 12s ease-in-out infinite;
+  }
+
+  .shape-1 {
+    width: 100px;
+    height: 100px;
+    top: 10%;
+    left: 5%;
+    animation-delay: 0s;
+  }
+
+  .shape-2 {
+    width: 80px;
+    height: 80px;
+    top: 60%;
+    right: 10%;
+    animation-delay: -3s;
+  }
+
+  .shape-3 {
+    width: 60px;
+    height: 60px;
+    bottom: 15%;
+    left: 15%;
+    animation-delay: -6s;
+  }
+
+  .shape-4 {
+    width: 120px;
+    height: 120px;
+    top: 30%;
+    right: 20%;
+    animation-delay: -9s;
+  }
+
+  .shape-5 {
+    width: 70px;
+    height: 70px;
+    top: 80%;
+    left: 60%;
+    animation-delay: -12s;
+  }
+
+  /* Header Animations */
+  .contact-header {
+    animation: fadeInUp 0.8s ease-out;
+  }
+
+  .badge {
+    animation: fadeInUp 0.6s ease-out 0.2s both;
+  }
+
+  .pulse-icon {
+    animation: pulseIcon 2s ease-in-out infinite;
+  }
+
+  .contact-title {
+    animation: fadeInUp 0.8s ease-out 0.4s both;
+  }
+
+  .gradient-text {
+    background: linear-gradient(-45deg, #6366f1, #8b5cf6, #ec4899, #f59e0b);
+    background-size: 400% 400%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 3s ease infinite;
+  }
+
+  .slide-in-text {
+    animation: slideInLeft 0.6s ease-out 0.6s both;
+  }
+
+  .contact-description {
+    animation: fadeInUp 0.6s ease-out 0.8s both;
+  }
+
+  /* Content Animations */
+  .contact-content {
+    animation: fadeInUp 0.8s ease-out 1s both;
+  }
+
+  .contact-form {
+    animation: slideInLeft 0.8s ease-out 1.2s both;
+  }
+
+  .form-header {
+    animation: fadeInUp 0.6s ease-out 1.4s both;
+  }
+
+  .form-icon {
+    animation: formIconBounce 3s ease-in-out infinite;
+  }
+
+  .contact-info {
+    animation: slideInRight 0.8s ease-out 1.2s both;
+  }
+
+  .contact-methods {
+    animation: fadeInUp 0.6s ease-out 1.6s both;
+  }
+
+  .social-links {
+    animation: fadeInUp 0.6s ease-out 1.8s both;
+  }
+
+  .availability-status {
+    animation: fadeInUp 0.6s ease-out 2s both;
+  }
+
+  /* Interactive Elements */
+  .contact-form input:focus,
+  .contact-form textarea:focus,
+  .contact-form select:focus {
+    animation: inputFocus 0.3s ease-out;
+  }
+
+  /* Form Field Animations */
+  .contact-form .group {
+    animation: fadeInUp 0.4s ease-out both;
+  }
+
+  .contact-form .group:nth-child(1) { animation-delay: 1.8s; }
+  .contact-form .group:nth-child(2) { animation-delay: 1.9s; }
+  .contact-form .group:nth-child(3) { animation-delay: 2s; }
+  .contact-form .group:nth-child(4) { animation-delay: 2.1s; }
+  .contact-form button { animation: fadeInUp 0.4s ease-out 2.2s both; }
+
+  /* Contact Info Items */
+  .contact-methods .group {
+    animation: slideInRight 0.4s ease-out both;
+  }
+
+  .contact-methods .group:nth-child(1) { animation-delay: 1.8s; }
+  .contact-methods .group:nth-child(2) { animation-delay: 1.9s; }
+  .contact-methods .group:nth-child(3) { animation-delay: 2s; }
+
+  /* Social Links Animation */
+  .social-links a {
+    animation: fadeInUp 0.3s ease-out both;
+  }
+
+  .social-links a:nth-child(1) { animation-delay: 2s; }
+  .social-links a:nth-child(2) { animation-delay: 2.1s; }
+  .social-links a:nth-child(3) { animation-delay: 2.2s; }
+  .social-links a:nth-child(4) { animation-delay: 2.3s; }
+
+  /* Hover Effects */
+  .contact-form:hover .form-icon {
+    animation: formIconBounce 1s ease-in-out infinite;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .contact-shape {
+      display: none;
+    }
+  }
+</style>
