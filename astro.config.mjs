@@ -7,7 +7,9 @@ import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
-    integrations: [tailwind(), icon({
+    integrations: [tailwind({
+        applyBaseStyles: false,
+    }), icon({
         include: {
             "simple-icons": ["*"],
             "mdi": ["*"]

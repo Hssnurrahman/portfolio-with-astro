@@ -1,5 +1,4 @@
 ---
-import { Icon } from "astro-icon/components";
 import { backendIcons } from "../data/BackendIcons";
 import { frontendIcons } from "../data/FrontendIcons";
 import { languageIcons } from "../data/LanguageIcons";
@@ -9,21 +8,383 @@ import SkillIcon from "./SkillIcon.astro";
 import "../styles/styles.scss";
 ---
 
-<div
+<section
   id="skills"
-  class="flex justify-between items-center flex-col xl:flex-row w-[83%] m-auto py-[3rem]"
+  class="py-24 relative overflow-hidden"
   aria-label="skills"
 >
-  <div class="flex flex-col justify-center items-center">
-    <h6 class="text-6xl font-light">Skills</h6>
-    <Icon name="skill" width="500" height="500" class="hidden xl:flex" />
+  <!-- Enhanced Background with animations -->
+  <div class="absolute inset-0">
+    <div class="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-blue-50/30 dark:from-gray-950 dark:via-gray-900 dark:to-blue-950/30 animated-gradient"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(56,189,248,0.08),transparent_50%),radial-gradient(circle_at_20%_80%,rgba(217,70,239,0.08),transparent_50%)] animated-radial"></div>
+    
+    <!-- Floating particles -->
+    <div class="floating-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+      <div class="shape shape-4"></div>
+    </div>
   </div>
-  <div
-    class="flex flex-wrap flex-col my-[1rem] lg:my-0 justify-center xl:items-end items-center"
-  >
-    <SkillIcon heading="Languages" icons={languageIcons} />
-    <SkillIcon heading="Frontend" icons={frontendIcons} />
-    <SkillIcon heading="Backend" icons={backendIcons} />
-    <SkillIcon heading="Mobile" icons={mobileIcons} />
+
+  <div class="relative z-10 max-w-8xl mx-auto px-8">
+    <!-- Section Header -->
+    <div class="skills-header text-center mb-20">
+      <div class="badge inline-flex items-center px-4 py-2 rounded-full bg-white/60 dark:bg-gray-800/60 backdrop-blur-xl border border-white/20 dark:border-gray-700/30 mb-6 shadow-lg">
+        <svg class="w-5 h-5 text-primary-600 mr-3 rotate-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+        </svg>
+        <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Skills & Expertise</span>
+      </div>
+      
+      <h2 class="skills-title text-5xl lg:text-7xl font-black mb-6">
+        <span class="gradient-text bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600 bg-clip-text text-transparent">
+          Technologies
+        </span>
+        <span class="block text-gray-900 dark:text-white font-light slide-in-text">I Master</span>
+      </h2>
+      
+      <p class="skills-description text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
+        Cutting-edge tools and frameworks I use to build exceptional digital experiences
+      </p>
+    </div>
+    
+    <!-- Skills Grid -->
+    <div class="skills-grid grid lg:grid-cols-2 gap-8">
+      <div class="skills-column space-y-8">
+        <div class="skill-category skill-category-1">
+          <SkillIcon heading="Languages" icons={languageIcons} />
+        </div>
+        <div class="skill-category skill-category-2">
+          <SkillIcon heading="Frontend" icons={frontendIcons} />
+        </div>
+      </div>
+      <div class="skills-column space-y-8">
+        <div class="skill-category skill-category-3">
+          <SkillIcon heading="Backend" icons={backendIcons} />
+        </div>
+        <div class="skill-category skill-category-4">
+          <SkillIcon heading="Mobile" icons={mobileIcons} />
+        </div>
+      </div>
+    </div>
+
+    <!-- Animated Stats Section -->
+    <div class="skills-stats mt-20 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="stat-card stat-card-1 bg-white/60 dark:bg-gray-800/60 backdrop-blur-xl rounded-3xl p-8 border border-white/20 dark:border-gray-700/30 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group cursor-pointer">
+        <div class="stat-number text-4xl font-black text-primary-600 dark:text-primary-400 mb-2 group-hover:scale-110 transition-transform duration-300" data-target="15">0</div>
+        <div class="text-gray-600 dark:text-gray-400 font-medium">Technologies</div>
+        <div class="mt-4 h-1 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+          <div class="stat-bar h-full bg-primary-500 rounded-full transform -translate-x-full transition-transform duration-1000 group-hover:translate-x-0"></div>
+        </div>
+      </div>
+      
+      <div class="stat-card stat-card-2 bg-white/60 dark:bg-gray-800/60 backdrop-blur-xl rounded-3xl p-8 border border-white/20 dark:border-gray-700/30 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group cursor-pointer">
+        <div class="stat-number text-4xl font-black text-secondary-600 dark:text-secondary-400 mb-2 group-hover:scale-110 transition-transform duration-300" data-target="5">0</div>
+        <div class="text-gray-600 dark:text-gray-400 font-medium">Frameworks</div>
+        <div class="mt-4 h-1 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+          <div class="stat-bar h-full bg-secondary-500 rounded-full transform -translate-x-full transition-transform duration-1000 group-hover:translate-x-0"></div>
+        </div>
+      </div>
+      
+      <div class="stat-card stat-card-3 bg-white/60 dark:bg-gray-800/60 backdrop-blur-xl rounded-3xl p-8 border border-white/20 dark:border-gray-700/30 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group cursor-pointer">
+        <div class="stat-number text-4xl font-black text-accent-600 dark:text-accent-400 mb-2 group-hover:scale-110 transition-transform duration-300" data-target="3">0</div>
+        <div class="text-gray-600 dark:text-gray-400 font-medium">Platforms</div>
+        <div class="mt-4 h-1 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+          <div class="stat-bar h-full bg-accent-500 rounded-full transform -translate-x-full transition-transform duration-1000 group-hover:translate-x-0"></div>
+        </div>
+      </div>
+      
+      <div class="stat-card stat-card-4 bg-white/60 dark:bg-gray-800/60 backdrop-blur-xl rounded-3xl p-8 border border-white/20 dark:border-gray-700/30 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group cursor-pointer">
+        <div class="text-4xl font-black bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300 infinite-symbol">∞</div>
+        <div class="text-gray-600 dark:text-gray-400 font-medium">Learning</div>
+        <div class="mt-4 h-1 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+          <div class="stat-bar h-full bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full transform -translate-x-full transition-transform duration-1000 group-hover:translate-x-0"></div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+</section>
+
+<!-- Enhanced Styles and Animations -->
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  @keyframes floatingShapes {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    33% {
+      transform: translateY(-20px) rotate(120deg);
+    }
+    66% {
+      transform: translateY(10px) rotate(240deg);
+    }
+  }
+
+  @keyframes animatedGradient {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  @keyframes animatedRadial {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.1); }
+  }
+
+  @keyframes infiniteRotate {
+    from {
+      transform: rotate(0deg) scale(1);
+    }
+    50% {
+      transform: rotate(180deg) scale(1.1);
+    }
+    to {
+      transform: rotate(360deg) scale(1);
+    }
+  }
+
+  /* Background Animations */
+  .animated-gradient {
+    background-size: 400% 400%;
+    animation: animatedGradient 15s ease infinite;
+  }
+
+  .animated-radial {
+    animation: animatedRadial 20s linear infinite;
+  }
+
+  /* Floating Shapes */
+  .floating-shapes {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .shape {
+    position: absolute;
+    background: linear-gradient(45deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+    border-radius: 50%;
+    animation: floatingShapes 8s ease-in-out infinite;
+  }
+
+  .shape-1 {
+    width: 80px;
+    height: 80px;
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+  }
+
+  .shape-2 {
+    width: 60px;
+    height: 60px;
+    top: 60%;
+    right: 15%;
+    animation-delay: -2s;
+  }
+
+  .shape-3 {
+    width: 100px;
+    height: 100px;
+    bottom: 20%;
+    left: 20%;
+    animation-delay: -4s;
+  }
+
+  .shape-4 {
+    width: 40px;
+    height: 40px;
+    top: 40%;
+    right: 30%;
+    animation-delay: -6s;
+  }
+
+  /* Header Animations */
+  .skills-header {
+    animation: fadeInUp 0.8s ease-out;
+  }
+
+  .badge {
+    animation: fadeInUp 0.6s ease-out 0.2s both;
+  }
+
+  .skills-title {
+    animation: fadeInUp 0.8s ease-out 0.4s both;
+  }
+
+  .gradient-text {
+    background: linear-gradient(-45deg, #6366f1, #8b5cf6, #ec4899, #f59e0b);
+    background-size: 400% 400%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 3s ease infinite;
+  }
+
+  .slide-in-text {
+    animation: slideInLeft 0.6s ease-out 0.6s both;
+  }
+
+  .skills-description {
+    animation: fadeInUp 0.6s ease-out 0.8s both;
+  }
+
+  .rotate-icon {
+    animation: rotate 10s linear infinite;
+  }
+
+  /* Skills Grid Animations */
+  .skills-grid {
+    animation: fadeInUp 0.8s ease-out 1s both;
+  }
+
+  .skill-category-1 {
+    animation: slideInLeft 0.6s ease-out 1.2s both;
+  }
+
+  .skill-category-2 {
+    animation: slideInLeft 0.6s ease-out 1.4s both;
+  }
+
+  .skill-category-3 {
+    animation: slideInRight 0.6s ease-out 1.2s both;
+  }
+
+  .skill-category-4 {
+    animation: slideInRight 0.6s ease-out 1.4s both;
+  }
+
+  /* Stats Animations */
+  .skills-stats {
+    animation: fadeInUp 0.8s ease-out 1.6s both;
+  }
+
+  .stat-card-1 {
+    animation: fadeInUp 0.6s ease-out 1.8s both;
+  }
+
+  .stat-card-2 {
+    animation: fadeInUp 0.6s ease-out 1.9s both;
+  }
+
+  .stat-card-3 {
+    animation: fadeInUp 0.6s ease-out 2s both;
+  }
+
+  .stat-card-4 {
+    animation: fadeInUp 0.6s ease-out 2.1s both;
+  }
+
+  .infinite-symbol {
+    animation: infiniteRotate 4s ease-in-out infinite;
+  }
+
+  /* Interactive Elements */
+  .stat-card:hover .stat-bar {
+    transform: translateX(0) !important;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .shape {
+      display: none;
+    }
+  }
+</style>
+
+<!-- JavaScript for Interactive Elements -->
+<script>
+  // Counter animation for stats
+  function animateCounter(element: HTMLElement, target: number, duration: number = 1500): void {
+    const startTime = performance.now();
+    
+    function updateCounter(currentTime: number): void {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const current = Math.floor(progress * target);
+      
+      element.textContent = current + '+';
+      
+      if (progress < 1) {
+        requestAnimationFrame(updateCounter);
+      }
+    }
+    
+    requestAnimationFrame(updateCounter);
+  }
+
+  // Intersection Observer for scroll animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Animate counters
+        if (entry.target.classList.contains('stat-card')) {
+          const numberElement = entry.target.querySelector('.stat-number') as HTMLElement | null;
+          if (numberElement && numberElement.dataset.target) {
+            const target = parseInt(numberElement.dataset.target);
+            if (!isNaN(target)) {
+              animateCounter(numberElement, target);
+            }
+          }
+        }
+      }
+    });
+  }, observerOptions);
+
+  // Observe all stat cards
+  document.addEventListener('DOMContentLoaded', () => {
+    const statCards = document.querySelectorAll('.stat-card');
+    statCards.forEach(card => observer.observe(card));
+  });
+</script>
