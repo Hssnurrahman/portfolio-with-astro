@@ -21,7 +21,17 @@ import { Icon } from "astro-icon/components";
     <div class="grid lg:grid-cols-2 gap-12">
       <!-- Contact Form -->
       <div>
-        <form class="space-y-6">
+        <!-- Status Messages -->
+        <div id="form-status" class="mb-4 hidden">
+          <div id="success-message" class="hidden p-4 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-100 rounded-lg">
+            Message sent successfully! I'll get back to you soon.
+          </div>
+          <div id="error-message" class="hidden p-4 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-100 rounded-lg">
+            Failed to send message. Please try again.
+          </div>
+        </div>
+
+        <form id="contact-form" class="space-y-6">
           <div class="grid md:grid-cols-2 gap-6">
             <div>
               <label for="name" class="block text-sm font-medium text-gray-900 dark:text-white mb-2">
@@ -81,9 +91,11 @@ import { Icon } from "astro-icon/components";
 
           <button
             type="submit"
-            class="w-full px-8 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
+            id="submit-button"
+            class="w-full px-8 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Send Message
+            <span id="button-text">Send Message</span>
+            <span id="button-loading" class="hidden">Sending...</span>
           </button>
         </form>
       </div>
@@ -97,7 +109,7 @@ import { Icon } from "astro-icon/components";
             </div>
             <div>
               <div class="text-sm text-gray-600 dark:text-gray-400">Email</div>
-              <div class="text-gray-900 dark:text-white font-medium">hassan@example.com</div>
+              <div class="text-gray-900 dark:text-white font-medium">hssnurrahman@gmail.com</div>
             </div>
           </div>
 
@@ -107,7 +119,7 @@ import { Icon } from "astro-icon/components";
             </div>
             <div>
               <div class="text-sm text-gray-600 dark:text-gray-400">Phone</div>
-              <div class="text-gray-900 dark:text-white font-medium">+1 (555) 123-4567</div>
+              <div class="text-gray-900 dark:text-white font-medium">+92 302 6658022</div>
             </div>
           </div>
 
@@ -117,7 +129,7 @@ import { Icon } from "astro-icon/components";
             </div>
             <div>
               <div class="text-sm text-gray-600 dark:text-gray-400">Location</div>
-              <div class="text-gray-900 dark:text-white font-medium">San Francisco, CA</div>
+              <div class="text-gray-900 dark:text-white font-medium">Rawalpindi, Pakistan</div>
             </div>
           </div>
         </div>
@@ -153,3 +165,67 @@ import { Icon } from "astro-icon/components";
     </div>
   </div>
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contact-form') as HTMLFormElement;
+    const submitButton = document.getElementById('submit-button') as HTMLButtonElement;
+    const buttonText = document.getElementById('button-text') as HTMLSpanElement;
+    const buttonLoading = document.getElementById('button-loading') as HTMLSpanElement;
+    const successMessage = document.getElementById('success-message') as HTMLDivElement;
+    const errorMessage = document.getElementById('error-message') as HTMLDivElement;
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Get form data
+      const formData = new FormData(form);
+      const data = {
+        name: formData.get('name') as string,
+        email: formData.get('email') as string,
+        subject: formData.get('subject') as string,
+        message: formData.get('message') as string,
+      };
+
+      // Update button state
+      submitButton.disabled = true;
+      buttonText.classList.add('hidden');
+      buttonLoading.classList.remove('hidden');
+
+      // Hide previous messages
+      successMessage.classList.add('hidden');
+      errorMessage.classList.add('hidden');
+
+      try {
+        const response = await fetch('/api/send-email', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          // Show success message
+          successMessage.classList.remove('hidden');
+          form.reset();
+        } else {
+          // Show error message
+          errorMessage.textContent = result.error || 'Failed to send message. Please try again.';
+          errorMessage.classList.remove('hidden');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        errorMessage.textContent = 'Failed to send message. Please try again.';
+        errorMessage.classList.remove('hidden');
+      } finally {
+        // Reset button state
+        submitButton.disabled = false;
+        buttonText.classList.remove('hidden');
+        buttonLoading.classList.add('hidden');
+      }
+    });
+  });
+</script>
