@@ -3,436 +3,76 @@ import { Icon } from "astro-icon/components";
 ---
 
 <footer
-  class="footer-container bg-gradient-to-r from-gray-900 via-primary-900 to-secondary-900 text-white py-16 relative overflow-hidden"
+  class="bg-gray-900 dark:bg-black text-white py-12"
   aria-label="footer"
 >
-  <!-- Animated Background -->
-  <div class="absolute inset-0">
-    <div class="absolute inset-0 bg-gradient-to-r from-gray-900 via-primary-900 to-secondary-900 animated-bg"></div>
-    
-    <!-- Footer shapes -->
-    <div class="footer-shapes">
-      <div class="footer-shape shape-1"></div>
-      <div class="footer-shape shape-2"></div>
-      <div class="footer-shape shape-3"></div>
-    </div>
-  </div>
-
-  <div class="relative z-10 max-w-7xl mx-auto px-6">
-    <div class="footer-content grid md:grid-cols-3 gap-8 mb-8">
-      <div class="footer-brand space-y-4">
-        <div class="brand-container flex items-center space-x-3">
-          <div class="brand-icon w-10 h-10 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 flex items-center justify-center hover:scale-110 transition-transform duration-300">
-            <span class="text-white font-bold text-xl">H</span>
-          </div>
-          <span class="brand-name text-2xl font-bold gradient-text">Hassan</span>
-        </div>
-        <p class="brand-description text-gray-300 leading-relaxed">
-          Full Stack Developer passionate about creating exceptional digital experiences
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-3 gap-8 mb-8">
+      <!-- Brand -->
+      <div class="space-y-4">
+        <div class="text-2xl font-bold">Hassan</div>
+        <p class="text-gray-400">
+          Full Stack Developer
         </p>
       </div>
-      
-      <div class="footer-links space-y-4">
-        <h4 class="links-title text-lg font-semibold">Quick Links</h4>
-        <ul class="links-list space-y-2">
+
+      <!-- Quick Links -->
+      <div class="space-y-4">
+        <h4 class="font-semibold">Quick Links</h4>
+        <ul class="space-y-2">
           {[
             { href: '#home', label: 'Home' },
             { href: '#skills', label: 'Skills' },
             { href: '#projects', label: 'Projects' },
             { href: '#about', label: 'About' },
             { href: '#contact', label: 'Contact' }
-          ].map((link, index) => (
-            <li class="link-item" style={`animation-delay: ${0.6 + index * 0.1}s;`}>
-              <a 
-                href={link.href} 
-                class="footer-link text-gray-300 hover:text-white transition-all duration-300 hover:translate-x-2 inline-flex items-center group"
+          ].map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="text-gray-400 hover:text-white transition-colors"
               >
-                <svg class="w-4 h-4 mr-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                </svg>
                 {link.label}
               </a>
             </li>
           ))}
         </ul>
       </div>
-      
-      <div class="footer-tech space-y-4">
-        <h4 class="tech-title text-lg font-semibold">Built With</h4>
-        <div class="tech-badges flex items-center space-x-4">
-          <div class="tech-badge flex items-center space-x-2 bg-white/10 rounded-full px-4 py-2 hover:bg-white/20 transition-all duration-300 hover:scale-110 group cursor-pointer">
+
+      <!-- Built With -->
+      <div class="space-y-4">
+        <h4 class="font-semibold">Built With</h4>
+        <div class="flex items-center gap-4">
+          <div class="flex items-center gap-2">
             <Icon
               name="simple-icons:astro"
               width="20"
               height="20"
-              class="text-orange-400 group-hover:rotate-12 transition-transform duration-300"
+              class="text-orange-400"
             />
-            <span class="text-sm group-hover:text-orange-200 transition-colors duration-300">Astro</span>
+            <span class="text-gray-400 text-sm">Astro</span>
           </div>
-          <div class="tech-badge flex items-center space-x-2 bg-white/10 rounded-full px-4 py-2 hover:bg-white/20 transition-all duration-300 hover:scale-110 group cursor-pointer">
+          <div class="flex items-center gap-2">
             <Icon
               name="mdi:tailwind"
               width="20"
               height="20"
-              class="text-cyan-400 group-hover:rotate-12 transition-transform duration-300"
+              class="text-cyan-400"
             />
-            <span class="text-sm group-hover:text-cyan-200 transition-colors duration-300">Tailwind</span>
+            <span class="text-gray-400 text-sm">Tailwind</span>
           </div>
         </div>
       </div>
     </div>
-    
-    <div class="footer-bottom border-t border-gray-700 pt-8">
-      <div class="footer-bottom-content flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-        <p class="copyright text-gray-300 text-sm">
-          © 2024 Hassan. All rights reserved.
-        </p>
-        <p class="made-with text-gray-300 text-sm flex items-center space-x-2">
-          <span>Designed & Built with</span>
-          <span class="heart animate-pulse text-red-500">❤️</span>
-        </p>
-      </div>
+
+    <!-- Bottom -->
+    <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-gray-400 text-sm">
+        © 2024 Hassan. All rights reserved.
+      </p>
+      <p class="text-gray-400 text-sm">
+        Designed & Built with ❤️
+      </p>
     </div>
   </div>
 </footer>
-
-<!-- Enhanced Styles and Animations -->
-<style>
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes slideInLeft {
-    from {
-      opacity: 0;
-      transform: translateX(-30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes slideInRight {
-    from {
-      opacity: 0;
-      transform: translateX(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes gradientShift {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-  }
-
-  @keyframes footerShapeFloat {
-    0%, 100% {
-      transform: translateY(0px) rotate(0deg);
-    }
-    33% {
-      transform: translateY(-15px) rotate(120deg);
-    }
-    66% {
-      transform: translateY(8px) rotate(240deg);
-    }
-  }
-
-  @keyframes animatedBg {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-  }
-
-  @keyframes heartBeat {
-    0%, 100% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.2);
-    }
-  }
-
-  @keyframes linkHover {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(8px);
-    }
-  }
-
-  /* Footer Container */
-  .footer-container {
-    animation: fadeInUp 0.8s ease-out;
-  }
-
-  /* Animated Background */
-  .animated-bg {
-    background-size: 400% 400%;
-    animation: animatedBg 20s ease infinite;
-  }
-
-  /* Footer Shapes */
-  .footer-shapes {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  }
-
-  .footer-shape {
-    position: absolute;
-    background: linear-gradient(45deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
-    border-radius: 50%;
-    animation: footerShapeFloat 15s ease-in-out infinite;
-  }
-
-  .shape-1 {
-    width: 80px;
-    height: 80px;
-    top: 20%;
-    right: 10%;
-    animation-delay: 0s;
-  }
-
-  .shape-2 {
-    width: 60px;
-    height: 60px;
-    bottom: 30%;
-    left: 15%;
-    animation-delay: -5s;
-  }
-
-  .shape-3 {
-    width: 100px;
-    height: 100px;
-    top: 60%;
-    right: 20%;
-    animation-delay: -10s;
-  }
-
-  /* Footer Content */
-  .footer-content {
-    animation: fadeInUp 0.8s ease-out 0.2s both;
-  }
-
-  /* Brand Section */
-  .footer-brand {
-    animation: slideInLeft 0.6s ease-out 0.4s both;
-  }
-
-  .brand-container {
-    animation: fadeInUp 0.5s ease-out 0.6s both;
-  }
-
-  .brand-icon {
-    transition: all 0.3s ease;
-  }
-
-  .gradient-text {
-    background: linear-gradient(-45deg, #6366f1, #8b5cf6, #ec4899, #f59e0b);
-    background-size: 400% 400%;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: gradientShift 3s ease infinite;
-  }
-
-  .brand-description {
-    animation: fadeInUp 0.5s ease-out 0.8s both;
-  }
-
-  /* Links Section */
-  .footer-links {
-    animation: fadeInUp 0.6s ease-out 0.6s both;
-  }
-
-  .links-title {
-    animation: fadeInUp 0.4s ease-out 0.8s both;
-  }
-
-  .link-item {
-    animation: slideInLeft 0.4s ease-out both;
-  }
-
-  .footer-link {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .footer-link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: linear-gradient(to right, #6366f1, #8b5cf6);
-    transition: width 0.3s ease;
-  }
-
-  .footer-link:hover::after {
-    width: 100%;
-  }
-
-  /* Tech Section */
-  .footer-tech {
-    animation: slideInRight 0.6s ease-out 0.8s both;
-  }
-
-  .tech-title {
-    animation: fadeInUp 0.4s ease-out 1s both;
-  }
-
-  .tech-badges {
-    animation: fadeInUp 0.5s ease-out 1.2s both;
-  }
-
-  .tech-badge {
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .tech-badge::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s;
-  }
-
-  .tech-badge:hover::before {
-    left: 100%;
-  }
-
-  /* Footer Bottom */
-  .footer-bottom {
-    animation: fadeInUp 0.6s ease-out 1.4s both;
-  }
-
-  .copyright {
-    animation: slideInLeft 0.4s ease-out 1.6s both;
-  }
-
-  .made-with {
-    animation: slideInRight 0.4s ease-out 1.8s both;
-  }
-
-  .heart {
-    animation: heartBeat 1.5s ease-in-out infinite;
-  }
-
-  /* Hover Effects */
-  .footer-brand:hover .brand-icon {
-    transform: scale(1.2) rotate(360deg);
-  }
-
-  .footer-brand:hover .gradient-text {
-    animation-duration: 1s;
-  }
-
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .footer-shape {
-      display: none;
-    }
-    
-    .tech-badges {
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-  }
-
-  /* Interactive Elements */
-  .footer-container:hover .footer-shape {
-    animation-duration: 10s;
-  }
-
-  /* Scroll to Top Button (if needed) */
-  .scroll-to-top {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: linear-gradient(45deg, #6366f1, #8b5cf6);
-    color: white;
-    border: none;
-    cursor: pointer;
-    opacity: 0;
-    transform: translateY(100px);
-    transition: all 0.3s ease;
-    z-index: 1000;
-  }
-
-  .scroll-to-top.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .scroll-to-top:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
-  }
-</style>
-
-<!-- JavaScript for Interactive Effects -->
-<script>
-  // Intersection Observer for footer animations
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('animate');
-      }
-    });
-  }, observerOptions);
-
-  // Smooth scroll for footer links
-  document.addEventListener('DOMContentLoaded', () => {
-    const footerLinks = document.querySelectorAll('.footer-link');
-    
-    footerLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const href = link.getAttribute('href');
-        if (!href) return;
-        
-        const targetId = href.substring(1);
-        const targetSection = document.getElementById(targetId);
-        
-        if (targetSection) {
-          targetSection.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
-      });
-    });
-
-    // Observe footer for animations
-    const footer = document.querySelector('.footer-container');
-    if (footer) {
-      observer.observe(footer);
-    }
-  });
-
-</script>

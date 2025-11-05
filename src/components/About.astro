@@ -4,306 +4,56 @@ import { Icon } from "astro-icon/components";
 
 <section
   id="about"
-  class="py-20 lg:py-32 relative overflow-hidden"
+  class="py-24 bg-gray-50 dark:bg-gray-900"
   aria-label="about"
 >
-  <!-- Enhanced Background with animations -->
-  <div class="absolute inset-0 bg-gray-50 dark:bg-gray-900">
-    <div class="absolute inset-0 opacity-30">
-      <div class="floating-orb absolute top-20 left-10 w-32 h-32 bg-primary-200 dark:bg-primary-800 rounded-full blur-xl"></div>
-      <div class="floating-orb absolute bottom-20 right-20 w-24 h-24 bg-secondary-200 dark:bg-secondary-800 rounded-full blur-lg" style="animation-delay: -2s;"></div>
-      <div class="floating-orb absolute top-1/2 right-10 w-16 h-16 bg-accent-200 dark:bg-accent-800 rounded-full blur-lg" style="animation-delay: -4s;"></div>
-    </div>
-  </div>
-  
-  <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto px-6">
     <!-- Section Header -->
-    <div class="text-center mb-16 lg:mb-20 fade-in-up">
-      <span class="inline-block px-4 py-2 rounded-full bg-primary-100 dark:bg-primary-900/50 text-primary-800 dark:text-primary-200 text-sm font-semibold tracking-wide uppercase mb-4 scale-in">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-4">
         About Me
-      </span>
-      <h2 class="text-4xl lg:text-6xl font-bold text-gray-900 dark:text-white slide-in-left">
-        Building the <span class="text-primary-600 dark:text-primary-400 gradient-text">Future</span>
       </h2>
+      <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        Building digital experiences with passion and precision
+      </p>
     </div>
 
-    <div class="grid lg:grid-cols-5 gap-12 lg:gap-16 items-center">
-      <!-- Profile Image -->
-      <div class="lg:col-span-2 slide-in-left" style="animation-delay: 0.2s;">
-        <div class="relative max-w-md mx-auto">
-          <div class="absolute inset-0 bg-gradient-to-r from-primary-400 to-secondary-500 rounded-3xl opacity-20 blur-2xl transform rotate-6 pulse-glow"></div>
-          <div class="relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border border-gray-200 dark:border-gray-700 hover:shadow-3xl hover:scale-[1.02] transition-all duration-500 group">
-            <Icon name="about" width="100%" height="400" class="w-full h-auto group-hover:scale-105 transition-transform duration-300" />
-            <div class="absolute -top-2 -right-2 w-6 h-6 bg-green-400 rounded-full pulse-dot border-4 border-white dark:border-gray-800"></div>
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <!-- Content -->
+      <div class="space-y-6">
+        <p class="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+          I'm a passionate full-stack developer with 2+ years of experience building products that solve real-world problems. My expertise spans modern web and mobile technologies, with a focus on creating scalable solutions.
+        </p>
+        <p class="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+          From concept to deployment, I enjoy every aspect of the development process. I believe in writing clean, maintainable code and creating exceptional user experiences.
+        </p>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-3 gap-6 pt-8">
+          <div class="text-center">
+            <div class="text-3xl font-bold text-gray-900 dark:text-white mb-2">2+</div>
+            <div class="text-sm text-gray-600 dark:text-gray-400">Years</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-gray-900 dark:text-white mb-2">50+</div>
+            <div class="text-sm text-gray-600 dark:text-gray-400">Projects</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-gray-900 dark:text-white mb-2">100%</div>
+            <div class="text-sm text-gray-600 dark:text-gray-400">Satisfaction</div>
           </div>
         </div>
       </div>
 
-      <!-- Content -->
-      <div class="lg:col-span-3 space-y-8 slide-in-right" style="animation-delay: 0.4s;">
-        <!-- Main Description -->
-        <div class="prose prose-lg dark:prose-invert max-w-none fade-in-up" style="animation-delay: 0.6s;">
-          <p class="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
-            I'm a passionate full-stack developer with <strong class="text-primary-600 dark:text-primary-400">2+ years of experience</strong> building profitable products that solve real-world problems. My expertise spans across modern web and mobile technologies, with a focus on creating scalable solutions that drive business growth.
-          </p>
-          <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-            From concept to deployment, I enjoy every aspect of the development process. I believe in writing clean, maintainable code and creating exceptional user experiences that make a difference.
-          </p>
-        </div>
-
-        <!-- Animated Stats -->
-        <div class="grid sm:grid-cols-3 gap-6 stagger-children" style="animation-delay: 0.8s;">
-          <div class="stat-card group text-center p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl hover:-translate-y-2 transition-all duration-500 cursor-pointer">
-            <div class="stat-number text-3xl font-bold text-primary-600 dark:text-primary-400 mb-2" data-target="2">0</div>
-            <div class="text-gray-600 dark:text-gray-300 font-medium">Years Experience</div>
-            <div class="mt-3 h-1 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-              <div class="stat-bar h-full bg-primary-500 rounded-full transform -translate-x-full transition-transform duration-1000 group-hover:translate-x-0"></div>
-            </div>
-          </div>
-          <div class="stat-card group text-center p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl hover:-translate-y-2 transition-all duration-500 cursor-pointer" style="animation-delay: 0.1s;">
-            <div class="stat-number text-3xl font-bold text-secondary-600 dark:text-secondary-400 mb-2" data-target="50">0</div>
-            <div class="text-gray-600 dark:text-gray-300 font-medium">Projects Completed</div>
-            <div class="mt-3 h-1 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-              <div class="stat-bar h-full bg-secondary-500 rounded-full transform -translate-x-full transition-transform duration-1000 group-hover:translate-x-0"></div>
-            </div>
-          </div>
-          <div class="stat-card group text-center p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl hover:-translate-y-2 transition-all duration-500 cursor-pointer" style="animation-delay: 0.2s;">
-            <div class="stat-number text-3xl font-bold text-accent-600 dark:text-accent-400 mb-2" data-target="100">0</div>
-            <div class="text-gray-600 dark:text-gray-300 font-medium">Client Satisfaction</div>
-            <div class="mt-3 h-1 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-              <div class="stat-bar h-full bg-accent-500 rounded-full transform -translate-x-full transition-transform duration-1000 group-hover:translate-x-0"></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Interactive Skills -->
-        <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-shadow duration-300 fade-in-up" style="animation-delay: 1s;">
-          <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-6">Core Technologies</h3>
-          <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
-            {[
-              { name: 'React & Next.js', icon: '⚛️', level: 95 },
-              { name: 'Node.js', icon: '🟢', level: 88 },
-              { name: 'TypeScript', icon: '📘', level: 92 },
-              { name: 'Python', icon: '🐍', level: 85 },
-              { name: 'AWS Cloud', icon: '☁️', level: 78 },
-              { name: 'Mobile Apps', icon: '📱', level: 82 }
-            ].map((tech, index) => (
-              <div class="skill-item group flex items-center space-x-3 p-3 bg-gray-50 dark:bg-gray-700 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-600 transition-all duration-300 hover:scale-105 cursor-pointer" style={`animation-delay: ${1.2 + index * 0.1}s;`}>
-                <span class="text-xl group-hover:scale-125 transition-transform duration-200">{tech.icon}</span>
-                <div class="flex-1">
-                  <span class="text-gray-700 dark:text-gray-200 font-medium text-sm block">{tech.name}</span>
-                  <div class="mt-1 h-1.5 bg-gray-200 dark:bg-gray-600 rounded-full overflow-hidden">
-                    <div 
-                      class="skill-bar h-full bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full transform -translate-x-full transition-transform duration-1000"
-                      style={`width: ${tech.level}%;`}
-                    ></div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+      <!-- Image -->
+      <div class="flex justify-center lg:justify-end">
+        <div class="w-full max-w-md">
+          <Icon
+            name="about"
+            class="w-full h-auto text-gray-900 dark:text-white"
+          />
         </div>
       </div>
     </div>
   </div>
 </section>
-
-<!-- Custom Styles and Animations -->
-<style>
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes slideInLeft {
-    from {
-      opacity: 0;
-      transform: translateX(-30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes slideInRight {
-    from {
-      opacity: 0;
-      transform: translateX(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes scaleIn {
-    from {
-      opacity: 0;
-      transform: scale(0.8);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
-  @keyframes floating {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
-  }
-
-  @keyframes pulseGlow {
-    0%, 100% { opacity: 0.2; }
-    50% { opacity: 0.4; }
-  }
-
-  @keyframes pulseDot {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.2); opacity: 0.8; }
-  }
-
-  @keyframes gradientShift {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-  }
-
-  .fade-in-up {
-    animation: fadeInUp 0.6s ease-out forwards;
-    opacity: 0;
-  }
-
-  .slide-in-left {
-    animation: slideInLeft 0.6s ease-out forwards;
-    opacity: 0;
-  }
-
-  .slide-in-right {
-    animation: slideInRight 0.6s ease-out forwards;
-    opacity: 0;
-  }
-
-  .scale-in {
-    animation: scaleIn 0.4s ease-out forwards;
-    opacity: 0;
-  }
-
-  .floating-orb {
-    animation: floating 6s ease-in-out infinite;
-  }
-
-  .pulse-glow {
-    animation: pulseGlow 3s ease-in-out infinite;
-  }
-
-  .pulse-dot {
-    animation: pulseDot 2s ease-in-out infinite;
-  }
-
-  .gradient-text {
-    background: linear-gradient(-45deg, #6366f1, #8b5cf6, #ec4899, #f59e0b);
-    background-size: 400% 400%;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: gradientShift 3s ease infinite;
-  }
-
-  .stagger-children > * {
-    animation: fadeInUp 0.6s ease-out forwards;
-    opacity: 0;
-  }
-
-  .stagger-children > *:nth-child(1) { animation-delay: 0s; }
-  .stagger-children > *:nth-child(2) { animation-delay: 0.1s; }
-  .stagger-children > *:nth-child(3) { animation-delay: 0.2s; }
-
-  .skill-item {
-    animation: fadeInUp 0.4s ease-out forwards;
-    opacity: 0;
-  }
-
-  .skill-bar {
-    transition-delay: 0.5s;
-  }
-
-  .stat-card:hover .stat-bar {
-    transform: translateX(0) !important;
-  }
-
-  .skill-item:hover .skill-bar {
-    transform: translateX(0) !important;
-  }
-
-  /* Intersection Observer triggered animations */
-  .animate-on-scroll {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s ease-out;
-  }
-
-  .animate-on-scroll.in-view {
-    opacity: 1;
-    transform: translateY(0);
-  }
-</style>
-
-<!-- JavaScript for Interactive Elements -->
-<script>
-  // Counter animation for stats
-  function animateCounter(element: HTMLElement, target: number, duration: number = 2000): void {
-    const startTime = performance.now();
-    
-    function updateCounter(currentTime: number): void {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const current = Math.floor(progress * target);
-      
-      element.textContent = current + '+';
-      
-      if (progress < 1) {
-        requestAnimationFrame(updateCounter);
-      }
-    }
-    
-    requestAnimationFrame(updateCounter);
-  }
-
-  // Intersection Observer for scroll animations
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        // Animate counters
-        if (entry.target.classList.contains('stat-card')) {
-          const numberElement = entry.target.querySelector('.stat-number') as HTMLElement | null;
-          if (numberElement && numberElement.dataset.target) {
-            const target = parseInt(numberElement.dataset.target);
-            if (!isNaN(target)) {
-              animateCounter(numberElement, target);
-            }
-          }
-        }
-        
-        // Trigger animations
-        entry.target.classList.add('in-view');
-      }
-    });
-  }, observerOptions);
-
-  // Observe all animated elements
-  document.addEventListener('DOMContentLoaded', () => {
-    const animatedElements = document.querySelectorAll('.stat-card, .skill-item, .animate-on-scroll');
-    animatedElements.forEach(el => observer.observe(el));
-  });
-</script>
