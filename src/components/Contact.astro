@@ -4,565 +4,152 @@ import { Icon } from "astro-icon/components";
 
 <section
   id="contact"
-  class="py-24 relative overflow-hidden"
+  class="py-24 bg-white dark:bg-gray-950"
   aria-label="contact"
 >
-  <!-- Enhanced Background with animations -->
-  <div class="absolute inset-0">
-    <div class="absolute inset-0 bg-gradient-to-br from-primary-50/50 via-white to-secondary-50/50 dark:from-gray-950 dark:via-primary-950/20 dark:to-secondary-950/20 animated-gradient"></div>
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(56,189,248,0.08),transparent_50%),radial-gradient(circle_at_25%_75%,rgba(217,70,239,0.08),transparent_50%),radial-gradient(circle_at_75%_25%,rgba(249,115,22,0.08),transparent_50%)] animated-radial"></div>
-    
-    <!-- Contact shapes -->
-    <div class="contact-shapes">
-      <div class="contact-shape shape-1"></div>
-      <div class="contact-shape shape-2"></div>
-      <div class="contact-shape shape-3"></div>
-      <div class="contact-shape shape-4"></div>
-      <div class="contact-shape shape-5"></div>
-    </div>
-  </div>
-
-  <div class="relative z-10 max-w-8xl mx-auto px-8">
+  <div class="max-w-7xl mx-auto px-6">
     <!-- Section Header -->
-    <div class="contact-header text-center mb-20">
-      <div class="badge inline-flex items-center px-4 py-2 rounded-full bg-white/60 dark:bg-gray-800/60 backdrop-blur-xl border border-white/20 dark:border-gray-700/30 mb-6 shadow-lg">
-        <svg class="w-5 h-5 text-primary-600 mr-3 pulse-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-        </svg>
-        <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Let's Connect</span>
-      </div>
-      
-      <h2 class="contact-title text-5xl lg:text-7xl font-black mb-6">
-        <span class="gradient-text bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600 bg-clip-text text-transparent">
-          Get In
-        </span>
-        <span class="block text-gray-900 dark:text-white font-light slide-in-text">Touch</span>
+    <div class="text-center mb-16">
+      <h2 class="text-4xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-4">
+        Get In Touch
       </h2>
-      
-      <p class="contact-description text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
-        Ready to bring your ideas to life? Let's discuss how we can create something amazing together
+      <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        Have a project in mind? Let's work together
       </p>
     </div>
 
-    <div class="contact-content grid lg:grid-cols-2 gap-16 items-start">
-      <!-- Enhanced Contact Form -->
-      <div class="contact-form bg-white/70 dark:bg-gray-800/70 backdrop-blur-xl rounded-3xl p-10 shadow-2xl border border-white/20 dark:border-gray-700/30 hover:shadow-3xl transition-all duration-500 hover:scale-[1.02] relative overflow-hidden">
-        <!-- Form glow effect -->
-        <div class="absolute inset-0 bg-gradient-to-br from-primary-500/5 via-secondary-500/5 to-accent-500/5 opacity-0 hover:opacity-100 transition-opacity duration-500"></div>
-        <div class="relative z-10">
-          <div class="form-header flex items-center mb-8">
-            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-2xl flex items-center justify-center mr-4 form-icon">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 7.89a2 2 0 002.83 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-              </svg>
-            </div>
-            <div>
-              <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-1">
-                Send a Message
-              </h3>
-              <p class="text-gray-600 dark:text-gray-400">I'll get back to you within 24 hours</p>
-            </div>
-          </div>
-        </div>
-        
+    <div class="grid lg:grid-cols-2 gap-12">
+      <!-- Contact Form -->
+      <div>
         <form class="space-y-6">
           <div class="grid md:grid-cols-2 gap-6">
-            <div class="group">
-              <label for="name" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
-                Full Name
+            <div>
+              <label for="name" class="block text-sm font-medium text-gray-900 dark:text-white mb-2">
+                Name
               </label>
-              <div class="relative">
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  class="w-full px-5 py-4 rounded-2xl border border-gray-200 dark:border-gray-600 bg-white/70 dark:bg-gray-700/70 backdrop-blur-sm text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300 placeholder-gray-400 dark:placeholder-gray-500"
-                  placeholder="John Doe"
-                />
-                <div class="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-secondary-500/10 rounded-2xl opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-              </div>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-gray-900 dark:focus:ring-white"
+                placeholder="John Doe"
+              />
             </div>
-            <div class="group">
-              <label for="email" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
-                Email Address
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-900 dark:text-white mb-2">
+                Email
               </label>
-              <div class="relative">
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  class="w-full px-5 py-4 rounded-2xl border border-gray-200 dark:border-gray-600 bg-white/70 dark:bg-gray-700/70 backdrop-blur-sm text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300 placeholder-gray-400 dark:placeholder-gray-500"
-                  placeholder="john@example.com"
-                />
-                <div class="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-secondary-500/10 rounded-2xl opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="group">
-            <label for="subject" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
-              Project Type
-            </label>
-            <div class="relative">
-              <select
-                id="subject"
-                name="subject"
+              <input
+                type="email"
+                id="email"
+                name="email"
                 required
-                class="w-full px-5 py-4 rounded-2xl border border-gray-200 dark:border-gray-600 bg-white/70 dark:bg-gray-700/70 backdrop-blur-sm text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300"
-              >
-                <option value="">Select a project type</option>
-                <option value="web-development">Web Development</option>
-                <option value="mobile-app">Mobile Application</option>
-                <option value="ui-ux-design">UI/UX Design</option>
-                <option value="consultation">Consultation</option>
-                <option value="other">Other</option>
-              </select>
-              <div class="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-secondary-500/10 rounded-2xl opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-gray-900 dark:focus:ring-white"
+                placeholder="john@example.com"
+              />
             </div>
           </div>
-          
-          <div class="group">
-            <label for="message" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
-              Project Details
+
+          <div>
+            <label for="subject" class="block text-sm font-medium text-gray-900 dark:text-white mb-2">
+              Subject
             </label>
-            <div class="relative">
-              <textarea
-                id="message"
-                name="message"
-                rows="6"
-                required
-                class="w-full px-5 py-4 rounded-2xl border border-gray-200 dark:border-gray-600 bg-white/70 dark:bg-gray-700/70 backdrop-blur-sm text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300 resize-none placeholder-gray-400 dark:placeholder-gray-500"
-                placeholder="Tell me about your project vision, goals, and requirements..."
-              ></textarea>
-              <div class="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-secondary-500/10 rounded-2xl opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-            </div>
+            <input
+              type="text"
+              id="subject"
+              name="subject"
+              required
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-gray-900 dark:focus:ring-white"
+              placeholder="Project inquiry"
+            />
           </div>
-          
+
+          <div>
+            <label for="message" class="block text-sm font-medium text-gray-900 dark:text-white mb-2">
+              Message
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              rows="6"
+              required
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-gray-900 dark:focus:ring-white resize-none"
+              placeholder="Tell me about your project..."
+            ></textarea>
+          </div>
+
           <button
             type="submit"
-            class="group relative w-full bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600 text-white py-5 px-6 rounded-2xl font-bold hover:shadow-2xl hover:shadow-primary-500/25 transition-all duration-300 transform hover:scale-[1.02] overflow-hidden"
+            class="w-full px-8 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
           >
-            <div class="absolute inset-0 bg-gradient-to-r from-primary-700 via-secondary-700 to-accent-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            <span class="relative z-10 flex items-center justify-center gap-3">
-              Send Message
-              <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
-              </svg>
-            </span>
+            Send Message
           </button>
         </form>
       </div>
 
-      <!-- Enhanced Contact Info -->
-      <div class="contact-info space-y-8">
-        <!-- Contact Methods -->
-        <div class="contact-methods bg-white/70 dark:bg-gray-800/70 backdrop-blur-xl rounded-3xl p-10 shadow-2xl border border-white/20 dark:border-gray-700/30 hover:shadow-3xl transition-all duration-500 hover:scale-[1.02]">
-          <div class="flex items-center mb-8">
-            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-2xl flex items-center justify-center mr-4">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-              </svg>
+      <!-- Contact Info -->
+      <div class="space-y-8">
+        <div class="space-y-6">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center">
+              <Icon name="mdi:email" class="w-6 h-6 text-gray-900 dark:text-white" />
             </div>
             <div>
-              <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-1">
-                Contact Info
-              </h3>
-              <p class="text-gray-600 dark:text-gray-400">Multiple ways to reach me</p>
+              <div class="text-sm text-gray-600 dark:text-gray-400">Email</div>
+              <div class="text-gray-900 dark:text-white font-medium">hassan@example.com</div>
             </div>
           </div>
-          
-          <div class="space-y-6">
-            <div class="group flex items-center space-x-5 p-4 rounded-2xl hover:bg-white/60 dark:hover:bg-gray-700/60 backdrop-blur-sm transition-all duration-300">
-              <div class="w-14 h-14 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <Icon name="mdi:email" class="w-7 h-7 text-white" />
-              </div>
-              <div>
-                <h4 class="font-bold text-lg text-gray-900 dark:text-white mb-1">Email</h4>
-                <p class="text-gray-600 dark:text-gray-400">hassan@example.com</p>
-              </div>
+
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center">
+              <Icon name="mdi:phone" class="w-6 h-6 text-gray-900 dark:text-white" />
             </div>
-            
-            <div class="group flex items-center space-x-5 p-4 rounded-2xl hover:bg-white/60 dark:hover:bg-gray-700/60 backdrop-blur-sm transition-all duration-300">
-              <div class="w-14 h-14 bg-gradient-to-br from-secondary-500 to-secondary-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <Icon name="mdi:phone" class="w-7 h-7 text-white" />
-              </div>
-              <div>
-                <h4 class="font-bold text-lg text-gray-900 dark:text-white mb-1">Phone</h4>
-                <p class="text-gray-600 dark:text-gray-400">+1 (555) 123-4567</p>
-              </div>
+            <div>
+              <div class="text-sm text-gray-600 dark:text-gray-400">Phone</div>
+              <div class="text-gray-900 dark:text-white font-medium">+1 (555) 123-4567</div>
             </div>
-            
-            <div class="group flex items-center space-x-5 p-4 rounded-2xl hover:bg-white/60 dark:hover:bg-gray-700/60 backdrop-blur-sm transition-all duration-300">
-              <div class="w-14 h-14 bg-gradient-to-br from-accent-500 to-accent-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <Icon name="mdi:map-marker" class="w-7 h-7 text-white" />
-              </div>
-              <div>
-                <h4 class="font-bold text-lg text-gray-900 dark:text-white mb-1">Location</h4>
-                <p class="text-gray-600 dark:text-gray-400">San Francisco, CA</p>
-              </div>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center">
+              <Icon name="mdi:map-marker" class="w-6 h-6 text-gray-900 dark:text-white" />
+            </div>
+            <div>
+              <div class="text-sm text-gray-600 dark:text-gray-400">Location</div>
+              <div class="text-gray-900 dark:text-white font-medium">San Francisco, CA</div>
             </div>
           </div>
         </div>
 
-        <!-- Enhanced Social Links -->
-        <div class="social-links bg-white/70 dark:bg-gray-800/70 backdrop-blur-xl rounded-3xl p-10 shadow-2xl border border-white/20 dark:border-gray-700/30 hover:shadow-3xl transition-all duration-500 hover:scale-[1.02]">
-          <div class="flex items-center mb-8">
-            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-2xl flex items-center justify-center mr-4">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-              </svg>
-            </div>
-            <div>
-              <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-1">
-                Follow Me
-              </h3>
-              <p class="text-gray-600 dark:text-gray-400">Stay connected on social media</p>
-            </div>
-          </div>
-          
-          <div class="grid grid-cols-2 gap-4">
+        <!-- Social Links -->
+        <div class="pt-8 border-t border-gray-200 dark:border-gray-800">
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Follow Me</h3>
+          <div class="flex gap-4">
             <a
               href="#"
-              class="group relative flex items-center justify-center p-6 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl overflow-hidden"
+              class="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gray-900 dark:hover:bg-white hover:text-white dark:hover:text-gray-900 transition-colors"
+              aria-label="LinkedIn"
             >
-              <div class="absolute inset-0 bg-blue-700/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div class="relative z-10 flex items-center space-x-3">
-                <Icon name="mdi:linkedin" class="w-6 h-6" />
-                <span class="font-semibold">LinkedIn</span>
-              </div>
+              <Icon name="mdi:linkedin" class="w-6 h-6" />
             </a>
-            
             <a
               href="#"
-              class="group relative flex items-center justify-center p-6 rounded-2xl bg-gradient-to-br from-gray-800 to-gray-900 text-white hover:from-gray-900 hover:to-black transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl overflow-hidden"
+              class="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gray-900 dark:hover:bg-white hover:text-white dark:hover:text-gray-900 transition-colors"
+              aria-label="GitHub"
             >
-              <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div class="relative z-10 flex items-center space-x-3">
-                <Icon name="mdi:github" class="w-6 h-6" />
-                <span class="font-semibold">GitHub</span>
-              </div>
+              <Icon name="mdi:github" class="w-6 h-6" />
             </a>
-            
             <a
               href="#"
-              class="group relative flex items-center justify-center p-6 rounded-2xl bg-gradient-to-br from-blue-400 to-blue-500 text-white hover:from-blue-500 hover:to-blue-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl overflow-hidden"
+              class="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gray-900 dark:hover:bg-white hover:text-white dark:hover:text-gray-900 transition-colors"
+              aria-label="Twitter"
             >
-              <div class="absolute inset-0 bg-blue-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div class="relative z-10 flex items-center space-x-3">
-                <Icon name="mdi:twitter" class="w-6 h-6" />
-                <span class="font-semibold">Twitter</span>
-              </div>
+              <Icon name="mdi:twitter" class="w-6 h-6" />
             </a>
-            
-            <a
-              href="#"
-              class="group relative flex items-center justify-center p-6 rounded-2xl bg-gradient-to-br from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl overflow-hidden"
-            >
-              <div class="absolute inset-0 bg-red-700/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div class="relative z-10 flex items-center space-x-3">
-                <Icon name="mdi:instagram" class="w-6 h-6" />
-                <span class="font-semibold">Instagram</span>
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <!-- Enhanced Availability Status -->
-        <div class="availability-status relative bg-gradient-to-br from-green-500 to-green-600 rounded-3xl p-10 text-white shadow-2xl overflow-hidden hover:shadow-3xl transition-all duration-500 hover:scale-[1.02]">
-          <div class="absolute inset-0 bg-green-700/20 opacity-50"></div>
-          <div class="absolute top-0 right-0 w-32 h-32 bg-green-400/20 rounded-full blur-3xl"></div>
-          <div class="absolute bottom-0 left-0 w-24 h-24 bg-green-300/20 rounded-full blur-2xl"></div>
-          
-          <div class="relative z-10 flex items-center space-x-6">
-            <div class="relative">
-              <div class="w-6 h-6 bg-green-300 rounded-full animate-pulse"></div>
-              <div class="absolute inset-0 w-6 h-6 bg-green-200 rounded-full animate-ping"></div>
-            </div>
-            <div>
-              <h4 class="font-bold text-2xl mb-2">Available for Projects</h4>
-              <p class="text-green-100 text-lg leading-relaxed">
-                Ready to collaborate on your next amazing project. Let's create something extraordinary together!
-              </p>
-            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
-
-<!-- Enhanced Styles and Animations -->
-<style>
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes slideInLeft {
-    from {
-      opacity: 0;
-      transform: translateX(-30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes slideInRight {
-    from {
-      opacity: 0;
-      transform: translateX(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes pulseIcon {
-    0%, 100% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.1);
-    }
-  }
-
-  @keyframes gradientShift {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-  }
-
-  @keyframes contactFloat {
-    0%, 100% {
-      transform: translateY(0px) rotate(0deg);
-    }
-    33% {
-      transform: translateY(-20px) rotate(120deg);
-    }
-    66% {
-      transform: translateY(10px) rotate(240deg);
-    }
-  }
-
-  @keyframes animatedGradient {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-  }
-
-  @keyframes animatedRadial {
-    0%, 100% { transform: rotate(0deg) scale(1); }
-    50% { transform: rotate(180deg) scale(1.1); }
-  }
-
-  @keyframes formIconBounce {
-    0%, 100% {
-      transform: scale(1) rotate(0deg);
-    }
-    25% {
-      transform: scale(1.1) rotate(5deg);
-    }
-    75% {
-      transform: scale(1.05) rotate(-5deg);
-    }
-  }
-
-  @keyframes inputFocus {
-    0% {
-      box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4);
-    }
-    100% {
-      box-shadow: 0 0 0 4px rgba(99, 102, 241, 0);
-    }
-  }
-
-  /* Background Animations */
-  .animated-gradient {
-    background-size: 400% 400%;
-    animation: animatedGradient 20s ease infinite;
-  }
-
-  .animated-radial {
-    animation: animatedRadial 30s linear infinite;
-  }
-
-  /* Contact Shapes */
-  .contact-shapes {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  }
-
-  .contact-shape {
-    position: absolute;
-    background: linear-gradient(45deg, rgba(99, 102, 241, 0.08), rgba(139, 92, 246, 0.08));
-    border-radius: 50%;
-    animation: contactFloat 12s ease-in-out infinite;
-  }
-
-  .shape-1 {
-    width: 100px;
-    height: 100px;
-    top: 10%;
-    left: 5%;
-    animation-delay: 0s;
-  }
-
-  .shape-2 {
-    width: 80px;
-    height: 80px;
-    top: 60%;
-    right: 10%;
-    animation-delay: -3s;
-  }
-
-  .shape-3 {
-    width: 60px;
-    height: 60px;
-    bottom: 15%;
-    left: 15%;
-    animation-delay: -6s;
-  }
-
-  .shape-4 {
-    width: 120px;
-    height: 120px;
-    top: 30%;
-    right: 20%;
-    animation-delay: -9s;
-  }
-
-  .shape-5 {
-    width: 70px;
-    height: 70px;
-    top: 80%;
-    left: 60%;
-    animation-delay: -12s;
-  }
-
-  /* Header Animations */
-  .contact-header {
-    animation: fadeInUp 0.8s ease-out;
-  }
-
-  .badge {
-    animation: fadeInUp 0.6s ease-out 0.2s both;
-  }
-
-  .pulse-icon {
-    animation: pulseIcon 2s ease-in-out infinite;
-  }
-
-  .contact-title {
-    animation: fadeInUp 0.8s ease-out 0.4s both;
-  }
-
-  .gradient-text {
-    background: linear-gradient(-45deg, #6366f1, #8b5cf6, #ec4899, #f59e0b);
-    background-size: 400% 400%;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: gradientShift 3s ease infinite;
-  }
-
-  .slide-in-text {
-    animation: slideInLeft 0.6s ease-out 0.6s both;
-  }
-
-  .contact-description {
-    animation: fadeInUp 0.6s ease-out 0.8s both;
-  }
-
-  /* Content Animations */
-  .contact-content {
-    animation: fadeInUp 0.8s ease-out 1s both;
-  }
-
-  .contact-form {
-    animation: slideInLeft 0.8s ease-out 1.2s both;
-  }
-
-  .form-header {
-    animation: fadeInUp 0.6s ease-out 1.4s both;
-  }
-
-  .form-icon {
-    animation: formIconBounce 3s ease-in-out infinite;
-  }
-
-  .contact-info {
-    animation: slideInRight 0.8s ease-out 1.2s both;
-  }
-
-  .contact-methods {
-    animation: fadeInUp 0.6s ease-out 1.6s both;
-  }
-
-  .social-links {
-    animation: fadeInUp 0.6s ease-out 1.8s both;
-  }
-
-  .availability-status {
-    animation: fadeInUp 0.6s ease-out 2s both;
-  }
-
-  /* Interactive Elements */
-  .contact-form input:focus,
-  .contact-form textarea:focus,
-  .contact-form select:focus {
-    animation: inputFocus 0.3s ease-out;
-  }
-
-  /* Form Field Animations */
-  .contact-form .group {
-    animation: fadeInUp 0.4s ease-out both;
-  }
-
-  .contact-form .group:nth-child(1) { animation-delay: 1.8s; }
-  .contact-form .group:nth-child(2) { animation-delay: 1.9s; }
-  .contact-form .group:nth-child(3) { animation-delay: 2s; }
-  .contact-form .group:nth-child(4) { animation-delay: 2.1s; }
-  .contact-form button { animation: fadeInUp 0.4s ease-out 2.2s both; }
-
-  /* Contact Info Items */
-  .contact-methods .group {
-    animation: slideInRight 0.4s ease-out both;
-  }
-
-  .contact-methods .group:nth-child(1) { animation-delay: 1.8s; }
-  .contact-methods .group:nth-child(2) { animation-delay: 1.9s; }
-  .contact-methods .group:nth-child(3) { animation-delay: 2s; }
-
-  /* Social Links Animation */
-  .social-links a {
-    animation: fadeInUp 0.3s ease-out both;
-  }
-
-  .social-links a:nth-child(1) { animation-delay: 2s; }
-  .social-links a:nth-child(2) { animation-delay: 2.1s; }
-  .social-links a:nth-child(3) { animation-delay: 2.2s; }
-  .social-links a:nth-child(4) { animation-delay: 2.3s; }
-
-  /* Hover Effects */
-  .contact-form:hover .form-icon {
-    animation: formIconBounce 1s ease-in-out infinite;
-  }
-
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .contact-shape {
-      display: none;
-    }
-  }
-</style>
