@@ -12,10 +12,10 @@ export const landingIcons = [
     ariaLabel: "github",
   },
   {
-    icon: "simple-icons:gmail",
-    href: "mailto:hssnurrahman@gmail.com",
-    className: "gmail-icon",
-    ariaLabel: "gmail",
+    icon: "mdi:email",
+    href: "mailto:contact@hssan.dev",
+    className: "email-icon",
+    ariaLabel: "email",
   },
   // {
   //   icon: "mdi:twitter",
@@ -25,7 +25,7 @@ export const landingIcons = [
   // },
   {
     icon: "mdi:file-pdf",
-    href: "https://drive.google.com/file/d/10C0dl1ogFkCGQ6rLGUOx0oX1btvUCGA5/view?usp=share_link",
+    href: "https://drive.proton.me/urls/BXWMP1X0S8#8pJQvJnbuksG",
     className: "pdf-icon",
     ariaLabel: "pdf",
   },

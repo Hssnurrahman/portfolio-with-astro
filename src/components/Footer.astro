@@ -1,5 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
+
+const currentYear = new Date().getFullYear();
 ---
 
 <footer
@@ -12,7 +14,7 @@ import { Icon } from "astro-icon/components";
       <div class="space-y-4">
         <div class="text-2xl font-bold">Hassan</div>
         <p class="text-gray-400">
-          Full Stack Developer
+          MERN Stack Developer
         </p>
       </div>
 
@@ -68,7 +70,7 @@ import { Icon } from "astro-icon/components";
     <!-- Bottom -->
     <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
       <p class="text-gray-400 text-sm">
-        © 2024 Hassan. All rights reserved.
+        © {currentYear} Hassan. All rights reserved.
       </p>
       <p class="text-gray-400 text-sm">
         Designed & Built with ❤️

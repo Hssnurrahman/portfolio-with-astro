@@ -41,11 +41,11 @@ export const projects = [
         href: "https://resume-builder-three-teal.vercel.app/",
         tags: ["Prisma", "GraphQL", "PostgreSQL"],
     },
-    // {
-    //     name: "DropShop",
-    //     description:
-    //         "DropShop is a modern eCommerce platform offering secure payments, real-time order tracking, and a seamless shopping experience with an intuitive user interface.\n",
-    //     href: "https://drop-shop.online",
-    //     tags: ["Next.js", "MongoDB", "AWS", "Vercel"],
-    // },
+    {
+        name: "Quivora Chat",
+        description:
+            "Chat with multiple AI models like ChatGPT, Claude, and Gemini in one app, and analyze documents or images instantly. A simple, secure, and modern interface, making it the perfect AI chat solution for students, professionals, and creative minds.\n",
+        href: "https://play.google.com/store/apps/details?id=com.quivora.chat&hl=en",
+        tags: ["Flutter", "Supabase", "Fly.io", "Vercel"],
+    },
 ];
