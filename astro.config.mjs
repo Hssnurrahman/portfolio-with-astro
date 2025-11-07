@@ -14,10 +14,12 @@ export default defineConfig({
     }),
     integrations: [tailwind({
         applyBaseStyles: false,
-    }), icon({
-        include: {
-            "simple-icons": ["*"],
-            "mdi": ["*"]
-        }
-    })],
+    }),
+        icon({
+            include: {
+                "simple-icons": ["*"],
+                "mdi": ["*"]
+            }
+        },),
+    ],
 });
