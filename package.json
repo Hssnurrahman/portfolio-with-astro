@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
-    "@astrojs/node": "^9.5.0",
     "@astrojs/tailwind": "^6.0.2",
     "@iconify-json/mdi": "^1.2.3",
     "@iconify-json/simple-icons": "^1.2.57",
@@ -22,5 +21,8 @@
     "sharp": "^0.34.3",
     "tailwindcss": "^3.4.0",
     "typescript": "^5.9.2"
+  },
+  "devDependencies": {
+    "@astrojs/vercel": "^9.0.0"
   }
 }
