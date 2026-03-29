@@ -1,13 +1,11 @@
 ---
 import { projects } from "../data/Projects";
+import type { Project } from "../data/Projects";
 import Card from "./Card.astro";
 
-export interface ProjectProps {
-  name: string;
-  description: string;
-  href: string;
-  tags: string[];
-}
+const featured = projects.find((p: Project) => p.featured);
+const rest = projects.filter((p: Project) => !p.featured);
+const categories = ["All", "Web", "Mobile"] as const;
 ---
 
 <section
@@ -17,7 +15,7 @@ export interface ProjectProps {
 >
   <div class="max-w-7xl mx-auto px-6">
     <!-- Section Header -->
-    <div class="text-center mb-16">
+    <div class="text-center mb-12">
       <h2 class="text-4xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-4">
         Projects
       </h2>
@@ -26,21 +24,54 @@ export interface ProjectProps {
       </p>
     </div>
 
+    <!-- Filter Tabs -->
+    <div class="flex justify-center gap-2 mb-12">
+      {categories.map((cat) => (
+        <button
+          data-filter={cat}
+          class:list={[
+            "filter-btn px-5 py-2 rounded-full text-sm font-medium border transition-colors",
+            cat === "All"
+              ? "bg-gray-900 dark:bg-white text-white dark:text-gray-900 border-gray-900 dark:border-white"
+              : "bg-transparent text-gray-600 dark:text-gray-400 border-gray-200 dark:border-gray-700 hover:border-gray-900 dark:hover:border-white hover:text-gray-900 dark:hover:text-white",
+          ]}
+        >
+          {cat}
+        </button>
+      ))}
+    </div>
+
+    <!-- Featured Project -->
+    {featured && (
+      <div class="project-card mb-8" data-category={featured.category}>
+        <Card
+          name={featured.name}
+          description={featured.description}
+          href={featured.href}
+          tags={featured.tags}
+          featured={true}
+        />
+      </div>
+    )}
+
     <!-- Projects Grid -->
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-      {
-        projects.map(({ name, description, href, tags }: ProjectProps) => {
-          return (
-            <Card name={name} description={description} href={href} tags={tags} />
-          );
-        })
-      }
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+      {rest.map((project: Project) => (
+        <div class="project-card" data-category={project.category}>
+          <Card
+            name={project.name}
+            description={project.description}
+            href={project.href}
+            tags={project.tags}
+          />
+        </div>
+      ))}
     </div>
 
     <!-- CTA -->
     <div class="text-center">
       <a
-        href="https://github.com"
+        href="https://github.com/Hssnurrahman"
         target="_blank"
         rel="noopener noreferrer"
         class="inline-flex items-center gap-2 px-8 py-3 border-2 border-gray-900 dark:border-white text-gray-900 dark:text-white rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors"
@@ -53,3 +84,53 @@ export interface ProjectProps {
     </div>
   </div>
 </section>
+
+<!-- Filter + Scroll Animation -->
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>(".filter-btn");
+  const cards = document.querySelectorAll<HTMLElement>(".project-card");
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const filter = btn.dataset.filter;
+
+      // Update active button styles
+      buttons.forEach((b) => {
+        b.classList.remove("bg-gray-900", "dark:bg-white", "text-white", "dark:text-gray-900", "border-gray-900", "dark:border-white");
+        b.classList.add("bg-transparent", "text-gray-600", "dark:text-gray-400", "border-gray-200", "dark:border-gray-700");
+      });
+      btn.classList.remove("bg-transparent", "text-gray-600", "dark:text-gray-400", "border-gray-200", "dark:border-gray-700");
+      btn.classList.add("bg-gray-900", "dark:bg-white", "text-white", "dark:text-gray-900", "border-gray-900", "dark:border-white");
+
+      // Show/hide cards
+      cards.forEach((card) => {
+        if (filter === "All" || card.dataset.category === filter) {
+          card.style.display = "";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    });
+  });
+
+  // Scroll entrance animation
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          (entry.target as HTMLElement).style.opacity = "1";
+          (entry.target as HTMLElement).style.transform = "translateY(0)";
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+
+  cards.forEach((card, i) => {
+    card.style.opacity = "0";
+    card.style.transform = "translateY(20px)";
+    card.style.transition = `opacity 0.4s ease ${i * 60}ms, transform 0.4s ease ${i * 60}ms`;
+    observer.observe(card);
+  });
+</script>
