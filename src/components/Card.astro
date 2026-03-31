@@ -8,14 +8,15 @@ export interface Props {
 }
 
 const { name, description, href, tags = [], featured = false } = Astro.props as Props;
+const isExternal = href?.startsWith("http");
 const visibleTags = tags.slice(0, 4);
 const extraCount = tags.length - visibleTags.length;
 ---
 
 <a
   href={href}
-  target="_blank"
-  rel="noopener noreferrer"
+  target={isExternal ? "_blank" : "_self"}
+  rel={isExternal ? "noopener noreferrer" : undefined}
   class:list={[
     "group block h-full rounded-xl p-6 transition-all duration-300 border",
     "hover:-translate-y-1 hover:shadow-lg",

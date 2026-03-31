@@ -1,0 +1,9 @@
+{
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "ledgerflow.hssan.dev" }],
+      "destination": "/ledgerflow/$1"
+    }
+  ]
+}

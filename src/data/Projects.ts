@@ -65,7 +65,7 @@ export const projects: Project[] = [
         name: "LedgerFlow",
         description:
             "LedgerFlow is a smart business ledger and credit management app built for small business owners. It lets you manage multiple businesses, track customer-wise credit/debit transactions, view running balances, and generate PDF reports — all stored locally with no internet required. Features include WhatsApp payment reminders, QR code payments, CSV/PDF export, biometric app lock, dark mode, and Google AdMob integration.",
-        href: "https://play.google.com/store/apps/details?id=com.ledgerflow.app",
+        href: "/ledgerflow",
         tags: ["Flutter", "Dart", "SQLite", "Provider", "sqflite", "fl_chart", "Android", "iOS", "PDF Generation", "Google Mobile Ads", "Biometrics", "QR Code", "WhatsApp Integration", "CSV Export"],
         category: "Mobile",
     },
