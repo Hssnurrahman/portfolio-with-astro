@@ -2,11 +2,11 @@
 export interface Props {
   name: string;
   description: string;
-  href?: string;
-  tags?: string[];
-  featured?: boolean;
-  category?: string;
-  highlights?: string[];
+  href?: string | undefined;
+  tags?: string[] | undefined;
+  featured?: boolean | undefined;
+  category?: string | undefined;
+  highlights?: string[] | undefined;
 }
 
 const {

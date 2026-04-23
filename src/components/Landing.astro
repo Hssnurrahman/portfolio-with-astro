@@ -315,13 +315,15 @@ const techStack = [
     const roles: string[] = JSON.parse(rotator.dataset.roles ?? "[]");
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    if (roles.length > 1 && !reduced) {
+    const first = roles[0];
+    if (roles.length > 1 && !reduced && first) {
       let index = 0;
-      let charIndex = roles[0].length;
+      let charIndex = first.length;
       let phase: "pause" | "deleting" | "typing" = "pause";
 
       const tick = () => {
         const current = roles[index];
+        if (!current) return;
 
         if (phase === "pause") {
           phase = "deleting";
@@ -343,10 +345,9 @@ const techStack = [
         }
 
         // typing
-        const next = roles[index];
         charIndex += 1;
-        rotator.textContent = next.slice(0, charIndex);
-        if (charIndex === next.length) {
+        rotator.textContent = current.slice(0, charIndex);
+        if (charIndex === current.length) {
           phase = "pause";
           setTimeout(tick, 60);
         } else {
