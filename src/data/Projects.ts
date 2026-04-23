@@ -5,6 +5,7 @@ export interface Project {
     tags: string[];
     featured?: boolean;
     category: "Web" | "Mobile";
+    highlights?: string[];
 }
 
 export const projects: Project[] = [
@@ -30,6 +31,11 @@ export const projects: Project[] = [
         tags: ["NextJS", "NeonDB", "ChatGPT", "Vercel"],
         featured: true,
         category: "Web",
+        highlights: [
+            "AI-generated reports from GitHub activity",
+            "Daily & weekly automated digests",
+            "Built with Next.js, NeonDB, and ChatGPT",
+        ],
     },
     // {
     //     name: "Fake Data Generator",

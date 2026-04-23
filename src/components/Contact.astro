@@ -1,231 +1,533 @@
 ---
 import { Icon } from "astro-icon/components";
+import { landingIcons } from "../data/LandingIcons";
+import SectionHeading from "./SectionHeading.astro";
+
+const email = "contact@hssan.dev";
+const phone = "+923026658022";
+const phoneDisplay = "+92 302 6658022";
+const location = "Rawalpindi, Pakistan";
+const locationHref = "https://www.google.com/maps/place/Rawalpindi";
+
+const socials = landingIcons
+  .filter((s) => s.ariaLabel !== "pdf" && s.ariaLabel !== "email")
+  .map((s) => ({
+    ...s,
+    iconGeneric:
+      s.ariaLabel === "linkedin"
+        ? "simple-icons:linkedin"
+        : s.ariaLabel === "github"
+          ? "simple-icons:github"
+          : s.icon,
+  }));
+
+const contactMethods = [
+  {
+    icon: "mdi:email-outline",
+    label: "Email",
+    value: email,
+    href: `mailto:${email}`,
+    sub: "Best for detailed inquiries",
+  },
+  {
+    icon: "mdi:phone-outline",
+    label: "Phone",
+    value: phoneDisplay,
+    href: `tel:${phone}`,
+    sub: "Call or WhatsApp",
+  },
+  {
+    icon: "mdi:map-marker-outline",
+    label: "Location",
+    value: location,
+    href: locationHref,
+    sub: "PKT (UTC+5) · Open to remote",
+  },
+];
 ---
 
 <section
   id="contact"
-  class="py-24 bg-white dark:bg-gray-950"
+  class="relative py-24 bg-white dark:bg-gray-950 overflow-hidden"
   aria-label="contact"
 >
-  <div class="max-w-7xl mx-auto px-6">
-    <!-- Section Header -->
-    <div class="text-center mb-16">
-      <h2 class="text-4xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-4">
-        Get In Touch
-      </h2>
-      <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-        Have a project in mind? Let's work together
-      </p>
+  <!-- Backdrop -->
+  <div class="pointer-events-none absolute inset-0 -z-10">
+    <div class="absolute inset-0 bg-contact-grid opacity-[0.04] dark:opacity-[0.06]"></div>
+    <div
+      class="absolute -top-32 right-0 h-[26rem] w-[26rem] rounded-full bg-gradient-to-bl from-gray-200/50 to-transparent dark:from-gray-800/30 blur-3xl"
+    >
+    </div>
+  </div>
+
+  <div class="max-w-6xl mx-auto px-6">
+    <div data-contact-reveal class="mb-12">
+      <div
+        class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200 dark:border-gray-800 bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm text-sm text-gray-700 dark:text-gray-300 mb-6"
+      >
+        <span class="relative flex h-2 w-2">
+          <span
+            class="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping"
+          ></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+        </span>
+        Available for new projects
+      </div>
+
+      <SectionHeading
+        number="05"
+        eyebrow="Get in touch"
+        titleLead="Let's build"
+        titleAccent="something great"
+        description="Have an idea, a role, or a broken product that needs fixing? Send a note — I typically respond within 24 hours."
+      />
     </div>
 
-    <div class="grid lg:grid-cols-2 gap-12">
+    <div class="grid lg:grid-cols-5 gap-8 lg:gap-12">
       <!-- Contact Form -->
-      <div>
-        <!-- Status Messages -->
-        <div id="form-status" class="mb-4 hidden">
-          <div id="success-message" class="hidden p-4 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-100 rounded-lg">
-            Message sent successfully! I'll get back to you soon.
-          </div>
-          <div id="error-message" class="hidden p-4 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-100 rounded-lg">
-            Failed to send message. Please try again.
-          </div>
-        </div>
+      <div class="lg:col-span-3" data-contact-reveal style="--reveal-delay: 100ms">
+        <div
+          class="relative rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-6 sm:p-8 shadow-sm"
+        >
+          <form id="contact-form" class="space-y-5" novalidate>
+            <!-- Honeypot: hidden from real users, bots tend to fill every field -->
+            <div class="hidden" aria-hidden="true">
+              <label>
+                Leave this field empty
+                <input type="text" name="website" tabindex="-1" autocomplete="off" />
+              </label>
+            </div>
 
-        <form id="contact-form" class="space-y-6">
-          <div class="grid md:grid-cols-2 gap-6">
-            <div>
-              <label for="name" class="block text-sm font-medium text-gray-900 dark:text-white mb-2">
-                Name
+            <div class="grid md:grid-cols-2 gap-5">
+              <div class="field">
+                <label for="name" class="field-label">
+                  Name <span class="text-gray-400">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  autocomplete="name"
+                  class="field-input"
+                  placeholder="Jane Doe"
+                />
+                <p class="field-error"></p>
+              </div>
+              <div class="field">
+                <label for="email" class="field-label">
+                  Email <span class="text-gray-400">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  autocomplete="email"
+                  class="field-input"
+                  placeholder="jane@example.com"
+                />
+                <p class="field-error"></p>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="subject" class="field-label">
+                Subject <span class="text-gray-400">*</span>
               </label>
               <input
                 type="text"
-                id="name"
-                name="name"
+                id="subject"
+                name="subject"
                 required
-                class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-gray-900 dark:focus:ring-white"
-                placeholder="John Doe"
+                class="field-input"
+                placeholder="Project inquiry, role, question…"
               />
+              <p class="field-error"></p>
             </div>
-            <div>
-              <label for="email" class="block text-sm font-medium text-gray-900 dark:text-white mb-2">
-                Email
+
+            <div class="field">
+              <label for="message" class="field-label flex items-center justify-between">
+                <span>
+                  Message <span class="text-gray-400">*</span>
+                </span>
+                <span
+                  id="message-counter"
+                  class="text-xs font-normal text-gray-400 dark:text-gray-500 tabular-nums"
+                  >0 / 2000</span
+                >
               </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
+              <textarea
+                id="message"
+                name="message"
+                rows="6"
                 required
-                class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-gray-900 dark:focus:ring-white"
-                placeholder="john@example.com"
-              />
+                maxlength="2000"
+                class="field-input resize-none"
+                placeholder="A few sentences on what you have in mind — context, timeline, budget if you have one in mind. I'll take it from there."
+              ></textarea>
+              <p class="field-error"></p>
             </div>
-          </div>
 
-          <div>
-            <label for="subject" class="block text-sm font-medium text-gray-900 dark:text-white mb-2">
-              Subject
-            </label>
-            <input
-              type="text"
-              id="subject"
-              name="subject"
-              required
-              class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-gray-900 dark:focus:ring-white"
-              placeholder="Project inquiry"
-            />
-          </div>
+            <div
+              id="form-error"
+              class="hidden rounded-lg border border-red-200 dark:border-red-900/50 bg-red-50 dark:bg-red-950/30 px-4 py-3 text-sm text-red-800 dark:text-red-300"
+              role="alert"
+            >
+            </div>
 
-          <div>
-            <label for="message" class="block text-sm font-medium text-gray-900 dark:text-white mb-2">
-              Message
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              rows="6"
-              required
-              class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-gray-900 dark:focus:ring-white resize-none"
-              placeholder="Tell me about your project..."
-            ></textarea>
-          </div>
+            <button
+              type="submit"
+              id="submit-button"
+              class="group inline-flex w-full items-center justify-center gap-2 px-6 py-3.5 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-all hover:shadow-lg disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              <span id="button-text" class="inline-flex items-center gap-2">
+                Send message
+                <svg
+                  class="w-4 h-4 transition-transform group-hover:translate-x-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+              </span>
+              <span id="button-loading" class="hidden inline-flex items-center gap-2">
+                <svg class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Sending…
+              </span>
+            </button>
 
-          <button
-            type="submit"
-            id="submit-button"
-            class="w-full px-8 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            <p class="text-xs text-gray-500 dark:text-gray-500 text-center">
+              By sending, you agree to let me reply to your email address.
+            </p>
+          </form>
+
+          <!-- Success State -->
+          <div
+            id="form-success"
+            class="hidden absolute inset-0 rounded-2xl bg-white dark:bg-gray-950 flex flex-col items-center justify-center text-center p-8"
+            role="status"
+            aria-live="polite"
           >
-            <span id="button-text">Send Message</span>
-            <span id="button-loading" class="hidden">Sending...</span>
-          </button>
-        </form>
+            <div
+              class="flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 mb-4"
+            >
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">
+              Message sent
+            </h3>
+            <p class="text-gray-600 dark:text-gray-400 max-w-sm mb-6">
+              Thanks for reaching out — I'll get back to you within 24 hours at the email you provided.
+            </p>
+            <button
+              type="button"
+              id="reset-form"
+              class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+            >
+              Send another message →
+            </button>
+          </div>
+        </div>
       </div>
 
       <!-- Contact Info -->
-      <div class="space-y-8">
-        <div class="space-y-6">
-          <div class="flex items-center gap-4">
-            <div class="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center">
-              <Icon name="mdi:email" class="w-6 h-6 text-gray-900 dark:text-white" />
-            </div>
-            <div>
-              <div class="text-sm text-gray-600 dark:text-gray-400">Email</div>
-              <div class="text-gray-900 dark:text-white font-medium">contact@hssan.dev</div>
-            </div>
-          </div>
-
-          <div class="flex items-center gap-4">
-            <div class="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center">
-              <Icon name="mdi:phone" class="w-6 h-6 text-gray-900 dark:text-white" />
-            </div>
-            <div>
-              <div class="text-sm text-gray-600 dark:text-gray-400">Phone</div>
-              <div class="text-gray-900 dark:text-white font-medium">+92 302 6658022</div>
-            </div>
-          </div>
-
-          <div class="flex items-center gap-4">
-            <div class="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center">
-              <Icon name="mdi:map-marker" class="w-6 h-6 text-gray-900 dark:text-white" />
-            </div>
-            <div>
-              <div class="text-sm text-gray-600 dark:text-gray-400">Location</div>
-              <div class="text-gray-900 dark:text-white font-medium">Rawalpindi, Pakistan</div>
-            </div>
-          </div>
+      <aside class="lg:col-span-2 space-y-6" aria-label="Other ways to reach me">
+        <div data-contact-reveal style="--reveal-delay: 200ms">
+          <p class="text-xs uppercase tracking-[0.2em] font-semibold text-gray-500 dark:text-gray-400 mb-4">
+            Or reach me directly
+          </p>
+          <ul class="space-y-3 list-none p-0 m-0">
+            {
+              contactMethods.map((m) => (
+                <li>
+                  <a
+                    href={m.href}
+                    target={m.href.startsWith("http") ? "_blank" : "_self"}
+                    rel={m.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    class="group flex items-start gap-4 p-4 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 hover:border-gray-900 dark:hover:border-white hover:-translate-y-0.5 hover:shadow-md transition-all duration-300"
+                  >
+                    <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300 group-hover:bg-gray-900 dark:group-hover:bg-white group-hover:text-white dark:group-hover:text-gray-900 transition-colors">
+                      <Icon name={m.icon} class="w-5 h-5" aria-hidden="true" />
+                    </div>
+                    <div class="min-w-0 flex-1">
+                      <div class="text-[11px] uppercase tracking-widest font-semibold text-gray-500 dark:text-gray-500">
+                        {m.label}
+                      </div>
+                      <div class="text-sm font-semibold text-gray-900 dark:text-white truncate">
+                        {m.value}
+                      </div>
+                      <div class="text-xs text-gray-500 dark:text-gray-500 mt-0.5">
+                        {m.sub}
+                      </div>
+                    </div>
+                    <svg
+                      class="w-4 h-4 shrink-0 mt-1 text-gray-300 dark:text-gray-700 group-hover:text-gray-900 dark:group-hover:text-white transition-colors"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
         </div>
 
-        <!-- Social Links -->
-        <div class="pt-8 border-t border-gray-200 dark:border-gray-800">
-          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Follow Me</h3>
-          <div class="flex gap-4">
-            <a
-              href="#"
-              class="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gray-900 dark:hover:bg-white hover:text-white dark:hover:text-gray-900 transition-colors"
-              aria-label="LinkedIn"
-            >
-              <Icon name="mdi:linkedin" class="w-6 h-6" />
-            </a>
-            <a
-              href="#"
-              class="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gray-900 dark:hover:bg-white hover:text-white dark:hover:text-gray-900 transition-colors"
-              aria-label="GitHub"
-            >
-              <Icon name="mdi:github" class="w-6 h-6" />
-            </a>
-            <a
-              href="#"
-              class="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gray-900 dark:hover:bg-white hover:text-white dark:hover:text-gray-900 transition-colors"
-              aria-label="Twitter"
-            >
-              <Icon name="mdi:twitter" class="w-6 h-6" />
-            </a>
+        <!-- Socials -->
+        <div
+          data-contact-reveal
+          style="--reveal-delay: 300ms"
+          class="rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-6"
+        >
+          <p class="text-xs uppercase tracking-[0.2em] font-semibold text-gray-500 dark:text-gray-400 mb-4">
+            Find me online
+          </p>
+          <div class="flex items-center gap-3">
+            {
+              socials.map((s) => (
+                <a
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.ariaLabel}
+                  class="flex h-11 w-11 items-center justify-center rounded-lg border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 hover:text-white dark:hover:text-gray-900 hover:bg-gray-900 dark:hover:bg-white hover:border-gray-900 dark:hover:border-white hover:-translate-y-0.5 transition-all"
+                >
+                  <Icon name={s.iconGeneric} class="w-5 h-5" />
+                </a>
+              ))
+            }
           </div>
         </div>
-      </div>
+      </aside>
     </div>
   </div>
 </section>
 
+<style>
+  .bg-contact-grid {
+    background-image:
+      linear-gradient(to right, currentColor 1px, transparent 1px),
+      linear-gradient(to bottom, currentColor 1px, transparent 1px);
+    background-size: 40px 40px;
+    color: theme(colors.gray.900);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .bg-contact-grid {
+      color: theme(colors.gray.100);
+    }
+  }
+
+  .field-label {
+    @apply block text-sm font-medium text-gray-900 dark:text-white mb-2;
+  }
+
+  .field-input {
+    @apply w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white text-sm placeholder:text-gray-400 dark:placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-900 dark:focus:ring-white focus:border-transparent transition-shadow;
+  }
+
+  .field[data-invalid="true"] .field-input {
+    @apply border-red-400 dark:border-red-700 focus:ring-red-500;
+  }
+
+  .field-error {
+    @apply hidden mt-1.5 text-xs text-red-600 dark:text-red-400;
+  }
+
+  .field[data-invalid="true"] .field-error {
+    display: block;
+  }
+
+  [data-contact-reveal] {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  [data-contact-reveal][data-visible="true"] {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-contact-reveal] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>
+
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('contact-form') as HTMLFormElement;
-    const submitButton = document.getElementById('submit-button') as HTMLButtonElement;
-    const buttonText = document.getElementById('button-text') as HTMLSpanElement;
-    const buttonLoading = document.getElementById('button-loading') as HTMLSpanElement;
-    const successMessage = document.getElementById('success-message') as HTMLDivElement;
-    const errorMessage = document.getElementById('error-message') as HTMLDivElement;
-
-    form?.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      // Get form data
-      const formData = new FormData(form);
-      const data = {
-        name: formData.get('name') as string,
-        email: formData.get('email') as string,
-        subject: formData.get('subject') as string,
-        message: formData.get('message') as string,
-      };
-
-      // Update button state
-      submitButton.disabled = true;
-      buttonText.classList.add('hidden');
-      buttonLoading.classList.remove('hidden');
-
-      // Hide previous messages
-      successMessage.classList.add('hidden');
-      errorMessage.classList.add('hidden');
-
-      try {
-        const response = await fetch('/api/send-email', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
+  // Reveal on scroll
+  const reveals = document.querySelectorAll<HTMLElement>("[data-contact-reveal]");
+  if ("IntersectionObserver" in window && reveals.length) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            (entry.target as HTMLElement).dataset.visible = "true";
+            observer.unobserve(entry.target);
+          }
         });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -10% 0px" }
+    );
+    reveals.forEach((r) => observer.observe(r));
+  } else {
+    reveals.forEach((r) => (r.dataset.visible = "true"));
+  }
 
-        const result = await response.json();
+  // Form
+  const form = document.getElementById("contact-form") as HTMLFormElement | null;
+  const submitButton = document.getElementById("submit-button") as HTMLButtonElement | null;
+  const buttonText = document.getElementById("button-text");
+  const buttonLoading = document.getElementById("button-loading");
+  const formError = document.getElementById("form-error");
+  const formSuccess = document.getElementById("form-success");
+  const resetBtn = document.getElementById("reset-form");
+  const messageInput = document.getElementById("message") as HTMLTextAreaElement | null;
+  const messageCounter = document.getElementById("message-counter");
 
-        if (response.ok) {
-          // Show success message
-          successMessage.classList.remove('hidden');
-          form.reset();
-        } else {
-          // Show error message
-          errorMessage.textContent = result.error || 'Failed to send message. Please try again.';
-          errorMessage.classList.remove('hidden');
-        }
-      } catch (error) {
-        console.error('Error:', error);
-        errorMessage.textContent = 'Failed to send message. Please try again.';
-        errorMessage.classList.remove('hidden');
-      } finally {
-        // Reset button state
-        submitButton.disabled = false;
-        buttonText.classList.remove('hidden');
-        buttonLoading.classList.add('hidden');
+  if (messageInput && messageCounter) {
+    messageInput.addEventListener("input", () => {
+      messageCounter.textContent = `${messageInput.value.length} / 2000`;
+    });
+  }
+
+  function getField(name: string): HTMLElement | null {
+    return form?.querySelector(`[name="${name}"]`) as HTMLElement | null;
+  }
+
+  function setFieldError(name: string, message: string | null) {
+    const input = getField(name);
+    const wrap = input?.closest(".field") as HTMLElement | null;
+    const errorEl = wrap?.querySelector(".field-error") as HTMLElement | null;
+    if (!wrap || !errorEl) return;
+    if (message) {
+      wrap.dataset.invalid = "true";
+      errorEl.textContent = message;
+    } else {
+      wrap.dataset.invalid = "false";
+      errorEl.textContent = "";
+    }
+  }
+
+  function validate(data: { name: string; email: string; subject: string; message: string }) {
+    let ok = true;
+    if (!data.name.trim()) {
+      setFieldError("name", "Please enter your name");
+      ok = false;
+    } else setFieldError("name", null);
+
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email);
+    if (!data.email.trim()) {
+      setFieldError("email", "Please enter your email");
+      ok = false;
+    } else if (!emailOk) {
+      setFieldError("email", "That doesn't look like a valid email");
+      ok = false;
+    } else setFieldError("email", null);
+
+    if (!data.subject.trim()) {
+      setFieldError("subject", "Please add a subject");
+      ok = false;
+    } else setFieldError("subject", null);
+
+    if (!data.message.trim()) {
+      setFieldError("message", "Please write a short message");
+      ok = false;
+    } else if (data.message.trim().length < 10) {
+      setFieldError("message", "A bit more detail, please (10+ chars)");
+      ok = false;
+    } else setFieldError("message", null);
+
+    return ok;
+  }
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!submitButton || !buttonText || !buttonLoading || !formError || !formSuccess) return;
+
+    const formData = new FormData(form);
+
+    // Honeypot: if filled, silently "succeed" without sending anything
+    if ((formData.get("website") as string)?.length) {
+      formSuccess.classList.remove("hidden");
+      return;
+    }
+
+    const data = {
+      name: ((formData.get("name") as string) ?? "").trim(),
+      email: ((formData.get("email") as string) ?? "").trim(),
+      subject: ((formData.get("subject") as string) ?? "").trim(),
+      message: ((formData.get("message") as string) ?? "").trim(),
+    };
+
+    if (!validate(data)) return;
+
+    submitButton.disabled = true;
+    buttonText.classList.add("hidden");
+    buttonLoading.classList.remove("hidden");
+    formError.classList.add("hidden");
+
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json().catch(() => ({}));
+
+      if (response.ok) {
+        form.reset();
+        if (messageCounter) messageCounter.textContent = "0 / 2000";
+        formSuccess.classList.remove("hidden");
+      } else {
+        formError.textContent = result.error || "Failed to send message. Please try again.";
+        formError.classList.remove("hidden");
       }
+    } catch (err) {
+      console.error("Error:", err);
+      if (formError) {
+        formError.textContent = "Couldn't reach the server. Please try again or email me directly.";
+        formError.classList.remove("hidden");
+      }
+    } finally {
+      submitButton.disabled = false;
+      buttonText.classList.remove("hidden");
+      buttonLoading.classList.add("hidden");
+    }
+  });
+
+  resetBtn?.addEventListener("click", () => {
+    formSuccess?.classList.add("hidden");
+    // Clear any lingering errors
+    form?.querySelectorAll(".field").forEach((f) => {
+      (f as HTMLElement).dataset.invalid = "false";
+    });
+  });
+
+  // Clear error on input
+  form?.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>("input[name], textarea[name]").forEach((input) => {
+    input.addEventListener("input", () => {
+      const wrap = input.closest(".field") as HTMLElement | null;
+      if (wrap?.dataset.invalid === "true") wrap.dataset.invalid = "false";
     });
   });
 </script>

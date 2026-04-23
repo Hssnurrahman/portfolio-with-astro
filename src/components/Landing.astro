@@ -1,7 +1,6 @@
 ---
-import {Icon} from "astro-icon/components";
+import { Icon } from "astro-icon/components";
 import { landingIcons } from "../data/LandingIcons";
-import LandingIcon from "./LandingIcon.astro";
 
 export interface IconProps {
   icon: string;
@@ -9,73 +8,353 @@ export interface IconProps {
   className: string;
   ariaLabel: string;
 }
+
+const socials = landingIcons as IconProps[];
+
+const roles = [
+  "Full Stack Developer",
+  "React Engineer",
+  "Node.js Developer",
+  "Mobile App Builder",
+];
+
+const techStack = [
+  { name: "React", icon: "simple-icons:react" },
+  { name: "TypeScript", icon: "simple-icons:typescript" },
+  { name: "Node.js", icon: "simple-icons:nodedotjs" },
+  { name: "Next.js", icon: "simple-icons:nextdotjs" },
+  { name: "PostgreSQL", icon: "simple-icons:postgresql" },
+];
 ---
 
 <section
   id="home"
-  class="min-h-screen flex justify-center items-center relative pt-24 bg-white dark:bg-gray-950"
+  class="relative min-h-screen flex items-center overflow-hidden bg-white dark:bg-gray-950 pt-24 pb-16"
   aria-label="landing"
 >
-  <div class="max-w-7xl mx-auto px-6 py-20 w-full">
-    <div class="flex flex-col lg:flex-row items-center justify-between gap-16">
+  <!-- Decorative background -->
+  <div class="pointer-events-none absolute inset-0 -z-10">
+    <div class="absolute inset-0 bg-grid opacity-[0.04] dark:opacity-[0.06]"></div>
+    <div
+      class="absolute -top-24 -right-24 h-[32rem] w-[32rem] rounded-full bg-gradient-to-br from-gray-200/60 to-transparent dark:from-gray-800/40 blur-3xl"
+    >
+    </div>
+    <div
+      class="absolute -bottom-32 -left-20 h-[28rem] w-[28rem] rounded-full bg-gradient-to-tr from-gray-200/50 to-transparent dark:from-gray-800/30 blur-3xl"
+    >
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 w-full">
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
       <!-- Content -->
-      <div class="flex-1 space-y-8">
-        <div class="space-y-4">
-          <p class="text-lg text-gray-600 dark:text-gray-400">Hi, I'm</p>
-          <h1 class="text-6xl lg:text-8xl font-bold text-gray-900 dark:text-white">
-            Hassan
-          </h1>
-          <h2 class="text-2xl lg:text-3xl text-gray-700 dark:text-gray-300">
-            Full Stack Developer
-          </h2>
+      <div class="lg:col-span-7 space-y-8">
+        <!-- Status badge -->
+        <div
+          data-reveal="1"
+          class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200 dark:border-gray-800 bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm text-sm text-gray-700 dark:text-gray-300"
+        >
+          <span class="relative flex h-2 w-2">
+            <span
+              class="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping"
+            ></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+          Available for new projects
         </div>
 
-        <p class="text-lg text-gray-600 dark:text-gray-400 max-w-xl leading-relaxed">
-          I build elegant digital solutions that solve real problems. Focused on clean code, great UX, and scalable architecture.
+        <!-- Headline -->
+        <div class="space-y-5">
+          <p data-reveal="2" class="text-base md:text-lg text-gray-500 dark:text-gray-400 font-medium">
+            Hi there, I'm
+          </p>
+          <h1
+            data-reveal="3"
+            class="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[1.05]"
+          >
+            <span class="text-gray-900 dark:text-white">Hassan</span>
+            <span class="block mt-2 bg-gradient-to-r from-gray-900 via-gray-700 to-gray-500 dark:from-white dark:via-gray-200 dark:to-gray-500 bg-clip-text text-transparent">
+              Ur Rahman
+            </span>
+          </h1>
+          <div
+            data-reveal="4"
+            class="flex items-center gap-3 text-xl md:text-2xl lg:text-3xl text-gray-700 dark:text-gray-300 font-medium min-h-[2.5rem]"
+          >
+            <span aria-hidden="true" class="h-px w-8 bg-gray-400 dark:bg-gray-600"></span>
+            <span
+              id="role-rotator"
+              class="relative inline-block"
+              aria-live="polite"
+              data-roles={JSON.stringify(roles)}
+            >
+              {roles[0]}
+            </span>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <p
+          data-reveal="5"
+          class="text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-xl leading-relaxed"
+        >
+          I craft elegant digital products that solve real problems — blending clean
+          code, thoughtful UX, and scalable architecture across web and mobile.
         </p>
 
         <!-- CTA Buttons -->
-        <div class="flex flex-col sm:flex-row gap-4">
+        <div data-reveal="6" class="flex flex-col sm:flex-row gap-3">
           <a
             href="#projects"
-            class="px-8 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors text-center"
+            class="group inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-all hover:shadow-lg hover:-translate-y-0.5"
           >
             View My Work
+            <svg
+              class="w-4 h-4 transition-transform group-hover:translate-x-0.5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
           </a>
           <a
             href="#contact"
-            class="px-8 py-3 border-2 border-gray-900 dark:border-white text-gray-900 dark:text-white rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors text-center"
+            class="inline-flex items-center justify-center px-7 py-3.5 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-900 hover:border-gray-900 dark:hover:border-white transition-colors"
           >
             Get In Touch
           </a>
         </div>
 
-        <!-- Social links -->
-        <div class="flex items-center gap-4 pt-4">
-          {
-            landingIcons.map(({ ariaLabel, className, href, icon }: IconProps) => {
-              return (
-                <LandingIcon
-                  ariaLabel={ariaLabel}
-                  className={className}
-                  href={href}
-                  icon={icon}
-                />
-              );
-            })
-          }
+        <!-- Socials + tech stack -->
+        <div data-reveal="7" class="flex flex-col gap-6 pt-2">
+          <div class="flex items-center gap-5">
+            <span class="text-xs uppercase tracking-widest text-gray-500 dark:text-gray-500 font-medium">
+              Connect
+            </span>
+            <div class="h-px flex-1 max-w-[3rem] bg-gray-200 dark:bg-gray-800"></div>
+            <div class="flex items-center gap-3">
+              {
+                socials.map(({ ariaLabel, href, icon }) => (
+                  <a
+                    href={href}
+                    aria-label={ariaLabel}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:border-gray-900 dark:hover:border-white hover:-translate-y-0.5 transition-all"
+                  >
+                    <Icon name={icon} class="w-5 h-5" />
+                  </a>
+                ))
+              }
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="text-xs uppercase tracking-widest text-gray-500 dark:text-gray-500 font-medium mr-2">
+              Stack
+            </span>
+            {
+              techStack.map(({ name, icon }) => (
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-gray-100 dark:bg-gray-900 text-xs font-medium text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-800"
+                  title={name}
+                >
+                  <Icon name={icon} class="w-3.5 h-3.5" />
+                  {name}
+                </span>
+              ))
+            }
+          </div>
         </div>
       </div>
 
-      <!-- Image/Icon -->
-      <div class="flex-1 flex justify-center">
-        <div class="w-full max-w-md">
-          <Icon
-            name="landing"
-            class="w-full h-auto text-gray-900 dark:text-white"
-          />
+      <!-- Illustration -->
+      <div class="lg:col-span-5 flex justify-center lg:justify-end" data-reveal="4">
+        <div class="relative w-full max-w-md lg:max-w-lg">
+          <!-- Floating stat cards -->
+          <div
+            class="absolute -top-4 -left-4 z-10 hidden sm:flex items-center gap-3 px-4 py-3 rounded-xl bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border border-gray-200 dark:border-gray-800 shadow-lg animate-float"
+          >
+            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-900 dark:bg-white">
+              <svg class="w-5 h-5 text-white dark:text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <div>
+              <div class="text-sm font-semibold text-gray-900 dark:text-white">4+ years</div>
+              <div class="text-xs text-gray-500 dark:text-gray-400">Experience</div>
+            </div>
+          </div>
+
+          <div
+            class="absolute -bottom-4 -right-4 z-10 hidden sm:flex items-center gap-3 px-4 py-3 rounded-xl bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border border-gray-200 dark:border-gray-800 shadow-lg animate-float-delayed"
+          >
+            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-900 dark:bg-white">
+              <svg class="w-5 h-5 text-white dark:text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path>
+              </svg>
+            </div>
+            <div>
+              <div class="text-sm font-semibold text-gray-900 dark:text-white">Full Stack</div>
+              <div class="text-xs text-gray-500 dark:text-gray-400">Web & Mobile</div>
+            </div>
+          </div>
+
+          <!-- Main illustration with subtle frame -->
+          <div class="relative rounded-3xl">
+            <Icon
+              name="landing"
+              class="relative w-full h-auto text-gray-900 dark:text-white drop-shadow-xl"
+            />
+          </div>
         </div>
       </div>
     </div>
+
+    <!-- Scroll indicator -->
+    <a
+      href="#skills"
+      aria-label="Scroll to skills"
+      class="hidden lg:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors group"
+    >
+      <span class="text-xs uppercase tracking-widest font-medium">Scroll</span>
+      <div class="relative h-10 w-6 rounded-full border-2 border-current flex justify-center pt-1.5">
+        <span class="block h-1.5 w-1 rounded-full bg-current animate-scroll-hint"></span>
+      </div>
+    </a>
   </div>
 </section>
+
+<style>
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, currentColor 1px, transparent 1px),
+      linear-gradient(to bottom, currentColor 1px, transparent 1px);
+    background-size: 48px 48px;
+    color: theme(colors.gray.900);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .bg-grid {
+      color: theme(colors.gray.100);
+    }
+  }
+
+  /* Staggered reveal */
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(12px);
+    animation: reveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  [data-reveal="1"] { animation-delay: 0.05s; }
+  [data-reveal="2"] { animation-delay: 0.15s; }
+  [data-reveal="3"] { animation-delay: 0.25s; }
+  [data-reveal="4"] { animation-delay: 0.35s; }
+  [data-reveal="5"] { animation-delay: 0.45s; }
+  [data-reveal="6"] { animation-delay: 0.55s; }
+  [data-reveal="7"] { animation-delay: 0.65s; }
+
+  @keyframes reveal {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Floating stat cards */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  .animate-float { animation: float 4s ease-in-out infinite; }
+  .animate-float-delayed { animation: float 4s ease-in-out infinite; animation-delay: 1.5s; }
+
+  /* Scroll indicator dot */
+  @keyframes scroll-hint {
+    0% { transform: translateY(0); opacity: 1; }
+    75% { transform: translateY(10px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 0; }
+  }
+  .animate-scroll-hint { animation: scroll-hint 1.8s ease-in-out infinite; }
+
+  /* Rotating role cursor */
+  #role-rotator::after {
+    content: "";
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background: currentColor;
+    margin-left: 4px;
+    vertical-align: -0.15em;
+    animation: caret 1.1s steps(1) infinite;
+  }
+  @keyframes caret {
+    50% { opacity: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal],
+    .animate-float,
+    .animate-float-delayed,
+    .animate-scroll-hint,
+    #role-rotator::after {
+      animation: none;
+    }
+    [data-reveal] {
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>
+
+<script>
+  const rotator = document.getElementById("role-rotator");
+  if (rotator) {
+    const roles: string[] = JSON.parse(rotator.dataset.roles ?? "[]");
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (roles.length > 1 && !reduced) {
+      let index = 0;
+      let charIndex = roles[0].length;
+      let phase: "pause" | "deleting" | "typing" = "pause";
+
+      const tick = () => {
+        const current = roles[index];
+
+        if (phase === "pause") {
+          phase = "deleting";
+          setTimeout(tick, 1600);
+          return;
+        }
+
+        if (phase === "deleting") {
+          charIndex = Math.max(0, charIndex - 1);
+          rotator.textContent = current.slice(0, charIndex);
+          if (charIndex === 0) {
+            index = (index + 1) % roles.length;
+            phase = "typing";
+            setTimeout(tick, 180);
+          } else {
+            setTimeout(tick, 35);
+          }
+          return;
+        }
+
+        // typing
+        const next = roles[index];
+        charIndex += 1;
+        rotator.textContent = next.slice(0, charIndex);
+        if (charIndex === next.length) {
+          phase = "pause";
+          setTimeout(tick, 60);
+        } else {
+          setTimeout(tick, 70);
+        }
+      };
+
+      setTimeout(tick, 1800);
+    }
+  }
+</script>
