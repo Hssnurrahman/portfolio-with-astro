@@ -1,0 +1,238 @@
+---
+import { Icon } from "astro-icon/components";
+import SectionHeading from "./SectionHeading.astro";
+
+interface Job {
+  company: string;
+  role: string;
+  period: string;
+  location: string;
+  type: string;
+  current?: boolean;
+  bullets: string[];
+  stack: string[];
+}
+
+const jobs: Job[] = [
+  {
+    company: "Freelance & Independent",
+    role: "Full Stack Developer",
+    period: "2022 — Present",
+    location: "Remote",
+    type: "Freelance",
+    current: true,
+    bullets: [
+      "Shipped 6 production apps across web and mobile, with 5K+ combined downloads",
+      "Built Devvoir — an AI-powered SaaS generating developer reports from GitHub activity",
+      "Developed ClipFetch, a real-time video downloader handling thousands of concurrent WebSocket connections",
+      "Delivered DropShop eCommerce platform with Stripe payments and real-time order tracking",
+    ],
+    stack: ["Next.js", "Flutter", "Node.js", "PostgreSQL", "AWS", "Docker"],
+  },
+  {
+    company: "Self-Directed Learning & Open Source",
+    role: "Developer",
+    period: "2020 — 2022",
+    location: "Rawalpindi, Pakistan",
+    type: "Full-time",
+    bullets: [
+      "Mastered Flutter & Dart through building 3 mobile apps published to Google Play",
+      "Gained deep expertise in offline-first architecture with SQLite and Provider state management",
+      "Contributed to open source tools and built developer utilities used by local teams",
+    ],
+    stack: ["Flutter", "Dart", "SQLite", "Firebase", "REST APIs"],
+  },
+];
+---
+
+<section
+  id="experience"
+  class="relative py-24 bg-white dark:bg-gray-950 overflow-hidden"
+  aria-label="experience"
+>
+  <!-- Backdrop -->
+  <div class="pointer-events-none absolute inset-0 -z-10">
+    <div
+      class="absolute -top-32 right-0 h-[28rem] w-[28rem] rounded-full bg-gradient-to-bl from-blue-100/40 via-transparent to-transparent dark:from-blue-500/[0.04] blur-3xl"
+    >
+    </div>
+    <div
+      class="absolute bottom-0 -left-24 h-[24rem] w-[24rem] rounded-full bg-gradient-to-tr from-violet-100/30 via-transparent to-transparent dark:from-violet-500/[0.04] blur-3xl"
+    >
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6">
+    <div data-exp-reveal>
+      <SectionHeading
+        number="05"
+        eyebrow="Career"
+        titleLead="Where I've"
+        titleAccent="worked"
+        description="A track record of shipping production software — from freelance contracts to self-directed products."
+        class="mb-16 text-center mx-auto [&_.max-w-2xl]:mx-auto [&_.max-w-2xl>div]:justify-center"
+      />
+    </div>
+
+    <ol class="relative max-w-3xl mx-auto" role="list">
+      <!-- Vertical rail -->
+      <div
+        aria-hidden="true"
+        class="absolute left-4 sm:left-6 top-2 bottom-2 w-px bg-gradient-to-b from-transparent via-gray-200 to-transparent dark:via-gray-800"
+      >
+      </div>
+
+      {
+        jobs.map((job, i) => (
+          <li
+            data-exp-reveal
+            style={`--reveal-delay: ${150 + i * 120}ms`}
+            class="relative pl-12 sm:pl-20 pb-12 last:pb-0"
+          >
+            {/* Marker */}
+            <div class="absolute left-0 sm:left-2 top-1.5 flex h-9 w-9 items-center justify-center">
+              <span
+                aria-hidden="true"
+                class="absolute inset-0 rounded-full bg-white dark:bg-gray-950"
+              />
+              <span
+                aria-hidden="true"
+                class="absolute inset-0 rounded-full border border-gray-200 dark:border-gray-800"
+              />
+              <span class="relative text-[11px] font-mono font-semibold text-gray-500 dark:text-gray-400 tabular-nums">
+                0{i + 1}
+              </span>
+              {job.current && (
+                <span
+                  aria-hidden="true"
+                  class="absolute -inset-1 rounded-full ring-2 ring-emerald-400/40 dark:ring-emerald-400/30 animate-pulse-slow"
+                />
+              )}
+            </div>
+
+            {/* Card */}
+            <article class="group relative rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-6 sm:p-7 shadow-sm hover:shadow-lg hover:border-gray-300 dark:hover:border-gray-700 transition-all duration-300">
+              {/* Header */}
+              <header class="flex flex-col-reverse sm:flex-row sm:items-start sm:justify-between gap-3 mb-5">
+                <div class="min-w-0">
+                  <div class="flex items-center gap-2 flex-wrap">
+                    <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">
+                      {job.role}
+                    </h3>
+                    {job.current && (
+                      <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wider bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-200/60 dark:border-emerald-500/20">
+                        <span class="relative flex h-1.5 w-1.5">
+                          <span class="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
+                          <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                        </span>
+                        Current
+                      </span>
+                    )}
+                  </div>
+                  <p class="mt-1 text-sm font-medium text-gray-700 dark:text-gray-300">
+                    {job.company}
+                  </p>
+                </div>
+
+                <time class="inline-flex items-center self-start gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium text-gray-600 dark:text-gray-400 bg-gray-100/70 dark:bg-gray-900 border border-gray-200/80 dark:border-gray-800 tabular-nums shrink-0">
+                  {job.period}
+                </time>
+              </header>
+
+              {/* Meta */}
+              <div class="flex flex-wrap items-center gap-x-4 gap-y-1 mb-5 text-xs text-gray-500 dark:text-gray-500">
+                <span class="inline-flex items-center gap-1.5">
+                  <Icon name="mdi:map-marker-outline" class="w-3.5 h-3.5" aria-hidden="true" />
+                  {job.location}
+                </span>
+                <span aria-hidden="true" class="h-3 w-px bg-gray-200 dark:bg-gray-800" />
+                <span class="inline-flex items-center gap-1.5">
+                  <Icon name="mdi:briefcase-outline" class="w-3.5 h-3.5" aria-hidden="true" />
+                  {job.type}
+                </span>
+              </div>
+
+              {/* Highlights */}
+              <ul class="space-y-3 mb-6" role="list">
+                {job.bullets.map((bullet) => (
+                  <li class="flex items-start gap-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                    <Icon
+                      name="mdi:check"
+                      class="mt-0.5 w-4 h-4 shrink-0 text-gray-900 dark:text-white"
+                      aria-hidden="true"
+                    />
+                    <span>{bullet}</span>
+                  </li>
+                ))}
+              </ul>
+
+              {/* Stack */}
+              <div class="flex flex-wrap gap-1.5 pt-5 border-t border-gray-100 dark:border-gray-900">
+                {job.stack.map((tech) => (
+                  <span class="text-[11px] font-medium px-2.5 py-1 rounded-md text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-900/60 border border-gray-200/70 dark:border-gray-800 hover:text-gray-900 dark:hover:text-white hover:border-gray-300 dark:hover:border-gray-700 transition-colors">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </article>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .animate-pulse-slow {
+    animation: pulse-slow 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  [data-exp-reveal] {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  [data-exp-reveal][data-visible="true"] {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-exp-reveal] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    .animate-pulse-slow {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  const nodes = document.querySelectorAll<HTMLElement>("[data-exp-reveal]");
+  if ("IntersectionObserver" in window && nodes.length) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            (entry.target as HTMLElement).dataset.visible = "true";
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -10% 0px" }
+    );
+    nodes.forEach((n) => observer.observe(n));
+  } else {
+    nodes.forEach((n) => (n.dataset.visible = "true"));
+  }
+</script>
