@@ -1,6 +1,8 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import "tailwindcss";
+
+@theme {
+  --font-inter: 'Inter', sans-serif;
+}
 
 @layer base {
   html {
@@ -9,7 +11,7 @@
   }
 
   body {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-inter);
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -21,54 +23,54 @@
   }
 
   *::-webkit-scrollbar-track {
-    background: theme(colors.gray.100);
+    background: #f3f4f6;
   }
 
   *::-webkit-scrollbar-thumb {
-    background: theme(colors.gray.400);
+    background: #9ca3af;
     border-radius: 4px;
   }
 
   *::-webkit-scrollbar-thumb:hover {
-    background: theme(colors.gray.500);
+    background: #6b7280;
   }
 
   @media (prefers-color-scheme: dark) {
     *::-webkit-scrollbar-track {
-      background: theme(colors.gray.900);
+      background: #111827;
     }
 
     *::-webkit-scrollbar-thumb {
-      background: theme(colors.gray.600);
+      background: #4b5563;
     }
 
     *::-webkit-scrollbar-thumb:hover {
-      background: theme(colors.gray.500);
+      background: #6b7280;
     }
   }
 
   /* Clean focus */
   *:focus-visible {
-    outline: 2px solid theme(colors.gray.900);
+    outline: 2px solid #111827;
     outline-offset: 2px;
   }
 
   @media (prefers-color-scheme: dark) {
     *:focus-visible {
-      outline-color: theme(colors.gray.100);
+      outline-color: #f3f4f6;
     }
   }
 
   /* Selection */
   ::selection {
-    background: theme(colors.gray.900);
-    color: theme(colors.white);
+    background: #111827;
+    color: #ffffff;
   }
 
   @media (prefers-color-scheme: dark) {
     ::selection {
-      background: theme(colors.gray.100);
-      color: theme(colors.gray.900);
+      background: #f3f4f6;
+      color: #111827;
     }
   }
 }
