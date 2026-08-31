@@ -1,6 +1,22 @@
 ---
 import "../../global.css";
 
+const canonicalUrl = new URL("/ledgerflow/", Astro.site ?? Astro.url.origin).href;
+const imageUrl = new URL("/ledgerflow-icon.png", Astro.site ?? Astro.url.origin).href;
+const title = "LedgerFlow | Smart Business Ledger for Android";
+const description = "LedgerFlow is an offline Android business ledger for tracking customer credit, debit, balances, and analytics.";
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "LedgerFlow",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Android",
+  description,
+  url: canonicalUrl,
+  image: imageUrl,
+  author: { "@type": "Person", name: "Hassan Ur Rahman", url: "https://hssan.dev/" },
+};
+
 const colorMap: Record<string, string> = {
   indigo: "bg-indigo-500/10 text-indigo-400 border-indigo-500/20",
   violet: "bg-violet-500/10 text-violet-400 border-violet-500/20",
@@ -17,11 +33,21 @@ const colorMap: Record<string, string> = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/ledgerflow-icon.png" />
-    <meta name="description" content="LedgerFlow — Smart business ledger app for managing customer credit, debit, and analytics. Available on Android." />
-    <meta property="og:title" content="LedgerFlow — Smart Business Ledger" />
-    <meta property="og:description" content="Manage customer transactions, track balances, and get powerful analytics — all offline." />
-    <meta property="og:image" content="/ledgerflow-icon.png" />
-    <title>LedgerFlow — Smart Business Ledger</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="LedgerFlow" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={imageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
