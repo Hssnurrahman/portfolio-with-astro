@@ -8,70 +8,330 @@ const navItems = [
 ];
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-950/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800">
-  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-    <!-- Logo -->
-    <a href="#home" class="text-2xl font-bold text-gray-900 dark:text-white">
-      Hassan
-    </a>
-
-    <!-- Navigation -->
-    <nav class="hidden md:flex items-center gap-8">
-      {navItems.map((item) => (
-        <a
-          href={item.href}
-          class="nav-link text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+<header
+  id="site-header"
+  class="fixed top-0 left-0 right-0 z-50 pointer-events-none"
+  aria-label="Site"
+>
+  <div
+    class="mx-auto max-w-7xl px-4 sm:px-6 pt-3 sm:pt-4 transition-all duration-300"
+    data-shell
+  >
+    <div class="flex items-center justify-between gap-3">
+      <!-- Logo pill -->
+      <a
+        href="#home"
+        aria-label="Hassan — home"
+        class="pointer-events-auto group inline-flex items-center gap-2.5 px-2 pr-4 py-1.5 rounded-full bg-white/85 dark:bg-gray-900/85 backdrop-blur-xl border border-gray-200 dark:border-gray-800 shadow-[0_4px_20px_-4px_rgb(0,0,0,0.08)] dark:shadow-[0_4px_20px_-4px_rgb(0,0,0,0.5)] hover:shadow-lg transition-all duration-300"
+      >
+        <span
+          class="logo-badge flex h-7 w-7 items-center justify-center rounded-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-sm font-bold transition-transform duration-300 group-hover:rotate-[20deg]"
         >
-          {item.label}
-        </a>
-      ))}
-    </nav>
+          H
+        </span>
+        <span class="text-sm font-semibold text-gray-900 dark:text-white tracking-tight">
+          Hassan
+        </span>
+      </a>
 
-    <!-- Mobile Menu Button -->
-    <button
-      class="md:hidden p-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
-      aria-label="Menu"
+      <!-- Centered Nav pill (desktop) -->
+      <nav
+        class="hidden md:flex pointer-events-auto items-center gap-1 px-2 py-1.5 rounded-full bg-white/85 dark:bg-gray-900/85 backdrop-blur-xl border border-gray-200 dark:border-gray-800 shadow-[0_4px_20px_-4px_rgb(0,0,0,0.08)] dark:shadow-[0_4px_20px_-4px_rgb(0,0,0,0.5)]"
+        aria-label="Primary"
+      >
+        <span
+          id="nav-pill"
+          class="absolute pointer-events-none rounded-full bg-gray-900 dark:bg-gray-700 transition-all duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] opacity-0"
+          aria-hidden="true"
+        ></span>
+        {
+          navItems.map((item) => (
+            <a
+              href={item.href}
+              data-nav-link
+              class="nav-link relative z-10 px-3.5 py-1.5 rounded-full text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
+            >
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
+
+      <!-- Right cluster -->
+      <div class="flex items-center gap-2">
+        <!-- Desktop CTA -->
+        <a
+          href="#contact"
+          class="cta-btn pointer-events-auto hidden md:inline-flex items-center gap-1.5 pl-4 pr-2 py-1.5 rounded-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-sm font-semibold hover:shadow-lg transition-all duration-300 group"
+        >
+          Let's talk
+          <span
+            class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white/15 dark:bg-gray-900/10 group-hover:translate-x-0.5 transition-transform duration-300"
+          >
+            <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+          </span>
+        </a>
+
+        <!-- Mobile menu toggle -->
+        <button
+          id="mobile-menu-button"
+          type="button"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          class="pointer-events-auto md:hidden inline-flex items-center justify-center h-10 w-10 rounded-full bg-white/85 dark:bg-gray-900/85 backdrop-blur-xl border border-gray-200 dark:border-gray-800 shadow-[0_4px_20px_-4px_rgb(0,0,0,0.08)] dark:shadow-[0_4px_20px_-4px_rgb(0,0,0,0.5)] text-gray-900 dark:text-white transition-all duration-300"
+        >
+          <span class="sr-only">Open menu</span>
+          <span class="burger" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu panel -->
+    <div
+      id="mobile-menu"
+      class="md:hidden pointer-events-auto mt-2 overflow-hidden max-h-0 opacity-0 transition-[max-height,opacity] duration-300 ease-out"
     >
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-      </svg>
-    </button>
+      <div
+        class="rounded-2xl bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border border-gray-200 dark:border-gray-800 shadow-xl p-2"
+      >
+        <nav class="flex flex-col gap-0.5" aria-label="Mobile">
+          {
+            navItems.map((item, i) => (
+              <a
+                href={item.href}
+                data-nav-link
+                data-mobile-link
+                style={`--i: ${i}`}
+                class="mobile-link flex items-center justify-between px-4 py-3 rounded-xl text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white transition-colors"
+              >
+                <span class="inline-flex items-center gap-3">
+                  <span class="font-mono text-xs text-gray-400 dark:text-gray-500 tabular-nums">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  {item.label}
+                </span>
+                <svg class="h-4 w-4 text-gray-300 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </a>
+            ))
+          }
+          <a
+            href="#contact"
+            data-mobile-link
+            class="mt-2 mx-1 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-sm font-semibold hover:opacity-90 transition-opacity"
+          >
+            Let's talk
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+          </a>
+        </nav>
+      </div>
+    </div>
   </div>
 </header>
 
-<script>
-  // Active navigation highlighting
-  function updateActiveNav() {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
-
-    sections.forEach(section => {
-      const htmlSection = section as HTMLElement;
-      const sectionTop = htmlSection.offsetTop - 100;
-      const sectionHeight = htmlSection.offsetHeight;
-      const scrollPosition = window.scrollY;
-
-      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-        const sectionId = section.getAttribute('id');
-
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          const href = link.getAttribute('href');
-          if (href === `#${sectionId}`) {
-            link.classList.add('active');
-            link.classList.remove('text-gray-600', 'dark:text-gray-400');
-            link.classList.add('text-gray-900', 'dark:text-white', 'font-medium');
-          } else {
-            if (!link.classList.contains('active')) {
-              link.classList.add('text-gray-600', 'dark:text-gray-400');
-              link.classList.remove('text-gray-900', 'dark:text-white', 'font-medium');
-            }
-          }
-        });
-      }
-    });
+<style>
+  /* Nav pill needs the parent <nav> to be the positioning context */
+  nav[aria-label="Primary"] {
+    position: relative;
   }
 
-  document.addEventListener('DOMContentLoaded', updateActiveNav);
-  window.addEventListener('scroll', updateActiveNav);
+  .nav-link[data-active="true"] {
+    color: theme(colors.white);
+  }
+
+  /* Burger lines */
+  .burger {
+    position: relative;
+    display: inline-block;
+    width: 18px;
+    height: 14px;
+  }
+  .burger span {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: currentColor;
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.2s ease, top 0.3s ease;
+  }
+  .burger span:nth-child(1) { top: 0; }
+  .burger span:nth-child(2) { top: 6px; }
+  .burger span:nth-child(3) { top: 12px; }
+
+  [aria-expanded="true"] .burger span:nth-child(1) {
+    top: 6px;
+    transform: rotate(45deg);
+  }
+  [aria-expanded="true"] .burger span:nth-child(2) {
+    opacity: 0;
+  }
+  [aria-expanded="true"] .burger span:nth-child(3) {
+    top: 6px;
+    transform: rotate(-45deg);
+  }
+
+  #mobile-menu[data-open="true"] {
+    max-height: 32rem;
+    opacity: 1;
+  }
+
+  /* Subtle shrink-on-scroll for the whole shell */
+  [data-shell][data-scrolled="true"] {
+    padding-top: 0.5rem;
+  }
+
+  /* Mobile link stagger on open */
+  #mobile-menu[data-open="true"] .mobile-link,
+  #mobile-menu[data-open="true"] a[data-mobile-link] {
+    animation: mobile-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: calc(var(--i, 0) * 40ms + 80ms);
+  }
+
+  @keyframes mobile-in {
+    from {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #nav-pill,
+    .burger span,
+    .mobile-link,
+    a[data-mobile-link] {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+</style>
+
+<script>
+  const header = document.getElementById("site-header");
+  const shell = header?.querySelector<HTMLElement>("[data-shell]");
+  const menuButton = document.getElementById("mobile-menu-button");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const navLinks = document.querySelectorAll<HTMLAnchorElement>("[data-nav-link]");
+  const mobileLinks = document.querySelectorAll<HTMLAnchorElement>("[data-mobile-link]");
+  const desktopNav = header?.querySelector<HTMLElement>('nav[aria-label="Primary"]');
+  const navPill = document.getElementById("nav-pill");
+
+  const navItemsHashes = Array.from(
+    new Set(
+      Array.from(navLinks)
+        .map((l) => l.getAttribute("href"))
+        .filter((h): h is string => !!h)
+    )
+  );
+
+  function setActive(hash: string) {
+    navLinks.forEach((link) => {
+      link.dataset.active = link.getAttribute("href") === hash ? "true" : "false";
+    });
+    movePill();
+  }
+
+  function movePill() {
+    if (!navPill || !desktopNav) return;
+    const active = desktopNav.querySelector<HTMLElement>('[data-nav-link][data-active="true"]');
+    if (!active) {
+      navPill.style.opacity = "0";
+      return;
+    }
+    const navRect = desktopNav.getBoundingClientRect();
+    const linkRect = active.getBoundingClientRect();
+    navPill.style.opacity = "1";
+    navPill.style.left = `${linkRect.left - navRect.left}px`;
+    navPill.style.top = `${linkRect.top - navRect.top}px`;
+    navPill.style.width = `${linkRect.width}px`;
+    navPill.style.height = `${linkRect.height}px`;
+  }
+
+  function updateScrollState() {
+    if (!shell) return;
+    shell.dataset.scrolled = window.scrollY > 8 ? "true" : "false";
+
+    const nearBottom =
+      window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+    if (nearBottom) {
+      const lastHash = navItemsHashes[navItemsHashes.length - 1];
+      if (lastHash) setActive(lastHash);
+    }
+  }
+
+  function setMenuOpen(open: boolean) {
+    if (!mobileMenu || !menuButton) return;
+    mobileMenu.dataset.open = open ? "true" : "false";
+    menuButton.setAttribute("aria-expanded", open ? "true" : "false");
+  }
+
+  menuButton?.addEventListener("click", () => {
+    const isOpen = mobileMenu?.dataset.open === "true";
+    setMenuOpen(!isOpen);
+  });
+
+  mobileLinks.forEach((link) => {
+    link.addEventListener("click", () => setMenuOpen(false));
+  });
+
+  // Close mobile menu on outside click or Escape
+  document.addEventListener("click", (e) => {
+    if (mobileMenu?.dataset.open !== "true") return;
+    const target = e.target as Node;
+    if (!mobileMenu.contains(target) && !menuButton?.contains(target)) {
+      setMenuOpen(false);
+    }
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") setMenuOpen(false);
+  });
+
+  // Active section highlighting via IntersectionObserver
+  const sections = document.querySelectorAll<HTMLElement>("section[id]");
+  if (sections.length && "IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const nearBottom =
+          window.innerHeight + window.scrollY >=
+          document.documentElement.scrollHeight - 4;
+        if (nearBottom) return;
+
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActive(`#${visible.target.id}`);
+      },
+      { rootMargin: "-40% 0px -55% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] }
+    );
+    sections.forEach((section) => observer.observe(section));
+  }
+
+  // Initial active + pill position (after layout settles)
+  if (navItemsHashes[0] && window.scrollY < 200) setActive(navItemsHashes[0]);
+  requestAnimationFrame(() => movePill());
+
+  updateScrollState();
+  window.addEventListener("scroll", updateScrollState, { passive: true });
+  window.addEventListener("resize", () => {
+    movePill();
+    updateScrollState();
+  }, { passive: true });
+  // Reposition pill once webfonts are ready (link widths can shift slightly)
+  if ("fonts" in document) {
+    (document as any).fonts.ready?.then(() => movePill());
+  }
 </script>

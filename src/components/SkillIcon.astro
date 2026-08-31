@@ -12,59 +12,71 @@ export interface IconProps {
 
 export interface Props {
   heading: string;
+  description?: string;
+  categoryIcon: string;
   icons: IconProps[];
 }
 
-const { heading, icons } = Astro.props as Props;
+const { heading, description, categoryIcon, icons } = Astro.props as Props;
 ---
 
-<!-- Skill Category Card -->
-<div class="bg-white/70 dark:bg-gray-800/70 backdrop-blur-xl rounded-3xl p-8 border border-white/20 dark:border-gray-700/30 shadow-lg hover:shadow-xl transition-all duration-300 group">
+<article
+  class="skill-card group relative rounded-2xl p-6 sm:p-8 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 transition-all duration-300 hover:border-gray-900 dark:hover:border-white hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] dark:hover:shadow-[0_8px_30px_rgb(0,0,0,0.3)]"
+>
   <!-- Category Header -->
-  <div class="flex items-center mb-8">
-    <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-2xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
-      <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-      </svg>
+  <header class="flex items-center gap-4 mb-8 pb-6 border-b border-gray-100 dark:border-gray-900">
+    <div
+      class="flex h-12 w-12 items-center justify-center rounded-xl bg-gray-900 dark:bg-white text-white dark:text-gray-900 transition-transform duration-300 group-hover:rotate-6 group-hover:scale-105"
+    >
+      <Icon name={categoryIcon} class="w-6 h-6" aria-hidden="true" />
     </div>
-    <div>
-      <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-1" aria-label="skill-icon">
+    <div class="flex-1 min-w-0">
+      <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
         {heading}
       </h3>
-      <p class="text-sm text-gray-500 dark:text-gray-400">Professional level</p>
+      <p class="text-sm text-gray-500 dark:text-gray-400 mt-0.5">
+        {description ?? `${icons.length} technologies`}
+      </p>
     </div>
-  </div>
+    <span
+      class="hidden sm:inline-flex items-center justify-center h-7 min-w-[1.75rem] px-2 rounded-full text-xs font-semibold bg-gray-100 dark:bg-gray-900 text-gray-600 dark:text-gray-400"
+    >
+      {icons.length}
+    </span>
+  </header>
 
   <!-- Skills Grid -->
-  <div class="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-4">
+  <ul class="grid grid-cols-3 sm:grid-cols-4 gap-3 sm:gap-4 list-none p-0 m-0">
     {
-      icons.map(({ icon, label, ariaLabel, className }: IconProps) => {
-        return (
-          <div class="group/item flex flex-col items-center justify-center cursor-pointer">
-            <!-- Icon Container -->
-            <div class={`relative p-4 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 group/item-hover:-translate-y-2 group/item-hover:scale-110 ${className}`}>
-              <!-- Glow Effect -->
-              <div class="absolute inset-0 bg-gradient-to-br from-white/30 to-white/10 rounded-2xl opacity-0 group/item-hover:opacity-100 transition-opacity duration-300"></div>
-              
-              <!-- Shine Effect -->
-              <div class="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent rounded-2xl opacity-20"></div>
-              
-              <Icon
-                name={icon}
-                class="text-white relative z-10 drop-shadow-sm"
-                aria-label={ariaLabel}
-                width="28"
-                height="28"
-              />
-            </div>
-            
-            <!-- Label -->
-            <p class="text-xs font-medium mt-3 text-gray-600 dark:text-gray-400 group/item-hover:text-primary-600 dark:group/item-hover:text-primary-400 transition-colors duration-300 text-center">
+      icons.map(({ icon, label, ariaLabel, className }: IconProps) => (
+        <li class="skill-item">
+          <div
+            class="group/tile relative flex flex-col items-center justify-center gap-2 p-3 rounded-xl border border-gray-200 dark:border-gray-800 bg-gray-50/60 dark:bg-gray-900/40 hover:-translate-y-1 hover:shadow-md transition-all duration-300 cursor-default"
+            title={label}
+          >
+            <div
+              class={`skill-tile-bg absolute inset-0 rounded-xl opacity-0 group-hover/tile:opacity-100 transition-opacity duration-300 ${className}`}
+              aria-hidden="true"
+            />
+            <Icon
+              name={icon}
+              class="relative z-10 w-7 h-7 text-gray-700 dark:text-gray-300 group-hover/tile:text-white transition-colors duration-300"
+              aria-label={ariaLabel}
+            />
+            <p class="relative z-10 text-[11px] sm:text-xs font-medium text-gray-600 dark:text-gray-400 group-hover/tile:text-white transition-colors duration-300 text-center leading-tight">
               {label}
             </p>
           </div>
-        );
-      })
+        </li>
+      ))
     }
-  </div>
-</div>
+  </ul>
+</article>
+
+<style>
+  /* The .{name}-icon classes in Icon.scss set width + background-color.
+     We only want the color here, so reset the width and let the parent fill. */
+  .skill-tile-bg {
+    width: 100% !important;
+  }
+</style>
