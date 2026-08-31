@@ -95,7 +95,7 @@ import { Icon } from "astro-icon/components";
             class="w-full px-8 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <span id="button-text">Send Message</span>
-            <span id="button-loading" class="hidden">Sending...</span>
+            <span id="button-loading" hidden>Sending...</span>
           </button>
         </form>
       </div>
@@ -175,6 +175,13 @@ import { Icon } from "astro-icon/components";
     const successMessage = document.getElementById('success-message') as HTMLDivElement;
     const errorMessage = document.getElementById('error-message') as HTMLDivElement;
 
+    const setSubmitting = (isSubmitting: boolean) => {
+      submitButton.disabled = isSubmitting;
+      submitButton.setAttribute('aria-busy', String(isSubmitting));
+      buttonText.hidden = isSubmitting;
+      buttonLoading.hidden = !isSubmitting;
+    };
+
     form?.addEventListener('submit', async (e) => {
       e.preventDefault();
 
@@ -188,13 +195,14 @@ import { Icon } from "astro-icon/components";
       };
 
       // Update button state
-      submitButton.disabled = true;
-      buttonText.classList.add('hidden');
-      buttonLoading.classList.remove('hidden');
+      setSubmitting(true);
 
       // Hide previous messages
       successMessage.classList.add('hidden');
       errorMessage.classList.add('hidden');
+
+      const controller = new AbortController();
+      const timeout = window.setTimeout(() => controller.abort(), 15_000);
 
       try {
         const response = await fetch('/api/send-email', {
@@ -203,9 +211,10 @@ import { Icon } from "astro-icon/components";
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(data),
+          signal: controller.signal,
         });
 
-        const result = await response.json();
+        const result = await response.json().catch(() => ({}));
 
         if (response.ok) {
           // Show success message
@@ -218,13 +227,14 @@ import { Icon } from "astro-icon/components";
         }
       } catch (error) {
         console.error('Error:', error);
-        errorMessage.textContent = 'Failed to send message. Please try again.';
+        errorMessage.textContent = error instanceof DOMException && error.name === 'AbortError'
+          ? 'Sending timed out. Please try again or email me directly.'
+          : 'Failed to send message. Please try again.';
         errorMessage.classList.remove('hidden');
       } finally {
+        window.clearTimeout(timeout);
         // Reset button state
-        submitButton.disabled = false;
-        buttonText.classList.remove('hidden');
-        buttonLoading.classList.add('hidden');
+        setSubmitting(false);
       }
     });
   });

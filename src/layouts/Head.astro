@@ -13,6 +13,26 @@ const { title, description } = Astro.props;
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <meta name="generator" content={Astro.generator} />
   <meta name="description" content={description} />
+  <script is:inline>
+    (() => {
+      const storageKey = 'theme-preference';
+      let preference = 'system';
+
+      try {
+        const saved = localStorage.getItem(storageKey);
+        if (saved === 'light' || saved === 'dark' || saved === 'system') preference = saved;
+      } catch {
+        // Use the system preference when storage is unavailable.
+      }
+
+      const isDark = preference === 'dark' || (
+        preference === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches
+      );
+      document.documentElement.classList.toggle('dark', isDark);
+      document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';
+      document.documentElement.dataset.theme = preference;
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
