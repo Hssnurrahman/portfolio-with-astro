@@ -1,5 +1,9 @@
 # build output
-dist/
+/dist/
+.vercel/output
+.yarn/install-state.gz
+package-lock.json
+
 
 # generated types
 .astro/

@@ -6,32 +6,150 @@ import { mobileIcons } from "../data/MobileIcons";
 import { databaseIcons } from "../data/DatabaseIcons";
 import { toolsIcons } from "../data/ToolsIcons";
 import SkillIcon from "./SkillIcon.astro";
+import SectionHeading from "./SectionHeading.astro";
+
+const categories = [
+  {
+    heading: "Languages",
+    description: "Type-safe, expressive code",
+    categoryIcon: "mdi:code-tags",
+    icons: languageIcons,
+  },
+  {
+    heading: "Frontend",
+    description: "Interfaces users love",
+    categoryIcon: "mdi:monitor-dashboard",
+    icons: frontendIcons,
+  },
+  {
+    heading: "Backend",
+    description: "APIs and services at scale",
+    categoryIcon: "mdi:server-network",
+    icons: backendIcons,
+  },
+  {
+    heading: "Mobile",
+    description: "Cross-platform experiences",
+    categoryIcon: "mdi:cellphone-link",
+    icons: mobileIcons,
+  },
+  {
+    heading: "Database",
+    description: "SQL & NoSQL data stores",
+    categoryIcon: "mdi:database",
+    icons: databaseIcons,
+  },
+  {
+    heading: "Cloud & Tools",
+    description: "Shipping, deploying, iterating",
+    categoryIcon: "mdi:tools",
+    icons: toolsIcons,
+  },
+];
+
+const totalTech = categories.reduce((sum, c) => sum + c.icons.length, 0);
 ---
 
 <section
   id="skills"
-  class="py-24 bg-gray-50 dark:bg-gray-900"
+  class="relative py-24 bg-gray-50 dark:bg-gray-900 overflow-hidden"
   aria-label="skills"
 >
+  <!-- Subtle backdrop -->
+  <div class="pointer-events-none absolute inset-0 -z-10">
+    <div class="absolute inset-0 bg-skills-grid opacity-[0.04] dark:opacity-[0.06]"></div>
+  </div>
+
   <div class="max-w-7xl mx-auto px-6">
-    <!-- Section Header -->
-    <div class="text-center mb-16">
-      <h2 class="text-4xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-4">
-        Skills
-      </h2>
-      <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-        Technologies and tools I work with
+    <SectionHeading
+      number="02"
+      eyebrow="What I work with"
+      titleLead="Skills &"
+      titleAccent="Stack"
+      class="mb-16"
+    >
+      <p slot="description">
+        A toolkit of <span class="font-semibold text-gray-900 dark:text-white">{totalTech}+</span>
+        technologies I've shipped production work with — across
+        <span class="font-semibold text-gray-900 dark:text-white">{categories.length}</span>
+        areas of the stack.
       </p>
-    </div>
+    </SectionHeading>
 
     <!-- Skills Grid -->
-    <div class="grid lg:grid-cols-2 gap-8">
-      <SkillIcon heading="Languages" icons={languageIcons} />
-      <SkillIcon heading="Frontend" icons={frontendIcons} />
-      <SkillIcon heading="Backend" icons={backendIcons} />
-      <SkillIcon heading="Mobile" icons={mobileIcons} />
-      <SkillIcon heading="Database" icons={databaseIcons} />
-      <SkillIcon heading="Cloud & Tools" icons={toolsIcons} />
+    <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
+      {
+        categories.map((category, index) => (
+          <div data-skill-card style={`--reveal-delay: ${index * 80}ms`}>
+            <SkillIcon
+              heading={category.heading}
+              description={category.description}
+              categoryIcon={category.categoryIcon}
+              icons={category.icons}
+            />
+          </div>
+        ))
+      }
     </div>
   </div>
 </section>
+
+<style>
+  .bg-skills-grid {
+    background-image:
+      linear-gradient(to right, currentColor 1px, transparent 1px),
+      linear-gradient(to bottom, currentColor 1px, transparent 1px);
+    background-size: 40px 40px;
+    color: #111827;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .bg-skills-grid {
+      color: #f3f4f6;
+    }
+  }
+
+  [data-skill-card] {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  [data-skill-card][data-visible="true"] {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-skill-card] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  const cards = document.querySelectorAll<HTMLElement>("[data-skill-card]");
+
+  if ("IntersectionObserver" in window && cards.length) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            (entry.target as HTMLElement).dataset.visible = "true";
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -10% 0px" }
+    );
+
+    cards.forEach((card) => observer.observe(card));
+  } else {
+    cards.forEach((card) => (card.dataset.visible = "true"));
+  }
+</script>

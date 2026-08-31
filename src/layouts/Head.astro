@@ -2,28 +2,55 @@
 export interface Props {
   title?: string;
   description?: string;
+  image?: string;
+  type?: "website" | "article";
+  canonical?: string;
 }
 
-const { title, description } = Astro.props;
+const {
+  title = "Hassan Ur Rahman | Full-Stack Developer",
+  description = "Portfolio of Hassan Ur Rahman, a full-stack developer building thoughtful, scalable web and mobile products.",
+  image = "/hassan-ur-rahman-logo-v2.png",
+  type = "website",
+  canonical,
+} = Astro.props;
+
+const site = Astro.site ?? Astro.url.origin;
+const canonicalUrl = new URL(canonical ?? Astro.url.pathname, site).href;
+const imageUrl = new URL(image, site).href;
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Hassan Ur Rahman",
+  url: new URL("/", site).href,
+  image: imageUrl,
+  jobTitle: "Full-Stack Developer",
+  email: "contact@hssan.dev",
+  sameAs: [
+    "https://github.com/Hssnurrahman",
+    "https://www.linkedin.com/in/hassan-ur-rahman-03b787229/",
+  ],
+};
 ---
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width" />
-  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/svg+xml" href="/hassan-favicon.svg" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/hassan-favicon-16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/hassan-favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/hassan-apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
   <meta name="generator" content={Astro.generator} />
   <meta name="description" content={description} />
   <script is:inline>
     (() => {
       const storageKey = 'theme-preference';
       let preference = 'system';
-
       try {
         const saved = localStorage.getItem(storageKey);
         if (saved === 'light' || saved === 'dark' || saved === 'system') preference = saved;
-      } catch {
-        // Use the system preference when storage is unavailable.
-      }
+      } catch {}
 
       const isDark = preference === 'dark' || (
         preference === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches
@@ -33,6 +60,19 @@ const { title, description } = Astro.props;
       document.documentElement.dataset.theme = preference;
     })();
   </script>
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href={canonicalUrl} />
+  <meta property="og:type" content={type} />
+  <meta property="og:site_name" content="Hassan Ur Rahman" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:image" content={imageUrl} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={imageUrl} />
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link

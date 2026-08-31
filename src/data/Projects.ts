@@ -5,23 +5,10 @@ export interface Project {
     tags: string[];
     featured?: boolean;
     category: "Web" | "Mobile";
+    highlights?: string[];
 }
 
 export const projects: Project[] = [
-    // {
-    //   name: "Audio Player",
-    //   description:
-    //     "Simple audio player app in which you can pick audio to play and pause it. It also shows you duration of audio in correct format.",
-    //   href: "https://github.com/Hssnurrahman/audio-player",
-    //   tags: ["Flutter", "Dart"],
-    // },
-    // {
-    //     name: "ThreeJS Shirt",
-    //     description:
-    //         "This is a 3D model of a shirt which is rendered in 3D using ThreeJS.",
-    //     href: "https://github.com/Hssnurrahman/threejs-project",
-    //     tags: ["ThreeJS", "React", "Valtio"],
-    // },
     {
         name: "Devvoir",
         description:
@@ -30,35 +17,26 @@ export const projects: Project[] = [
         tags: ["NextJS", "NeonDB", "ChatGPT", "Vercel"],
         featured: true,
         category: "Web",
+        highlights: [
+            "AI-generated reports from GitHub activity",
+            "Daily & weekly automated digests",
+            "Built with Next.js, NeonDB, and ChatGPT",
+        ],
     },
-    // {
-    //     name: "Fake Data Generator",
-    //     description:
-    //         "This is fake data generator which is used to generate fake data for testing purpose.",
-    //     href: "https://github.com/Hssnurrahman/fake-data-generator",
-    //     tags: ["Prisma", "GraphQL", "PostgreSQL"],
-    // },
     {
         name: "DropShop",
         description:
             "DropShop is a modern eCommerce platform offering secure payments, real-time order tracking, and a seamless shopping experience with an intuitive user interface.",
-        href: "https://drop-shop.online",
+        href: "https://drop-shop-shopify.vercel.app/",
         tags: ["Next.js", "MongoDB", "AWS", "Vercel"],
         category: "Web",
     },
-    // {
-    //     name: "Resume Builder",
-    //     description:
-    //         "This is fake data generator which is used to generate fake data for testing purpose.",
-    //     href: "https://resume-builder-three-teal.vercel.app/",
-    //     tags: ["Prisma", "GraphQL", "PostgreSQL"],
-    // },
     {
-        name: "ClipFetch",
+        name: "Dairify",
         description:
-            "A full-stack YouTube downloader web app that lets users download, trim, and convert YouTube videos. Supports multiple quality tiers (Guest, Free, Pro), audio extraction, subtitle downloads in various languages, and real-time progress via WebSockets.",
-        href: "https://clipfetch.app",
-        tags: ["React", "TypeScript", "Vite", "TailwindCSS", "FastAPI", "Python", "yt-dlp", "WebSockets", "Supabase", "Docker", "Fly.io", "Traefik"],
+            "Dairify is a dairy management platform that helps track milk production, animal health, and daily farm operations in one place.",
+        href: "https://dairify.hssnurrahman.workers.dev/",
+        tags: ["Cloudflare Workers", "TypeScript", "Hono", "TailwindCSS"],
         category: "Web",
     },
     {
