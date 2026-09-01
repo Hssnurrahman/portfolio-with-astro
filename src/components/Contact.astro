@@ -193,7 +193,7 @@ const contactMethods = [
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                 </svg>
               </span>
-              <span id="button-loading" class="hidden inline-flex items-center gap-2">
+              <span id="button-loading" hidden class="inline-flex items-center gap-2">
                 <svg class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24" aria-hidden="true">
                   <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                   <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -468,6 +468,14 @@ const contactMethods = [
   const messageInput = document.getElementById("message") as HTMLTextAreaElement | null;
   const messageCounter = document.getElementById("message-counter");
 
+  function setSubmitting(isSubmitting: boolean) {
+    if (!submitButton || !buttonText || !buttonLoading) return;
+    submitButton.disabled = isSubmitting;
+    submitButton.setAttribute("aria-busy", String(isSubmitting));
+    buttonText.hidden = isSubmitting;
+    buttonLoading.hidden = !isSubmitting;
+  }
+
   if (messageInput && messageCounter) {
     messageInput.addEventListener("input", () => {
       messageCounter.textContent = `${messageInput.value.length} / 2000`;
@@ -545,16 +553,17 @@ const contactMethods = [
 
     if (!validate(data)) return;
 
-    submitButton.disabled = true;
-    buttonText.classList.add("hidden");
-    buttonLoading.classList.remove("hidden");
+    setSubmitting(true);
     formError.classList.add("hidden");
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 15_000);
 
     try {
       const response = await fetch("/api/send-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
+        signal: controller.signal,
       });
 
       const result = await response.json().catch(() => ({}));
@@ -570,13 +579,14 @@ const contactMethods = [
     } catch (err) {
       console.error("Error:", err);
       if (formError) {
-        formError.textContent = "Couldn't reach the server. Please try again or email me directly.";
+        formError.textContent = err instanceof DOMException && err.name === "AbortError"
+          ? "Sending timed out. Please try again or email me directly."
+          : "Couldn't reach the server. Please try again or email me directly.";
         formError.classList.remove("hidden");
       }
     } finally {
-      submitButton.disabled = false;
-      buttonText.classList.remove("hidden");
-      buttonLoading.classList.add("hidden");
+      window.clearTimeout(timeout);
+      setSubmitting(false);
     }
   });
 

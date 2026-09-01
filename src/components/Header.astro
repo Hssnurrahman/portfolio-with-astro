@@ -59,6 +59,16 @@ const navItems = [
 
       <!-- Right cluster -->
       <div class="flex items-center gap-2">
+        <label for="theme-select" class="sr-only">Color theme</label>
+        <select
+          id="theme-select"
+          class="pointer-events-auto h-9 rounded-full border border-gray-200 dark:border-gray-700 bg-white/85 dark:bg-gray-900/85 px-3 text-sm font-medium text-gray-700 dark:text-gray-200 backdrop-blur-xl outline-none transition-colors focus:ring-2 focus:ring-gray-900 dark:focus:ring-white"
+        >
+          <option value="system">System</option>
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+        </select>
+
         <!-- Desktop CTA -->
         <a
           href="#contact"
@@ -229,6 +239,39 @@ const navItems = [
   const mobileLinks = document.querySelectorAll<HTMLAnchorElement>("[data-mobile-link]");
   const desktopNav = header?.querySelector<HTMLElement>('nav[aria-label="Primary"]');
   const navPill = document.getElementById("nav-pill");
+  const themeSelect = document.getElementById("theme-select") as HTMLSelectElement | null;
+  const themeStorageKey = "theme-preference";
+  const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
+
+  function getThemePreference() {
+    try {
+      const saved = localStorage.getItem(themeStorageKey);
+      return saved === "light" || saved === "dark" || saved === "system" ? saved : "system";
+    } catch {
+      return "system";
+    }
+  }
+
+  function applyTheme(preference: string) {
+    const isDark = preference === "dark" || (preference === "system" && systemTheme.matches);
+    document.documentElement.classList.toggle("dark", isDark);
+    document.documentElement.style.colorScheme = isDark ? "dark" : "light";
+    document.documentElement.dataset.theme = preference;
+  }
+
+  if (themeSelect) {
+    themeSelect.value = getThemePreference();
+    themeSelect.addEventListener("change", () => {
+      try {
+        localStorage.setItem(themeStorageKey, themeSelect.value);
+      } catch {}
+      applyTheme(themeSelect.value);
+    });
+  }
+
+  systemTheme.addEventListener("change", () => {
+    if (getThemePreference() === "system") applyTheme("system");
+  });
 
   const navItemsHashes = Array.from(
     new Set(
