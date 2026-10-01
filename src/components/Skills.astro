@@ -103,10 +103,8 @@ const totalTech = categories.reduce((sum, c) => sum + c.icons.length, 0);
     color: #111827;
   }
 
-  @media (prefers-color-scheme: dark) {
-    .bg-skills-grid {
-      color: #f3f4f6;
-    }
+  :global(.dark) .bg-skills-grid {
+    color: #f3f4f6;
   }
 
   [data-skill-card] {

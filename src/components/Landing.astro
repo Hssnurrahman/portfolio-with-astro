@@ -236,10 +236,8 @@ const techStack = [
     color: #111827;
   }
 
-  @media (prefers-color-scheme: dark) {
-    .bg-grid {
-      color: #f3f4f6;
-    }
+  :global(.dark) .bg-grid {
+    color: #f3f4f6;
   }
 
   /* Staggered reveal */

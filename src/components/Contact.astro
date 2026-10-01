@@ -210,7 +210,8 @@ const contactMethods = [
           <!-- Success State -->
           <div
             id="form-success"
-            class="hidden absolute inset-0 rounded-2xl bg-white dark:bg-gray-950 flex flex-col items-center justify-center text-center p-8"
+            class="absolute inset-0 rounded-2xl bg-white dark:bg-gray-950 flex-col items-center justify-center text-center p-8 hidden data-[open=true]:flex"
+            data-open="false"
             role="status"
             aria-live="polite"
           >
@@ -323,10 +324,8 @@ const contactMethods = [
     color: #111827;
   }
 
-  @media (prefers-color-scheme: dark) {
-    .bg-contact-grid {
-      color: #f3f4f6;
-    }
+  :global(.dark) .bg-contact-grid {
+    color: #f3f4f6;
   }
 
   .field-label {
@@ -338,10 +337,8 @@ const contactMethods = [
     margin-bottom: 0.5rem;
   }
 
-  @media (prefers-color-scheme: dark) {
-    .field-label {
-      color: #ffffff;
-    }
+  :global(.dark) .field-label {
+    color: #ffffff;
   }
 
   .field-input {
@@ -366,34 +363,30 @@ const contactMethods = [
     box-shadow: 0 0 0 2px #111827;
   }
 
-  @media (prefers-color-scheme: dark) {
-    .field-input {
-      border-color: #374151;
-      background-color: #111827;
-      color: #ffffff;
-    }
+  :global(.dark) .field-input {
+    border-color: #374151;
+    background-color: #111827;
+    color: #ffffff;
+  }
 
-    .field-input::placeholder {
-      color: #4b5563;
-    }
+  :global(.dark) .field-input::placeholder {
+    color: #4b5563;
+  }
 
-    .field-input:focus {
-      box-shadow: 0 0 0 2px #ffffff;
-    }
+  :global(.dark) .field-input:focus {
+    box-shadow: 0 0 0 2px #ffffff;
   }
 
   .field[data-invalid="true"] .field-input {
     border-color: #f87171;
   }
 
-  @media (prefers-color-scheme: dark) {
-    .field[data-invalid="true"] .field-input {
-      border-color: #b91c1c;
-    }
+  :global(.dark) .field[data-invalid="true"] .field-input {
+    border-color: #b91c1c;
+  }
 
-    .field[data-invalid="true"] .field-input:focus {
-      box-shadow: 0 0 0 2px #ef4444;
-    }
+  :global(.dark) .field[data-invalid="true"] .field-input:focus {
+    box-shadow: 0 0 0 2px #ef4444;
   }
 
   .field-error {
@@ -404,10 +397,8 @@ const contactMethods = [
     color: #dc2626;
   }
 
-  @media (prefers-color-scheme: dark) {
-    .field-error {
-      color: #f87171;
-    }
+  :global(.dark) .field-error {
+    color: #f87171;
   }
 
   .field[data-invalid="true"] .field-error {
@@ -482,6 +473,14 @@ const contactMethods = [
     });
   }
 
+  // Both the real send and the honeypot land here, so the form is always left in a
+  // clean state — otherwise a bot-triggered "success" keeps the old values around.
+  function showSuccess() {
+    form?.reset();
+    if (messageCounter) messageCounter.textContent = "0 / 2000";
+    if (formSuccess) formSuccess.dataset.open = "true";
+  }
+
   function getField(name: string): HTMLElement | null {
     return form?.querySelector(`[name="${name}"]`) as HTMLElement | null;
   }
@@ -540,7 +539,7 @@ const contactMethods = [
 
     // Honeypot: if filled, silently "succeed" without sending anything
     if ((formData.get("website") as string)?.length) {
-      formSuccess.classList.remove("hidden");
+      showSuccess();
       return;
     }
 
@@ -569,9 +568,7 @@ const contactMethods = [
       const result = await response.json().catch(() => ({}));
 
       if (response.ok) {
-        form.reset();
-        if (messageCounter) messageCounter.textContent = "0 / 2000";
-        formSuccess.classList.remove("hidden");
+        showSuccess();
       } else {
         formError.textContent = result.error || "Failed to send message. Please try again.";
         formError.classList.remove("hidden");
@@ -591,7 +588,7 @@ const contactMethods = [
   });
 
   resetBtn?.addEventListener("click", () => {
-    formSuccess?.classList.add("hidden");
+    if (formSuccess) formSuccess.dataset.open = "false";
     // Clear any lingering errors
     form?.querySelectorAll(".field").forEach((f) => {
       (f as HTMLElement).dataset.invalid = "false";

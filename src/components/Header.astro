@@ -6,6 +6,12 @@ const navItems = [
   { href: "#about", label: "About" },
   { href: "#contact", label: "Contact" },
 ];
+
+const themeOptions = [
+  { value: "light", label: "Light" },
+  { value: "system", label: "System" },
+  { value: "dark", label: "Dark" },
+] as const;
 ---
 
 <header
@@ -41,7 +47,7 @@ const navItems = [
       >
         <span
           id="nav-pill"
-          class="absolute pointer-events-none rounded-full bg-gray-900 dark:bg-gray-700 transition-all duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] opacity-0"
+          class="absolute pointer-events-none rounded-full bg-gray-900 dark:bg-white transition-all duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] opacity-0"
           aria-hidden="true"
         ></span>
         {
@@ -59,15 +65,49 @@ const navItems = [
 
       <!-- Right cluster -->
       <div class="flex items-center gap-2">
-        <label for="theme-select" class="sr-only">Color theme</label>
-        <select
-          id="theme-select"
-          class="pointer-events-auto h-9 rounded-full border border-gray-200 dark:border-gray-700 bg-white/85 dark:bg-gray-900/85 px-3 text-sm font-medium text-gray-700 dark:text-gray-200 backdrop-blur-xl outline-none transition-colors focus:ring-2 focus:ring-gray-900 dark:focus:ring-white"
+        <!-- Theme switcher (desktop) -->
+        <div
+          class="theme-switch pointer-events-auto hidden md:flex relative items-center gap-0.5 p-1 rounded-full bg-white/85 dark:bg-gray-900/85 backdrop-blur-xl border border-gray-200 dark:border-gray-800 shadow-[0_4px_20px_-4px_rgb(0,0,0,0.08)] dark:shadow-[0_4px_20px_-4px_rgb(0,0,0,0.5)]"
+          role="radiogroup"
+          aria-label="Color theme"
         >
-          <option value="system">System</option>
-          <option value="light">Light</option>
-          <option value="dark">Dark</option>
-        </select>
+          <span
+            data-theme-indicator
+            class="absolute left-0 top-1 h-7 w-7 rounded-full bg-gray-900 dark:bg-white transition-transform duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+            aria-hidden="true"
+          ></span>
+          {
+            themeOptions.map((opt) => (
+              <button
+                type="button"
+                role="radio"
+                data-theme-option={opt.value}
+                aria-checked="false"
+                aria-label={opt.label}
+                title={`${opt.label} theme`}
+                class="theme-option relative z-10 flex h-7 w-7 items-center justify-center rounded-full text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
+              >
+                <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                  {opt.value === "light" && (
+                    <>
+                      <circle cx="12" cy="12" r="4" />
+                      <path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+                    </>
+                  )}
+                  {opt.value === "system" && (
+                    <>
+                      <rect x="2" y="4" width="20" height="13" rx="2" />
+                      <path stroke-linecap="round" d="M8 21h8m-4-4v4" />
+                    </>
+                  )}
+                  {opt.value === "dark" && (
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+                  )}
+                </svg>
+              </button>
+            ))
+          }
+        </div>
 
         <!-- Desktop CTA -->
         <a
@@ -144,6 +184,52 @@ const navItems = [
             </svg>
           </a>
         </nav>
+
+        <!-- Theme switcher (mobile) -->
+        <div class="mt-2 mx-1 pt-3 border-t border-gray-100 dark:border-gray-800 flex items-center justify-between gap-3">
+          <span class="text-sm font-medium text-gray-500 dark:text-gray-400">Theme</span>
+          <div
+            class="theme-switch relative flex items-center gap-0.5 p-1 rounded-full bg-gray-100 dark:bg-gray-800"
+            role="radiogroup"
+            aria-label="Color theme"
+          >
+            <span
+              data-theme-indicator
+              class="absolute left-0 top-1 h-8 rounded-full bg-white dark:bg-gray-950 shadow-sm transition-transform duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+              aria-hidden="true"
+            ></span>
+            {
+              themeOptions.map((opt) => (
+                <button
+                  type="button"
+                  role="radio"
+                  data-theme-option={opt.value}
+                  aria-checked="false"
+                  class="theme-option relative z-10 inline-flex h-8 items-center gap-1.5 rounded-full px-3 text-xs font-semibold text-gray-500 dark:text-gray-400 transition-colors duration-200"
+                >
+                  <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                    {opt.value === "light" && (
+                      <>
+                        <circle cx="12" cy="12" r="4" />
+                        <path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+                      </>
+                    )}
+                    {opt.value === "system" && (
+                      <>
+                        <rect x="2" y="4" width="20" height="13" rx="2" />
+                        <path stroke-linecap="round" d="M8 21h8m-4-4v4" />
+                      </>
+                    )}
+                    {opt.value === "dark" && (
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+                    )}
+                  </svg>
+                  {opt.label}
+                </button>
+              ))
+            }
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -155,8 +241,37 @@ const navItems = [
     position: relative;
   }
 
+  /* Active link sits on top of #nav-pill, so its colour must invert with the pill:
+     dark pill in light mode, white pill in dark mode. */
   .nav-link[data-active="true"] {
     color: #ffffff;
+  }
+
+  :global(.dark) .nav-link[data-active="true"] {
+    color: #111827;
+  }
+
+  /* Theme switcher: active option sits on the sliding indicator, so it inverts */
+  .theme-option[aria-checked="true"] {
+    color: #ffffff;
+  }
+
+  :global(.dark) .theme-option[aria-checked="true"] {
+    color: #111827;
+  }
+
+  /* The mobile switch uses a light chip rather than a solid dark one */
+  #mobile-menu .theme-option[aria-checked="true"] {
+    color: #111827;
+  }
+
+  :global(.dark) #mobile-menu .theme-option[aria-checked="true"] {
+    color: #ffffff;
+  }
+
+  /* Hidden until measured, so it can't flash at the wrong position on load */
+  .theme-switch [data-theme-indicator]:not([data-ready="true"]) {
+    opacity: 0;
   }
 
   /* Burger lines */
@@ -223,7 +338,8 @@ const navItems = [
     #nav-pill,
     .burger span,
     .mobile-link,
-    a[data-mobile-link] {
+    a[data-mobile-link],
+    .theme-switch [data-theme-indicator] {
       animation: none !important;
       transition: none !important;
     }
@@ -239,7 +355,7 @@ const navItems = [
   const mobileLinks = document.querySelectorAll<HTMLAnchorElement>("[data-mobile-link]");
   const desktopNav = header?.querySelector<HTMLElement>('nav[aria-label="Primary"]');
   const navPill = document.getElementById("nav-pill");
-  const themeSelect = document.getElementById("theme-select") as HTMLSelectElement | null;
+  const themeSwitches = document.querySelectorAll<HTMLElement>(".theme-switch");
   const themeStorageKey = "theme-preference";
   const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
 
@@ -259,15 +375,70 @@ const navItems = [
     document.documentElement.dataset.theme = preference;
   }
 
-  if (themeSelect) {
-    themeSelect.value = getThemePreference();
-    themeSelect.addEventListener("change", () => {
-      try {
-        localStorage.setItem(themeStorageKey, themeSelect.value);
-      } catch {}
-      applyTheme(themeSelect.value);
+  // Reflect the current preference across every switch (desktop + mobile) and slide
+  // each indicator onto its active option.
+  function syncThemeUI(preference: string) {
+    themeSwitches.forEach((sw) => {
+      const options = sw.querySelectorAll<HTMLButtonElement>("[data-theme-option]");
+      const indicator = sw.querySelector<HTMLElement>("[data-theme-indicator]");
+      let active: HTMLButtonElement | null = null;
+
+      options.forEach((opt) => {
+        const isActive = opt.dataset.themeOption === preference;
+        opt.setAttribute("aria-checked", isActive ? "true" : "false");
+        // Only the active option is a tab stop; arrow keys move within the group.
+        opt.tabIndex = isActive ? 0 : -1;
+        if (isActive) active = opt;
+      });
+
+      if (indicator && active) {
+        const el = active as HTMLButtonElement;
+        indicator.style.width = `${el.offsetWidth}px`;
+        indicator.style.transform = `translateX(${el.offsetLeft}px)`;
+        indicator.dataset.ready = "true";
+      }
     });
   }
+
+  function setThemePreference(preference: string) {
+    try {
+      localStorage.setItem(themeStorageKey, preference);
+    } catch {}
+    applyTheme(preference);
+    syncThemeUI(preference);
+  }
+
+  themeSwitches.forEach((sw) => {
+    const options = Array.from(sw.querySelectorAll<HTMLButtonElement>("[data-theme-option]"));
+
+    options.forEach((opt, i) => {
+      opt.addEventListener("click", () => {
+        setThemePreference(opt.dataset.themeOption ?? "system");
+      });
+
+      // Radio-group keyboard semantics: arrows move and select, Home/End jump to ends.
+      opt.addEventListener("keydown", (e) => {
+        const keys = ["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Home", "End"];
+        if (!keys.includes(e.key)) return;
+        e.preventDefault();
+
+        let next = i;
+        if (e.key === "ArrowLeft" || e.key === "ArrowUp") next = (i - 1 + options.length) % options.length;
+        else if (e.key === "ArrowRight" || e.key === "ArrowDown") next = (i + 1) % options.length;
+        else if (e.key === "Home") next = 0;
+        else if (e.key === "End") next = options.length - 1;
+
+        const target = options[next];
+        if (!target) return;
+        setThemePreference(target.dataset.themeOption ?? "system");
+        target.focus();
+      });
+    });
+  });
+
+  syncThemeUI(getThemePreference());
+  // Widths depend on font metrics, so re-measure once webfonts land and on resize.
+  window.addEventListener("resize", () => syncThemeUI(getThemePreference()), { passive: true });
 
   systemTheme.addEventListener("change", () => {
     if (getThemePreference() === "system") applyTheme("system");
@@ -320,6 +491,8 @@ const navItems = [
     if (!mobileMenu || !menuButton) return;
     mobileMenu.dataset.open = open ? "true" : "false";
     menuButton.setAttribute("aria-expanded", open ? "true" : "false");
+    // The menu's switch has zero width while collapsed, so measure once it's shown.
+    if (open) requestAnimationFrame(() => syncThemeUI(getThemePreference()));
   }
 
   menuButton?.addEventListener("click", () => {
@@ -375,6 +548,9 @@ const navItems = [
   }, { passive: true });
   // Reposition pill once webfonts are ready (link widths can shift slightly)
   if ("fonts" in document) {
-    (document as any).fonts.ready?.then(() => movePill());
+    (document as any).fonts.ready?.then(() => {
+      movePill();
+      syncThemeUI(getThemePreference());
+    });
   }
 </script>
