@@ -1,4 +1,5 @@
 import type { APIRoute } from 'astro';
+import { getSecret } from 'astro:env/server';
 import {
   createFirebaseVerifier,
   defaultBuildToken,
@@ -21,9 +22,10 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   ip ??= request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? 'unknown';
 
   return handleTokenRequest(request, {
-    appId: import.meta.env.HUMKALAM_AGORA_APP_ID,
-    certificate: import.meta.env.HUMKALAM_AGORA_APP_CERTIFICATE,
-    projectId: import.meta.env.HUMKALAM_FIREBASE_PROJECT_ID,
+    // Runtime reads (astro:env secrets), never inlined at build time.
+    appId: getSecret('HUMKALAM_AGORA_APP_ID'),
+    certificate: getSecret('HUMKALAM_AGORA_APP_CERTIFICATE'),
+    projectId: getSecret('HUMKALAM_FIREBASE_PROJECT_ID'),
     verifyIdToken,
     fetchCall: defaultFetchCall,
     buildToken: defaultBuildToken,

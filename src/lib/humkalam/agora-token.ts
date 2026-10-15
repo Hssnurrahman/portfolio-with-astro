@@ -5,7 +5,7 @@
 // handleTokenRequest. The App Certificate lives only in server env vars; nothing here
 // ever logs a token (Firebase or Agora) or the certificate.
 
-import { createRemoteJWKSet, jwtVerify, type JWTVerifyGetKey } from 'jose';
+import { createRemoteJWKSet, errors, jwtVerify, type JWTVerifyGetKey } from 'jose';
 // agora-token is CommonJS and Node's ESM loader can't see its exports as named imports
 // (the built server bundle crashes with "Named export 'RtcRole' not found"), so take
 // the default export and destructure.
@@ -23,10 +23,40 @@ const CALL_ID_RE = /^[A-Za-z0-9]{1,64}$/;
 const ACTIVE_STATUSES = new Set(['ringing', 'accepted']);
 const MAX_BODY_CHARS = 1024;
 
+// Upstream budgets: JWKS 3 s + Firestore 5 s keeps the worst case under the app's 10 s.
+export const JWKS_TIMEOUT_MS = 3000;
+export const FIRESTORE_TIMEOUT_MS = 5000;
+
+/**
+ * Thrown by the verifier when the token could not be checked because Google's key set
+ * was unreachable (timeout, network error, non-200, unparsable). Not the user's fault,
+ * so the handler answers 502 instead of 401. Any other verifier error means the token
+ * itself is invalid and gives 401.
+ */
+export class VerifierUnavailableError extends Error {
+  constructor() {
+    super('ID token verifier unavailable');
+    this.name = 'VerifierUnavailableError';
+  }
+}
+
+// jose codes that describe the key set fetch, not the token. ERR_JOSE_GENERIC is only
+// thrown by the remote JWKS for a non-200 or non-JSON response; ERR_JWKS_INVALID only
+// for a malformed key set. Token problems (bad signature, claims, expiry, malformed
+// JWS/JWT, unknown kid) carry their own codes and stay 401.
+const UPSTREAM_JOSE_CODES = new Set(['ERR_JWKS_TIMEOUT', 'ERR_JOSE_GENERIC', 'ERR_JWKS_INVALID']);
+
+function isUpstreamFailure(err: unknown): boolean {
+  if (err instanceof errors.JOSEError) return UPSTREAM_JOSE_CODES.has(err.code);
+  // Non-jose errors from jwtVerify come from the key fetch itself (fetch TypeError,
+  // AbortError, DNS/socket errors), since jose wraps every token-parsing failure.
+  return true;
+}
+
 export type TokenDeps = {
-  appId?: string;
-  certificate?: string;
-  projectId?: string;
+  appId?: string | undefined;
+  certificate?: string | undefined;
+  projectId?: string | undefined;
   verifyIdToken: (jwt: string, projectId: string) => Promise<{ uid: string }>;
   fetchCall: (projectId: string, callId: string, idToken: string) => Promise<Response>;
   buildToken: (appId: string, cert: string, channel: string, expireSeconds: number) => string;
@@ -138,7 +168,8 @@ export async function handleTokenRequest(request: Request, deps: TokenDeps): Pro
   if (!idToken) return respond(401, { error: 'Unauthorized' });
   try {
     await deps.verifyIdToken(idToken, projectId);
-  } catch {
+  } catch (err) {
+    if (err instanceof VerifierUnavailableError) return respond(502, { error: 'Upstream error' });
     return respond(401, { error: 'Unauthorized' });
   }
 
@@ -147,9 +178,13 @@ export async function handleTokenRequest(request: Request, deps: TokenDeps): Pro
   let doc: unknown;
   try {
     const res = await deps.fetchCall(projectId, callId, idToken);
-    if (res.status === 401 || res.status === 403) return respond(403, { error: 'Forbidden' });
-    if (res.status === 404) return respond(404, { error: 'Call not found' });
-    if (!res.ok) return respond(502, { error: 'Upstream error' });
+    if (!res.ok) {
+      // Release the unread body so the connection isn't held open.
+      await res.body?.cancel().catch(() => {});
+      if (res.status === 401 || res.status === 403) return respond(403, { error: 'Forbidden' });
+      if (res.status === 404) return respond(404, { error: 'Call not found' });
+      return respond(502, { error: 'Upstream error' });
+    }
     doc = await res.json();
   } catch {
     return respond(502, { error: 'Upstream error' });
@@ -174,23 +209,34 @@ export async function handleTokenRequest(request: Request, deps: TokenDeps): Pro
 /**
  * Verifies a Firebase Auth ID token: RS256 against Google's securetoken JWKS,
  * aud == projectId, iss == https://securetoken.google.com/<projectId>, not expired,
- * non-empty sub, email_verified === true. Throws on any failure.
+ * non-empty sub, email_verified === true. Throws on any failure: VerifierUnavailableError
+ * when the key set couldn't be fetched (handler → 502), any other error for a bad token
+ * (handler → 401).
  *
  * `jwks` is the JWKS URL (default: Google's) or, for tests, a jose key getter such as
  * createLocalJWKSet(...). Create once per process so the remote key set stays cached.
  */
 export function createFirebaseVerifier(jwks: string | JWTVerifyGetKey = FIREBASE_JWKS_URL) {
-  const getKey: JWTVerifyGetKey = typeof jwks === 'string' ? createRemoteJWKSet(new URL(jwks)) : jwks;
+  const getKey: JWTVerifyGetKey =
+    typeof jwks === 'string'
+      ? createRemoteJWKSet(new URL(jwks), { timeoutDuration: JWKS_TIMEOUT_MS })
+      : jwks;
 
   return async function verifyIdToken(jwt: string, projectId: string): Promise<{ uid: string }> {
     if (!projectId) throw new Error('projectId required');
 
-    const { payload } = await jwtVerify(jwt, getKey, {
-      algorithms: ['RS256'],
-      audience: projectId,
-      issuer: `https://securetoken.google.com/${projectId}`,
-      requiredClaims: ['exp', 'iat', 'sub'],
-    });
+    let payload: Awaited<ReturnType<typeof jwtVerify>>['payload'];
+    try {
+      ({ payload } = await jwtVerify(jwt, getKey, {
+        algorithms: ['RS256'],
+        audience: projectId,
+        issuer: `https://securetoken.google.com/${projectId}`,
+        requiredClaims: ['exp', 'iat', 'sub'],
+      }));
+    } catch (err) {
+      if (isUpstreamFailure(err)) throw new VerifierUnavailableError();
+      throw err;
+    }
 
     const sub = payload.sub;
     if (typeof sub !== 'string' || sub.length === 0 || sub.length > 128) {
@@ -211,7 +257,7 @@ export const defaultFetchCall = (projectId: string, callId: string, idToken: str
   return fetch(url, {
     method: 'GET',
     headers: { Authorization: `Bearer ${idToken}` },
-    signal: AbortSignal.timeout(8000),
+    signal: AbortSignal.timeout(FIRESTORE_TIMEOUT_MS),
   });
 };
 

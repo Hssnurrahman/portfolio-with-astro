@@ -2,6 +2,7 @@ import { createRequire } from 'node:module';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import {
   createLocalJWKSet,
+  errors as joseErrors,
   exportJWK,
   generateKeyPair,
   SignJWT,
@@ -12,8 +13,11 @@ import {
   createFirebaseVerifier,
   defaultBuildToken,
   defaultFetchCall,
+  FIREBASE_JWKS_URL,
+  FIRESTORE_TIMEOUT_MS,
   handleTokenRequest,
   resetRateLimit,
+  VerifierUnavailableError,
   type TokenDeps,
 } from './agora-token';
 
@@ -440,5 +444,132 @@ describe('logging hygiene', () => {
     expect(logged).not.toContain(ID_TOKEN);
     expect(logged).not.toContain(CERT);
     expect(logged).not.toContain('007fake-token');
+  });
+});
+
+describe('JWKS unavailability (502, not 401)', () => {
+  const KID = 'remote-kid';
+  let privateKey: CryptoKey;
+  let jwks: { keys: JWK[] };
+
+  beforeEach(async () => {
+    const pair = await generateKeyPair('RS256', { extractable: true });
+    privateKey = pair.privateKey;
+    jwks = { keys: [{ ...(await exportJWK(pair.publicKey)), kid: KID, alg: 'RS256', use: 'sig' }] };
+  });
+
+  async function sign(kid = KID): Promise<string> {
+    return new SignJWT({ email_verified: true })
+      .setProtectedHeader({ alg: 'RS256', kid })
+      .setAudience(PROJECT)
+      .setIssuer(`https://securetoken.google.com/${PROJECT}`)
+      .setSubject('user-1')
+      .setIssuedAt()
+      .setExpirationTime('1h')
+      .sign(privateKey);
+  }
+
+  // A fresh remote verifier per call (no shared JWKS cache), with global fetch stubbed.
+  async function run(fetchImpl: (url: string) => Promise<Response>, kid = KID) {
+    const fetchMock = vi.fn(fetchImpl);
+    vi.stubGlobal('fetch', fetchMock);
+    const deps = makeDeps({ verifyIdToken: createFirebaseVerifier() });
+    const jwt = await sign(kid);
+    const res = await handleTokenRequest(makeRequest(undefined, { auth: `Bearer ${jwt}` }), deps);
+    return { res, deps, fetchMock };
+  }
+
+  it('uses Google securetoken JWKS URL by default', async () => {
+    const { res, fetchMock } = await run(async () => Response.json(jwks));
+    expect(res.status).toBe(200);
+    expect(String(fetchMock.mock.calls[0]![0])).toBe(FIREBASE_JWKS_URL);
+  });
+
+  it('502 when the JWKS fetch times out (JWKSTimeout)', async () => {
+    const timeout = Object.assign(new Error('The operation timed out.'), { name: 'TimeoutError' });
+    const { res, deps } = await run(async () => {
+      throw timeout;
+    });
+    expect(res.status).toBe(502);
+    expect(deps.fetchCall).not.toHaveBeenCalled();
+  });
+
+  it('502 when the JWKS fetch fails with a network error', async () => {
+    const { res, deps } = await run(async () => {
+      throw new TypeError('fetch failed');
+    });
+    expect(res.status).toBe(502);
+    expect(deps.fetchCall).not.toHaveBeenCalled();
+  });
+
+  it('502 when the JWKS endpoint returns 500 or non-JSON', async () => {
+    expect((await run(async () => new Response('oops', { status: 500 }))).res.status).toBe(502);
+    expect((await run(async () => new Response('<html>', { status: 200 }))).res.status).toBe(502);
+  });
+
+  it('401 when the token kid is not in the key set (JWKSNoMatchingKey)', async () => {
+    const { res, deps } = await run(async () => Response.json(jwks), 'unknown-kid');
+    expect(res.status).toBe(401);
+    expect(deps.fetchCall).not.toHaveBeenCalled();
+  });
+
+  it('verifier throws VerifierUnavailableError for upstream failures only', async () => {
+    const timeoutGetter = createFirebaseVerifier(async () => {
+      throw new joseErrors.JWKSTimeout();
+    });
+    await expect(timeoutGetter(await sign(), PROJECT)).rejects.toBeInstanceOf(VerifierUnavailableError);
+
+    const noKey = createFirebaseVerifier(async () => {
+      throw new joseErrors.JWKSNoMatchingKey();
+    });
+    const err = await noKey(await sign(), PROJECT).catch((e: unknown) => e);
+    expect(err).toBeInstanceOf(joseErrors.JWKSNoMatchingKey);
+    expect(err).not.toBeInstanceOf(VerifierUnavailableError);
+  });
+
+  it('handler maps VerifierUnavailableError to 502 and other errors to 401', async () => {
+    const unavailable = makeDeps({
+      verifyIdToken: vi.fn(async () => {
+        throw new VerifierUnavailableError();
+      }),
+    });
+    expect((await handleTokenRequest(makeRequest(), unavailable)).status).toBe(502);
+    expect(unavailable.fetchCall).not.toHaveBeenCalled();
+
+    for (const e of [
+      new joseErrors.JWSSignatureVerificationFailed(),
+      new joseErrors.JWTExpired('expired', {}),
+      new joseErrors.JWTClaimValidationFailed('bad aud', {}),
+      new joseErrors.JWSInvalid(),
+      new joseErrors.JWTInvalid(),
+      new joseErrors.JWKSNoMatchingKey(),
+    ]) {
+      const deps = makeDeps({
+        verifyIdToken: vi.fn(async () => {
+          throw e;
+        }),
+      });
+      expect((await handleTokenRequest(makeRequest(), deps)).status, e.code).toBe(401);
+    }
+  });
+});
+
+describe('fix round 1: upstream hygiene', () => {
+  it('cancels the unread body of non-2xx Firestore responses', async () => {
+    for (const status of [401, 403, 404, 500]) {
+      const cancel = vi.fn();
+      const body = new ReadableStream({ cancel });
+      const deps = makeDeps({ fetchCall: vi.fn(async () => new Response(body, { status })) });
+      await handleTokenRequest(makeRequest(), deps);
+      expect(cancel, String(status)).toHaveBeenCalled();
+    }
+  });
+
+  it('defaultFetchCall uses a ~5 s timeout signal', async () => {
+    const spy = vi.spyOn(AbortSignal, 'timeout');
+    vi.stubGlobal('fetch', vi.fn(async () => new Response('{}')));
+    await defaultFetchCall(PROJECT, CALL_ID, ID_TOKEN);
+    expect(spy).toHaveBeenCalledWith(FIRESTORE_TIMEOUT_MS);
+    expect(FIRESTORE_TIMEOUT_MS).toBe(5000);
   });
 });
