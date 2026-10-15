@@ -8,15 +8,18 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test": "vitest run"
   },
   "dependencies": {
     "@astrojs/check": "0.9.10",
     "@iconify-json/mdi": "^1.2.3",
     "@iconify-json/simple-icons": "^1.2.57",
     "@tailwindcss/vite": "^4.3.3",
+    "agora-token": "^2.0.7",
     "astro": "7.2.9",
     "astro-icon": "^1.1.1",
+    "jose": "^6.2.12",
     "resend": "^6.4.1",
     "sass": "^1.89.2",
     "sharp": "^0.34.3",
@@ -24,6 +27,7 @@
     "typescript": "^5.9.2"
   },
   "devDependencies": {
-    "@astrojs/vercel": "11.0.8"
+    "@astrojs/vercel": "11.0.8",
+    "vitest": "^5.0.4"
   }
 }
