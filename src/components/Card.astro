@@ -3,6 +3,8 @@ export interface Props {
   name: string;
   description: string;
   href?: string | undefined;
+  /** Live product URL, shown as the hostname when the card links elsewhere. */
+  siteUrl?: string | undefined;
   tags?: string[] | undefined;
   featured?: boolean | undefined;
   category?: string | undefined;
@@ -13,6 +15,7 @@ const {
   name,
   description,
   href,
+  siteUrl = href,
   tags = [],
   featured = false,
   category,
@@ -23,9 +26,9 @@ const isExternal = href?.startsWith("http");
 const visibleTags = featured ? tags.slice(0, 6) : tags.slice(0, 4);
 const extraCount = tags.length - visibleTags.length;
 const hostname = (() => {
-  if (!href || !isExternal) return null;
+  if (!siteUrl?.startsWith("http")) return null;
   try {
-    return new URL(href).hostname.replace(/^www\./, "");
+    return new URL(siteUrl).hostname.replace(/^www\./, "");
   } catch {
     return null;
   }
@@ -198,7 +201,7 @@ const hostname = (() => {
         <div
           class="inline-flex items-center gap-2 text-sm font-semibold text-white dark:text-gray-900 group-hover:gap-3 transition-all"
         >
-          Visit project
+          View project
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
           </svg>

@@ -1,5 +1,5 @@
 ---
-import { projects } from "../data/Projects";
+import { projects, projectSlug } from "../data/Projects";
 import type { Project } from "../data/Projects";
 import Card from "./Card.astro";
 import SectionHeading from "./SectionHeading.astro";
@@ -85,7 +85,8 @@ const counts: Record<string, number> = {
             <Card
               name={featured.name}
               description={featured.description}
-              href={featured.href}
+              href={`/projects/${projectSlug(featured)}/`}
+              siteUrl={featured.href}
               tags={featured.tags}
               featured={true}
               category={featured.category}
@@ -102,7 +103,8 @@ const counts: Record<string, number> = {
               <Card
                 name={project.name}
                 description={project.description}
-                href={project.href}
+                href={`/projects/${projectSlug(project)}/`}
+              siteUrl={project.href}
                 tags={project.tags}
                 category={project.category}
               />

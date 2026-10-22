@@ -2,22 +2,29 @@
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import Head from "./Head.astro";
+import "@fontsource-variable/inter";
 import "../global.css";
 
 export interface Props {
   title?: string;
   description?: string;
+  image?: string;
+  type?: "website" | "article";
+  structuredData?: Record<string, unknown>[];
 }
 
 const {
   title = "Hassan Ur Rahman | Full-Stack Developer",
   description = "Portfolio of Hassan Ur Rahman, a full-stack developer building thoughtful, scalable web and mobile products.",
+  image,
+  type,
+  structuredData,
 } = Astro.props;
 ---
 
 <!DOCTYPE html>
 <html lang="en">
-<Head title={title} description={description} />
+<Head title={title} description={description} image={image} type={type} structuredData={structuredData} />
   <body>
     <Header />
     <slot />

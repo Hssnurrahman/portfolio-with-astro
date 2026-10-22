@@ -1,15 +1,17 @@
 ---
+// Off the homepage, section anchors must point back to "/".
+const base = Astro.url.pathname === "/" ? "" : "/";
 import { Icon } from "astro-icon/components";
 import { landingIcons } from "../data/LandingIcons";
 
 const currentYear = new Date().getFullYear();
 
 const quickLinks = [
-  { href: "#home", label: "Home" },
-  { href: "#skills", label: "Skills" },
-  { href: "#projects", label: "Projects" },
-  { href: "#about", label: "About" },
-  { href: "#contact", label: "Contact" },
+  { href: `${base}#home`, label: "Home" },
+  { href: `${base}#skills`, label: "Skills" },
+  { href: `${base}#projects`, label: "Projects" },
+  { href: `${base}#about`, label: "About" },
+  { href: `${base}#contact`, label: "Contact" },
 ];
 
 const socials = landingIcons
@@ -66,7 +68,7 @@ const email = "contact@hssan.dev";
           </svg>
         </a>
         <a
-          href="#contact"
+          href={`${base}#contact`}
           class="inline-flex items-center px-5 py-3 rounded-lg border border-gray-800 text-gray-200 font-medium hover:border-white hover:text-white transition-colors"
         >
           Use contact form
@@ -78,7 +80,7 @@ const email = "contact@hssan.dev";
     <div class="py-14 grid md:grid-cols-12 gap-10">
       <!-- Brand -->
       <div class="md:col-span-5 space-y-4">
-        <a href="#home" class="group inline-flex items-center gap-2.5" aria-label="Hassan — top">
+        <a href={`${base}#home`} class="group inline-flex items-center gap-2.5" aria-label="Hassan — top">
           <span
             class="flex h-9 w-9 items-center justify-center rounded-lg bg-white text-gray-900 font-bold transition-transform duration-300 group-hover:rotate-6 group-hover:scale-105"
           >
@@ -177,7 +179,7 @@ const email = "contact@hssan.dev";
           </a>
         </span>
         <a
-          href="#home"
+          href={`${base}#home`}
           aria-label="Back to top"
           class="group inline-flex items-center gap-1.5 text-gray-500 hover:text-white transition-colors"
         >
