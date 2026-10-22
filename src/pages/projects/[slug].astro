@@ -13,6 +13,7 @@ export function getStaticPaths() {
 }
 
 const { project } = Astro.props as { project: Project };
+const details = project.details;
 
 const kind = project.category === "Mobile" ? "mobile app" : "web app";
 const isPlayStore = project.href.includes("play.google.com");
@@ -21,7 +22,7 @@ const others = projects.filter((p) => p !== project).slice(0, 3);
 
 // Keep the meta description inside the ~155 characters search engines display.
 const metaDescription = (() => {
-  const text = `${project.name}: ${project.description}`;
+  const text = `${project.name}: ${details?.tagline ?? project.description}`;
   if (text.length <= 155) return text;
   return `${text.slice(0, 152).replace(/\s+\S*$/, "")}…`;
 })();
@@ -81,16 +82,82 @@ const structuredData = [
       <h1 class="mt-4 text-4xl md:text-6xl font-bold tracking-tight text-gray-900 dark:text-white">
         {project.name}
       </h1>
-      <p class="mt-3 text-lg text-gray-500 dark:text-gray-400">
+      <p class="mt-4 text-xl md:text-2xl text-gray-700 dark:text-gray-300">
+        {details?.tagline ?? project.description}
+      </p>
+      <p class="mt-3 text-sm text-gray-500 dark:text-gray-400">
         A {kind} designed and built by Hassan Ur Rahman.
       </p>
 
-      <p class="mt-8 text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-        {project.description}
-      </p>
+      {
+        details && (
+          <section class="mt-12" aria-labelledby="overview-heading">
+            <h2 id="overview-heading" class="text-2xl font-bold text-gray-900 dark:text-white">
+              Overview
+            </h2>
+            <div class="mt-4 space-y-4 text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+              {details.overview.map((para) => <p>{para}</p>)}
+            </div>
+          </section>
+        )
+      }
 
       {
-        project.highlights && project.highlights.length > 0 && (
+        details && (
+          <section class="mt-12" aria-labelledby="features-heading">
+            <h2 id="features-heading" class="text-2xl font-bold text-gray-900 dark:text-white">
+              Key features
+            </h2>
+            <ul class="mt-6 grid sm:grid-cols-2 gap-4">
+              {details.features.map((f) => (
+                <li class="p-5 rounded-xl border border-gray-200 dark:border-gray-800">
+                  <h3 class="font-semibold text-gray-900 dark:text-white">{f.title}</h3>
+                  <p class="mt-2 text-sm leading-relaxed text-gray-600 dark:text-gray-400">{f.description}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
+
+      {
+        details && (
+          <section class="mt-12" aria-labelledby="technical-heading">
+            <h2 id="technical-heading" class="text-2xl font-bold text-gray-900 dark:text-white">
+              How it's built
+            </h2>
+            <ul class="mt-4 space-y-3 text-gray-700 dark:text-gray-300 leading-relaxed">
+              {details.technical.map((t) => (
+                <li class="flex gap-3">
+                  <span class="text-gray-400 dark:text-gray-500 shrink-0" aria-hidden="true">→</span>
+                  {t}
+                </li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
+
+      {
+        details?.challenges && details.challenges.length > 0 && (
+          <section class="mt-12" aria-labelledby="challenges-heading">
+            <h2 id="challenges-heading" class="text-2xl font-bold text-gray-900 dark:text-white">
+              Challenges &amp; solutions
+            </h2>
+            <dl class="mt-6 space-y-6">
+              {details.challenges.map((c) => (
+                <div class="pl-5 border-l-2 border-gray-200 dark:border-gray-800">
+                  <dt class="font-semibold text-gray-900 dark:text-white">{c.title}</dt>
+                  <dd class="mt-2 text-gray-600 dark:text-gray-400 leading-relaxed">{c.solution}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        )
+      }
+
+      {
+        !details && project.highlights && project.highlights.length > 0 && (
           <section class="mt-12" aria-labelledby="highlights-heading">
             <h2 id="highlights-heading" class="text-2xl font-bold text-gray-900 dark:text-white">
               Highlights
