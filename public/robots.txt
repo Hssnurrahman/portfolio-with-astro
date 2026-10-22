@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://hssan.dev/sitemap-index.xml
+Sitemap: https://hssan.dev/sitemap.xml
