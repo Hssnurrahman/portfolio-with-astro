@@ -2,33 +2,67 @@
 export interface Props {
   title?: string;
   description?: string;
-  image?: string;
-  type?: "website" | "article";
+  image?: string | undefined;
+  type?: "website" | "article" | undefined;
   canonical?: string;
+  /** Extra JSON-LD nodes for this page, merged into the site-wide @graph. */
+  structuredData?: Record<string, unknown>[] | undefined;
 }
 
 const {
   title = "Hassan Ur Rahman | Full-Stack Developer",
   description = "Portfolio of Hassan Ur Rahman, a full-stack developer building thoughtful, scalable web and mobile products.",
-  image = "/hassan-ur-rahman-logo-v2.png",
+  image = "/og-image.png",
   type = "website",
   canonical,
+  structuredData: pageStructuredData = [],
 } = Astro.props;
 
 const site = Astro.site ?? Astro.url.origin;
 const canonicalUrl = new URL(canonical ?? Astro.url.pathname, site).href;
 const imageUrl = new URL(image, site).href;
+const homeUrl = new URL("/", site).href;
+const personId = `${homeUrl}#person`;
 const structuredData = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Hassan Ur Rahman",
-  url: new URL("/", site).href,
-  image: imageUrl,
-  jobTitle: "Full-Stack Developer",
-  email: "contact@hssan.dev",
-  sameAs: [
-    "https://github.com/Hssnurrahman",
-    "https://www.linkedin.com/in/hassan-ur-rahman-03b787229/",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": personId,
+      name: "Hassan Ur Rahman",
+      url: homeUrl,
+      image: new URL("/hassan-ur-rahman-logo-v2.png", site).href,
+      jobTitle: "Full-Stack Developer",
+      email: "contact@hssan.dev",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Rawalpindi",
+        addressCountry: "PK",
+      },
+      knowsAbout: [
+        "Full-stack development",
+        "React",
+        "Next.js",
+        "Node.js",
+        "TypeScript",
+        "PostgreSQL",
+        "Flutter",
+        "Mobile app development",
+      ],
+      sameAs: [
+        "https://github.com/Hssnurrahman",
+        "https://www.linkedin.com/in/hassan-ur-rahman-03b787229/",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${homeUrl}#website`,
+      name: "Hassan Ur Rahman",
+      url: homeUrl,
+      inLanguage: "en",
+      publisher: { "@id": personId },
+    },
+    ...pageStructuredData,
   ],
 };
 ---
@@ -68,6 +102,9 @@ const structuredData = {
   <meta property="og:description" content={description} />
   <meta property="og:url" content={canonicalUrl} />
   <meta property="og:image" content={imageUrl} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content={title} />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />

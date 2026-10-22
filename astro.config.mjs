@@ -4,6 +4,7 @@ import {defineConfig, envField} from "astro/config";
 import icon from "astro-icon";
 import vercel from "@astrojs/vercel";
 import tailwindcss from "@tailwindcss/vite";
+import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
@@ -19,7 +20,7 @@ export default defineConfig({
             HUMKALAM_FIREBASE_PROJECT_ID: envField.string({context: "server", access: "secret", optional: true}),
         },
     },
-    integrations: [icon({
+    integrations: [sitemap(), icon({
         include: {
             "simple-icons": ["*"],
             "mdi": ["*"]

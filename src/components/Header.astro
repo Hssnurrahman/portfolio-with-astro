@@ -1,10 +1,12 @@
 ---
+// Off the homepage, section anchors must point back to "/".
+const base = Astro.url.pathname === "/" ? "" : "/";
 const navItems = [
-  { href: "#home", label: "Home" },
-  { href: "#skills", label: "Skills" },
-  { href: "#projects", label: "Projects" },
-  { href: "#about", label: "About" },
-  { href: "#contact", label: "Contact" },
+  { href: `${base}#home`, label: "Home" },
+  { href: `${base}#skills`, label: "Skills" },
+  { href: `${base}#projects`, label: "Projects" },
+  { href: `${base}#about`, label: "About" },
+  { href: `${base}#contact`, label: "Contact" },
 ];
 
 const themeOptions = [
@@ -26,7 +28,7 @@ const themeOptions = [
     <div class="flex items-center justify-between gap-3">
       <!-- Logo pill -->
       <a
-        href="#home"
+        href={`${base}#home`}
         aria-label="Hassan — home"
         class="pointer-events-auto group inline-flex items-center gap-2.5 px-2 pr-4 py-1.5 rounded-full bg-white/85 dark:bg-gray-900/85 backdrop-blur-xl border border-gray-200 dark:border-gray-800 shadow-[0_4px_20px_-4px_rgb(0,0,0,0.08)] dark:shadow-[0_4px_20px_-4px_rgb(0,0,0,0.5)] hover:shadow-lg transition-all duration-300"
       >
@@ -111,7 +113,7 @@ const themeOptions = [
 
         <!-- Desktop CTA -->
         <a
-          href="#contact"
+          href={`${base}#contact`}
           class="cta-btn pointer-events-auto hidden md:inline-flex items-center gap-1.5 pl-4 pr-2 py-1.5 rounded-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-sm font-semibold hover:shadow-lg transition-all duration-300 group"
         >
           Let's talk
@@ -174,7 +176,7 @@ const themeOptions = [
             ))
           }
           <a
-            href="#contact"
+            href={`${base}#contact`}
             data-mobile-link
             class="mt-2 mx-1 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-sm font-semibold hover:opacity-90 transition-opacity"
           >

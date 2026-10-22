@@ -64,3 +64,7 @@ export const projects: Project[] = [
         category: "Mobile",
     },
 ];
+
+export function projectSlug(project: Project): string {
+    return project.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
