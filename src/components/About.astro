@@ -1,11 +1,12 @@
 ---
 import { Icon } from "astro-icon/components";
 import SectionHeading from "./SectionHeading.astro";
+import { techCategories, totalTech } from "../data/tech";
 
 const stats = [
   { value: "4", label: "Years building", sub: "Web & mobile products" },
-  { value: "15+", label: "Technologies", sub: "Across the full stack" },
-  { value: "6", label: "Areas of expertise", sub: "Languages to cloud" },
+  { value: `${totalTech}+`, label: "Technologies", sub: "Across the full stack" },
+  { value: `${techCategories.length}`, label: "Areas of expertise", sub: "Languages to cloud" },
 ];
 
 const principles = [

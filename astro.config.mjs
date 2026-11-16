@@ -15,6 +15,9 @@ export default defineConfig({
     // inlined into the build output. Optional: a missing value makes the endpoint 500.
     env: {
         schema: {
+            RESEND_API_KEY: envField.string({context: "server", access: "secret", optional: true}),
+            CONTACT_EMAIL: envField.string({context: "server", access: "secret", optional: true}),
+            RESEND_FROM_EMAIL: envField.string({context: "server", access: "secret", optional: true}),
             HUMKALAM_AGORA_APP_ID: envField.string({context: "server", access: "secret", optional: true}),
             HUMKALAM_AGORA_APP_CERTIFICATE: envField.string({context: "server", access: "secret", optional: true}),
             HUMKALAM_FIREBASE_PROJECT_ID: envField.string({context: "server", access: "secret", optional: true}),

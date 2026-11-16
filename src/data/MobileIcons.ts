@@ -1,4 +1,6 @@
-export const mobileIcons = [
+import type { TechIcon } from "./types";
+
+export const mobileIcons: TechIcon[] = [
   {
     icon: "simple-icons:react",
     className: "react-native-icon",

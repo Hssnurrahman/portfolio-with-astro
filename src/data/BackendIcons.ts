@@ -1,4 +1,6 @@
-export const backendIcons = [
+import type { TechIcon } from "./types";
+
+export const backendIcons: TechIcon[] = [
     {
         icon: "simple-icons:nodedotjs",
         className: "nodejs-icon",

@@ -1,4 +1,6 @@
-export const databaseIcons = [
+import type { TechIcon } from "./types";
+
+export const databaseIcons: TechIcon[] = [
     {
         icon: "simple-icons:mongodb",
         className: "mongodb-icon",

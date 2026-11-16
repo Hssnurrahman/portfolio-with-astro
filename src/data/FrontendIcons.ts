@@ -1,4 +1,6 @@
-export const frontendIcons = [
+import type { TechIcon } from "./types";
+
+export const frontendIcons: TechIcon[] = [
   {
     icon: "simple-icons:react",
     className: "react-icon",
@@ -16,12 +18,6 @@ export const frontendIcons = [
     className: "next-icon",
     ariaLabel: "next",
     label: "Next.js",
-  },
-  {
-    icon: "simple-icons:vercel",
-    className: "vercel-icon",
-    ariaLabel: "vercel",
-    label: "Vercel",
   },
   {
     icon: "simple-icons:mui",

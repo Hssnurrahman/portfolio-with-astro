@@ -2,19 +2,13 @@
 import { Icon } from "astro-icon/components";
 
 import "../styles/Icon.scss";
-
-export interface IconProps {
-  icon: string;
-  label: string;
-  ariaLabel: string;
-  className: string;
-}
+import type { TechIcon } from "../data/types";
 
 export interface Props {
   heading: string;
   description?: string;
   categoryIcon: string;
-  icons: IconProps[];
+  icons: TechIcon[];
 }
 
 const { heading, description, categoryIcon, icons } = Astro.props as Props;
@@ -48,7 +42,7 @@ const { heading, description, categoryIcon, icons } = Astro.props as Props;
   <!-- Skills Grid -->
   <ul class="grid grid-cols-3 sm:grid-cols-4 gap-3 sm:gap-4 list-none p-0 m-0">
     {
-      icons.map(({ icon, label, ariaLabel, className }: IconProps) => (
+      icons.map(({ icon, label, ariaLabel, className }: TechIcon) => (
         <li class="skill-item">
           <div
             class="group/tile relative flex flex-col items-center justify-center gap-2 p-3 rounded-xl border border-gray-200 dark:border-gray-800 bg-gray-50/60 dark:bg-gray-900/40 hover:-translate-y-1 hover:shadow-md transition-all duration-300 cursor-default"

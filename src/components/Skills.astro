@@ -1,53 +1,7 @@
 ---
-import { backendIcons } from "../data/BackendIcons";
-import { frontendIcons } from "../data/FrontendIcons";
-import { languageIcons } from "../data/LanguageIcons";
-import { mobileIcons } from "../data/MobileIcons";
-import { databaseIcons } from "../data/DatabaseIcons";
-import { toolsIcons } from "../data/ToolsIcons";
+import { techCategories, totalTech } from "../data/tech";
 import SkillIcon from "./SkillIcon.astro";
 import SectionHeading from "./SectionHeading.astro";
-
-const categories = [
-  {
-    heading: "Languages",
-    description: "Type-safe, expressive code",
-    categoryIcon: "mdi:code-tags",
-    icons: languageIcons,
-  },
-  {
-    heading: "Frontend",
-    description: "Interfaces users love",
-    categoryIcon: "mdi:monitor-dashboard",
-    icons: frontendIcons,
-  },
-  {
-    heading: "Backend",
-    description: "APIs and services at scale",
-    categoryIcon: "mdi:server-network",
-    icons: backendIcons,
-  },
-  {
-    heading: "Mobile",
-    description: "Cross-platform experiences",
-    categoryIcon: "mdi:cellphone-link",
-    icons: mobileIcons,
-  },
-  {
-    heading: "Database",
-    description: "SQL & NoSQL data stores",
-    categoryIcon: "mdi:database",
-    icons: databaseIcons,
-  },
-  {
-    heading: "Cloud & Tools",
-    description: "Shipping, deploying, iterating",
-    categoryIcon: "mdi:tools",
-    icons: toolsIcons,
-  },
-];
-
-const totalTech = categories.reduce((sum, c) => sum + c.icons.length, 0);
 ---
 
 <section
@@ -71,7 +25,7 @@ const totalTech = categories.reduce((sum, c) => sum + c.icons.length, 0);
       <p slot="description">
         A toolkit of <span class="font-semibold text-gray-900 dark:text-white">{totalTech}+</span>
         technologies I've shipped production work with — across
-        <span class="font-semibold text-gray-900 dark:text-white">{categories.length}</span>
+        <span class="font-semibold text-gray-900 dark:text-white">{techCategories.length}</span>
         areas of the stack.
       </p>
     </SectionHeading>
@@ -79,7 +33,7 @@ const totalTech = categories.reduce((sum, c) => sum + c.icons.length, 0);
     <!-- Skills Grid -->
     <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
       {
-        categories.map((category, index) => (
+        techCategories.map((category, index) => (
           <div data-skill-card style={`--reveal-delay: ${index * 80}ms`}>
             <SkillIcon
               heading={category.heading}

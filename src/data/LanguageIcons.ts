@@ -1,4 +1,6 @@
-export const languageIcons = [
+import type { TechIcon } from "./types";
+
+export const languageIcons: TechIcon[] = [
   {
     icon: "simple-icons:javascript",
     className: "javascript-icon",

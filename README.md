@@ -4,7 +4,7 @@ This is a portfolio website built using Astro.js and Tailwind CSS, a utility-fir
 
 ## Requirements
 
-Node = 18.16.0
+Node >= 22.12.0 (required by Astro 7)
 
 yarn / npm but yarn is preferred
 
@@ -25,7 +25,15 @@ To install and run the website locally, follow these steps:
 
    `yarn dev`
 
-4. Open your web browser and navigate to `http://localhost:3000` to view the website.
+4. Open your web browser and navigate to `http://localhost:4321` to view the website.
+
+## Environment variables
+
+Copy `.env.example` to `.env` and fill in the values you need. `RESEND_API_KEY` powers the
+contact form; `CONTACT_EMAIL` and `RESEND_FROM_EMAIL` control where mail is delivered and
+which verified sender it comes from. The `HUMKALAM_*` variables are only needed for the
+Agora token endpoint. All of them are read at runtime via `getSecret()` and must also be
+set in your hosting provider's environment settings.
 
 ## Structure
 
@@ -37,7 +45,7 @@ All work in Astro.js must be done in the "src" directory. Below is the list of d
 
 - `src/styles`: This folder contains the stylesheets for the site, which can be written in plain CSS or preprocessed with a CSS preprocessor like Sass or Less.
 
-- `src/utils`: This folder contains helper functions that can be used across different files.
+- `src/lib`: This folder contains helper functions that can be used across different files.
 
 - `src/data`: This folder contains all the data to be displayed on the site.
 
@@ -45,7 +53,7 @@ All work in Astro.js must be done in the "src" directory. Below is the list of d
 
 ## Create Portfolio in 30 Minutes:
 
-In this section, I will tell you which file you have to change to create your own portfolio similar to this in less than one hour:
+In this section, I will tell you which file you have to change to create your own portfolio similar to this in about 30 minutes:
 
 - `src/data`: In this folder, you have to change all your data, for example, by adding your own skills, etc. You can use icons; the link is in references.
 

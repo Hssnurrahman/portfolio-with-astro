@@ -1,4 +1,5 @@
 import type { APIRoute } from 'astro';
+import { getSecret } from 'astro:env/server';
 import { Resend } from 'resend';
 
 export const prerender = false;
@@ -118,7 +119,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 
     // Constructed per-request: the Resend client throws on a missing key, and at
     // module scope that would take down the whole route before any check above runs.
-    const apiKey = import.meta.env.RESEND_API_KEY;
+    const apiKey = getSecret('RESEND_API_KEY');
     if (!apiKey) {
       console.error('RESEND_API_KEY is not set — cannot send contact email.');
       return new Response(
@@ -139,8 +140,9 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 
     // Send email using Resend
     const data = await resend.emails.send({
-      from: 'onboarding@resend.dev', // Change this to your verified domain
-      to: import.meta.env.CONTACT_EMAIL || 'contact@hssan.dev', // Your email
+      // Set RESEND_FROM_EMAIL to a domain verified in Resend for reliable delivery.
+      from: getSecret('RESEND_FROM_EMAIL') ?? 'onboarding@resend.dev',
+      to: getSecret('CONTACT_EMAIL') ?? 'contact@hssan.dev',
       replyTo: email,
       subject: `Portfolio Contact: ${safe.subject}`,
       html: `

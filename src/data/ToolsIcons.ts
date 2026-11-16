@@ -1,4 +1,6 @@
-export const toolsIcons = [
+import type { TechIcon } from "./types";
+
+export const toolsIcons: TechIcon[] = [
     {
         icon: "simple-icons:git",
         className: "git-icon",
@@ -18,7 +20,7 @@ export const toolsIcons = [
         label: "Docker",
     },
     {
-        icon: "simple-icons:amazonaws",
+        icon: "simple-icons:amazonwebservices",
         className: "aws-icon",
         ariaLabel: "aws",
         label: "AWS",
